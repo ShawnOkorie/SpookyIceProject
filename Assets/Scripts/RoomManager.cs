@@ -22,7 +22,7 @@ public class RoomManager : MonoBehaviour
         Hallway2
     }
 
-    private void Start()
+    /*private void Start()
     {
         foreach (Room room in Room)
         {
@@ -31,7 +31,7 @@ public class RoomManager : MonoBehaviour
                 room.gameObject.SetActive(true);
             }
         }
-    }
+    }*/
 
     public void LoadRoom(Rooms target)
     {
