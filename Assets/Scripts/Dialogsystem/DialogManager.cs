@@ -1,13 +1,12 @@
 using System;
 using System.Collections;
-using Main;
 using UnityEngine;
 
 namespace DialogSystem
 {
    //Code von Michi
     
-    public class DialogManager : Singleton <DialogManager>
+    public class DialogManager : Singleton<DialogManager>
     {
         public event Action<string> OnSpeakerChanged;
         public event Action<string> OnTextChanged;
@@ -52,7 +51,7 @@ namespace DialogSystem
             finishedLine = false;
             
             // Get Data
-            dialog = JsonUtility.FromJson<Dialog>(stories[GameManager.Instance.CurrentRegion].text);
+            dialog = JsonUtility.FromJson<Dialog>(stories[0].text);
             passage = dialog.GetPassage(pid);
             string text = passage.text;
 
