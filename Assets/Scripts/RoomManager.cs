@@ -44,7 +44,10 @@ public class RoomManager : Singleton<RoomManager>
                 {
                     room.gameObject.SetActive(false);
                 }
+            }
 
+            foreach (Room room in Room)
+            {
                 if (target == room.myRoom)
                 {
                     currentroom = target;

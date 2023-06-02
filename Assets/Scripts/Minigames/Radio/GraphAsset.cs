@@ -4,16 +4,9 @@ using UnityEngine;
 [CreateAssetMenu]
 public class GraphAsset : ScriptableObject
 {
-    public GraphType graphType;
-    public enum GraphType
-    {
-        Sin,
-        Cos,
-        Tan
-    }
+    public GraphRenderer.GraphType graphType;
     
     public float baseAmplitude;
     public float baseFrequency;
     public float baseMovementSpeed;
-    
 }
