@@ -18,7 +18,6 @@ public class RoomManager : Singleton<RoomManager>
         Infirmary,
         Cave,
         Lab,
-        
         Hallway2
     }
 
@@ -35,6 +34,8 @@ public class RoomManager : Singleton<RoomManager>
 
     public void LoadRoom(Rooms target)
     {
+       print(currentroom);
+        
         if (target != currentroom)
         {
             foreach (Room room in Room)
@@ -51,5 +52,6 @@ public class RoomManager : Singleton<RoomManager>
                 }
             }
         }
+        print(currentroom);
     }
 }
