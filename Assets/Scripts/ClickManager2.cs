@@ -1,9 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.SceneManagement;
 
-public class AdventureManager : MonoBehaviour
+using UnityEngine;
+
+
+public class ClickManager2 : MonoBehaviour
 {
     public Vector3 mousePos;
     private RaycastHit2D hit;
@@ -33,17 +32,17 @@ public class AdventureManager : MonoBehaviour
                 print("objekt mit collider hit");
                 print(hit.collider.gameObject.name);
                 
+                IInteractable interactable = hit.collider.GetComponent<IInteractable>();
                 
                 
-                if (hit.collider.gameObject.tag == "Door")
+                if (interactable != null)
                 {
-                    SceneManager.LoadScene(nextScene);
+                    interactable.ShowInteractability();
+                    interactable.Interact();
+                    
                 }
             }
-            else
-            {
-                print("object mit keinem collider hit");
-            }
+           
         }
     }
 }
