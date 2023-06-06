@@ -1,14 +1,22 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class RadioMinigame : MonoBehaviour
 {
-   [SerializeField] private GraphRenderer graphSolution;
+   [SerializeField] private Canvas myCanvas;
+   [Header("Graphs")]
+   [SerializeField] private GraphRenderer solutionGraph;
    [SerializeField] private GraphRenderer graphRenderer;
-   private GraphRenderer currentGraphRenderer;
-   
+
+   public List<GraphAsset> graphAssetList = new List<GraphAsset>();
+   private GraphAsset currentGraph;
+   private int listindex;
+   [Header("Sliders")]
    [SerializeField] private Slider amplitudeSlider;
    [SerializeField] private Slider frequencySlider;
    [SerializeField] private Slider movementSpeedSlider;
@@ -16,48 +24,106 @@ public class RadioMinigame : MonoBehaviour
    [SerializeField] private float sliderValueOffset = 3;
    public bool movementIsFixed;
 
-   private void StartMinigame()
+   public void StartMinigame()
    {
+      myCanvas.gameObject.SetActive(true);
       
+      if (movementIsFixed)
+      {
+         listindex = 3;
+         movementSpeedSlider.gameObject.SetActive(true);
+         currentGraph = graphAssetList[listindex];
+         solutionGraph.graph = currentGraph;
+      }
+      else
+      {
+         listindex = 0;
+         movementSpeedSlider.gameObject.SetActive(false);
+         currentGraph = graphAssetList[listindex];
+         solutionGraph.graph = currentGraph;
+      }
+      
+      SetSliderValues(currentGraph);
    }
 
-   public void SetAmplitude(float value)
+   public void SetAmplitude()
    {
-      currentGraphRenderer.amplitude = value;
+      graphRenderer.amplitude = amplitudeSlider.value;
+
+      if (CheckIfSolved())
+         LoadNext();
    }
    
-   public void SetFrequency(float value)
+   public void SetFrequency()
    {
-      currentGraphRenderer.frequency = value;
+      graphRenderer.frequency = frequencySlider.value;
+      
+      if (CheckIfSolved())
+         LoadNext();
    }
 
-   private void SetSliderValues(GraphRenderer solutionGraph)
+   public void SetMovementSpeed()
    {
-      amplitudeSlider.minValue = solutionGraph.graph.baseAmplitude - sliderValueOffset;
-      amplitudeSlider.maxValue = solutionGraph.graph.baseAmplitude + sliderValueOffset;
+      if (movementIsFixed)
+         graphRenderer.movementSpeed = movementSpeedSlider.value;
+      
+      if (CheckIfSolved())
+         LoadNext();
+   }
 
-      frequencySlider.minValue = solutionGraph.graph.baseFrequency - sliderValueOffset;
-      frequencySlider.maxValue = solutionGraph.graph.baseFrequency + sliderValueOffset;
+   private void SetSliderValues(GraphAsset graphAsset)
+   {
+      amplitudeSlider.minValue = graphAsset.baseAmplitude - sliderValueOffset;
+      amplitudeSlider.maxValue = graphAsset.baseAmplitude + sliderValueOffset;
 
-      while (amplitudeSlider.minValue == amplitudeSlider.value || solutionGraph.graph.baseAmplitude == amplitudeSlider.value)
+      frequencySlider.minValue = graphAsset.baseFrequency - sliderValueOffset;
+      frequencySlider.maxValue = graphAsset.baseFrequency + sliderValueOffset;
+
+      while (amplitudeSlider.minValue == amplitudeSlider.value || graphAsset.baseAmplitude == amplitudeSlider.value)
          amplitudeSlider.value = Random.Range(amplitudeSlider.minValue, amplitudeSlider.maxValue);
       
-     
-      while (frequencySlider.minValue == frequencySlider.value || solutionGraph.graph.baseFrequency == frequencySlider.value)
+      while (frequencySlider.minValue == frequencySlider.value || graphAsset.baseFrequency == frequencySlider.value)
          frequencySlider.value = Random.Range(frequencySlider.minValue, frequencySlider.maxValue);
 
       if (movementIsFixed)
       {
-         movementSpeedSlider.minValue = solutionGraph.graph.baseMovementSpeed - sliderValueOffset;
-         movementSpeedSlider.maxValue = solutionGraph.graph.baseMovementSpeed + sliderValueOffset;
+         movementSpeedSlider.minValue = graphAsset.baseMovementSpeed - sliderValueOffset;
+         movementSpeedSlider.maxValue = graphAsset.baseMovementSpeed + sliderValueOffset;
 
          while (movementSpeedSlider.minValue == movementSpeedSlider.value || solutionGraph.graph.baseMovementSpeed == movementSpeedSlider.value)
             movementSpeedSlider.value = Random.Range(movementSpeedSlider.minValue, movementSpeedSlider.maxValue);
       }
    }
-   
-   public void LoadNextPuzzle()
+
+   private bool CheckIfSolved()
    {
+      if (graphRenderer.amplitude == solutionGraph.amplitude)
+      {
+         if (graphRenderer.frequency == solutionGraph.frequency)
+         {
+            if (movementIsFixed == false)
+            {
+               return true;
+            }
+
+            if (graphRenderer.movementSpeed == solutionGraph.movementSpeed)
+            {
+               return true;
+            }
+         }
+      }
+      return false;
+   }
+
+   private void LoadNext()
+   {
+      if (listindex == 3 || listindex == 5)
+         myCanvas.gameObject.SetActive(false);
       
+      ++listindex;
+      currentGraph = graphAssetList[listindex];
+      solutionGraph.graph = currentGraph;
+      
+      SetSliderValues(currentGraph);
    }
 }
