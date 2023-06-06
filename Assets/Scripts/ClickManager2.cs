@@ -9,7 +9,7 @@ public class ClickManager2 : MonoBehaviour
     public Camera mainCamera;
     public Vector3 mousePosWorld;
     public Vector2 mousePosWorld2D;
-    public string nextScene;
+    
    
     void Update()
     {
@@ -39,6 +39,7 @@ public class ClickManager2 : MonoBehaviour
                 {
                     interactable.ShowInteractability();
                     interactable.Interact();
+                    
                     
                 }
             }
