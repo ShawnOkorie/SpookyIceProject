@@ -2,7 +2,7 @@
 using UnityEngine;
 
 
-public class ClickManager2 : MonoBehaviour
+public class ClickManager : MonoBehaviour
 {
     public Vector3 mousePos;
     private RaycastHit2D hit;
@@ -32,15 +32,24 @@ public class ClickManager2 : MonoBehaviour
                 print("objekt mit collider hit");
                 print(hit.collider.gameObject.name);
                 
-                IInteractable interactable = hit.collider.GetComponent<IInteractable>();
+                
+                InteractableObject interactable = hit.collider.GetComponentInParent<InteractableObject>();;
+                InteractableObject lastClicked;
+
+
+                lastClicked = interactable;
+                interactable = hit.collider.GetComponentInParent<InteractableObject>();
                 
                 
                 if (interactable != null)
                 {
                     interactable.ShowInteractability();
                     interactable.Interact();
-                    
-                    
+                }
+
+                if (lastClicked.mergeableObjectID == interactable.mergeableObjectID)
+                {
+                    interactable.Merge(lastClicked);
                 }
             }
            

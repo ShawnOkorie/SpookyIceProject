@@ -9,6 +9,8 @@ namespace Minigames
 {
     public class SkillCheck : MonoBehaviour
     {
+        [SerializeField] private Canvas myCanvas;
+        
         [Header("Skill Check")]
         [SerializeField] private GridLayoutGroup gridLayoutGroup;
         [SerializeField] private TextMeshProUGUI charTMPPrefab;
@@ -30,6 +32,7 @@ namespace Minigames
         public void StartSkillCheck() //int difficulty, int timeLimit
         {
             currentPlay = StartCoroutine(Play(4));
+            myCanvas.gameObject.SetActive(true);
         }
     
         private IEnumerator Play(int length)
