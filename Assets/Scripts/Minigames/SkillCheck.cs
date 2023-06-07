@@ -31,8 +31,8 @@ namespace Minigames
 
         public void StartSkillCheck() //int difficulty, int timeLimit
         {
-            currentPlay = StartCoroutine(Play(4));
             myCanvas.gameObject.SetActive(true);
+            currentPlay = StartCoroutine(Play(4));
         }
     
         private IEnumerator Play(int length)

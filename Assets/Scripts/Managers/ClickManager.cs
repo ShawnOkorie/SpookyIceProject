@@ -9,6 +9,9 @@ public class ClickManager : MonoBehaviour
     public Camera mainCamera;
     public Vector3 mousePosWorld;
     public Vector2 mousePosWorld2D;
+
+    public InteractableObject interactable;
+    public InteractableObject lastClicked;
     
    
     void Update()
@@ -25,34 +28,44 @@ public class ClickManager : MonoBehaviour
             
             hit = Physics2D.Raycast(mousePosWorld2D, Vector2.zero);
             
-           
-            
             if (hit.collider != null)
             {
-                print("objekt mit collider hit");
+                print("hit");
                 print(hit.collider.gameObject.name);
                 
+                interactable = hit.transform.gameObject.GetComponentInParent<InteractableObject>();
+
+                if (lastClicked?.mergeableObjectID == interactable.mergeableObjectID)
+                {
+                    interactable.Merge(lastClicked);
+                }
+
+                if (lastClicked != null)
+                {
+                    if (lastClicked.inInventory && interactable.isPickup == false)
+                    {
+                        interactable.Solve(lastClicked);
+                    }    
+                }
                 
-                InteractableObject interactable = hit.collider.GetComponentInParent<InteractableObject>();;
-                InteractableObject lastClicked;
-
-
-                lastClicked = interactable;
-                interactable = hit.collider.GetComponentInParent<InteractableObject>();
+                if (interactable.inInventory)
+                {
+                    lastClicked = interactable;
+                }
                 
                 
                 if (interactable != null)
                 {
-                    interactable.ShowInteractability();
+                    //interactable.ShowInteractability();
                     interactable.Interact();
-                }
-
-                if (lastClicked.mergeableObjectID == interactable.mergeableObjectID)
-                {
-                    interactable.Merge(lastClicked);
                 }
             }
            
+        }
+        
+        if (Input.GetMouseButtonDown(1))
+        {
+            lastClicked = null;
         }
     }
 }
