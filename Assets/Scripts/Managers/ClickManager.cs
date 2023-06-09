@@ -56,7 +56,6 @@ public class ClickManager : MonoBehaviour
                 
                 if (interactable != null)
                 {
-                    //interactable.ShowInteractability();
                     interactable.Interact();
                 }
             }

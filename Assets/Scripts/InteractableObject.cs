@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using DialogSystem;
 using Unity.Mathematics;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
@@ -113,7 +112,7 @@ public class InteractableObject : MonoBehaviour
                 
                 Destroy(otherObject.gameObject);
                 
-                //OnAddProgress?.Invoke(addedProgress);
+                progressManager.AddProgress(addedProgress);
                 print("solved");
             }
         }

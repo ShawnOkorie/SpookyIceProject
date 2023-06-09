@@ -18,6 +18,9 @@ public class ProgressManager : MonoBehaviour
 
     public void AddProgress(Progress progress)
     {
+        if (progress == Progress.None)
+            return;
+        
         checkpointList.Add(progress);
         OnProgressChanged?.Invoke(progress);
     }
