@@ -10,6 +10,8 @@ public class RoomManager : Singleton<RoomManager>
     private Rooms currentroom;
     public Rooms targetroom;
     [SerializeField] private Rooms defaultroom;
+    
+    private LoadingScreen loadingScreen;
     public enum Rooms
     {
         None,
@@ -21,6 +23,11 @@ public class RoomManager : Singleton<RoomManager>
         Hallway1,
         Hallway2
     }
+    private void Awake()
+    {
+        loadingScreen = FindObjectOfType<LoadingScreen>();
+    }
+   
 
     /*private void Start()
     {
@@ -35,6 +42,7 @@ public class RoomManager : Singleton<RoomManager>
 
     public void LoadRoom(Rooms target)
     {
+        loadingScreen.ActivateLoadingScreen();
         if (currentroom == Rooms.None)
             currentroom = defaultroom;
         
