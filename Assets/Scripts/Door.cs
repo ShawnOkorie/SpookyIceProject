@@ -1,18 +1,15 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
-public class Door : MonoBehaviour, IInteractable
+public class Door : MonoBehaviour
 {
-    public Room target;
+    public Room targetroom;
     
-    public void ShowInteractability()
+    private void OnMouseDown()
     {
-        print("Tür öffnen");
-    }
-
-    public void Interact()
-    {
-        RoomManager.Instance.LoadRoom(target.myRoom);
+        RoomManager.Instance.LoadRoom(targetroom.myRoom);
     }
 }
