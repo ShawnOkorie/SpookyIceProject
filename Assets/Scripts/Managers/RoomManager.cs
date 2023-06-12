@@ -5,46 +5,47 @@ using UnityEngine;
 
 public class RoomManager : Singleton<RoomManager>
 {
+    [SerializeField] private LoadingScreen loadingScreen;
+    
     public List<Room> Room = new List<Room>();
 
     private Rooms currentroom;
-    public Rooms targetroom;
     [SerializeField] private Rooms defaultroom;
+    public Rooms targetroom;
     
-    private LoadingScreen loadingScreen;
     public enum Rooms
     {
         None,
         CryoRoom,
         GeneratorRoom,
         Infirmary,
-        Cave,
+        CaveEntrance,
         Lab,
-        Hallway1,
-        Hallway2
+        HallwayEG,
+        Hallway1st
     }
-    private void Awake()
-    {
-        loadingScreen = FindObjectOfType<LoadingScreen>();
-    }
-   
 
-    /*private void Start()
+    private void Start()
     {
-        foreach (Room room in Room)
-        {
-            if (currentroom == room.myRoom)
-            {
-                room.gameObject.SetActive(true);
-            }
-        }
-    }*/
+       LoadRoom(defaultroom);
+    }
 
     public void LoadRoom(Rooms target)
     {
-        loadingScreen.ActivateLoadingScreen();
-        if (currentroom == Rooms.None)
-            currentroom = defaultroom;
+        if (loadingScreen == null)
+            loadingScreen = FindObjectOfType<LoadingScreen>();
+
+        if (Application.isPlaying)
+            loadingScreen.ActivateLoadingScreen();
+        
+        /*if (currentroom == Rooms.None)
+            currentroom = defaultroom;*/
+
+        if (target == Rooms.None)
+        {
+            foreach (Room room in Room)
+                room.gameObject.SetActive(false);
+        }
         
         if (target != currentroom)
         {

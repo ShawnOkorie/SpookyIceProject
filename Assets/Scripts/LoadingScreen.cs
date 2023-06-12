@@ -41,6 +41,7 @@ public class LoadingScreen : MonoBehaviour
             
             yield return null;
         }
+        
         blackScreen.alpha = 0;
         myCanvas.sortingOrder = 0;
     }
