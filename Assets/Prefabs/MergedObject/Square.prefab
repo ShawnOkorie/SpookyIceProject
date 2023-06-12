@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3824450302988550934}
   - component: {fileID: 7967240602748974522}
+  - component: {fileID: 8686356710230889286}
   m_Layer: 0
   m_Name: Square
   m_TagString: Untagged
@@ -89,3 +90,29 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &8686356710230889286
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5837669784165101924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 093946e0a48126b4abd026c2633d5771, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inSceneObject: {fileID: 0}
+  inInventoryObject: {fileID: 0}
+  objectID: 0
+  isInteractable: 0
+  isPickup: 0
+  inInventory: 0
+  isDoor: 0
+  targetroom: {fileID: 0}
+  mergeableObjectID: 0
+  mergedObject: {fileID: 0}
+  solvingObjectID: 0
+  dontDestroyOnSolve: 0
+  dialogueID: 0
+  interactAnimation: {fileID: 0}

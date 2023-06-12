@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class LoadingScreen : MonoBehaviour
@@ -12,12 +13,22 @@ public class LoadingScreen : MonoBehaviour
     public float waitDuration;
     public float fadeDuration;
 
+    public delegate void FadeStart();
+    public static event FadeStart onFadeStart;
+    
+    public delegate void FadeEnd();
+    public static event FadeEnd onFadeEnd;
+    
+    
+
     private void Awake()
     {
         myCanvas = GetComponent<Canvas>();
         blackScreen = GetComponent<CanvasGroup>();
         DontDestroyOnLoad(gameObject);
     }
+
+    
 
     private void Start()
     {
@@ -31,6 +42,7 @@ public class LoadingScreen : MonoBehaviour
     
     private IEnumerator FadeOut(float waitDuration, float fadeDuration)
     {
+        onFadeStart?.Invoke();
         myCanvas.sortingOrder = 10;
         blackScreen.alpha = 1;
         
@@ -45,5 +57,6 @@ public class LoadingScreen : MonoBehaviour
         
         blackScreen.alpha = 0;
         myCanvas.sortingOrder = 0;
+        onFadeEnd?.Invoke();
     }
 }

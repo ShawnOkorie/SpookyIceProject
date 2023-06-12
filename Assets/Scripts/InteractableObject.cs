@@ -23,6 +23,9 @@ public class InteractableObject : MonoBehaviour
     public bool isPickup;
     [HideInInspector] public bool inInventory;
 
+    public bool isDoor;
+    public Room targetroom;
+
     public int mergeableObjectID;
     [SerializeField] private GameObject mergedObject;
 
@@ -36,54 +39,77 @@ public class InteractableObject : MonoBehaviour
 
     private void Awake()
     {
+        LoadingScreen.onFadeStart += FadeStart;
+        LoadingScreen.onFadeEnd += FadeEnd;
+        
         progressManager = FindObjectOfType<ProgressManager>();
         inventoryLayout = FindObjectOfType<GridLayoutGroup>();
 
-        progressManager.OnProgressChanged += ChangeInteractability;
+        progressManager.OnProgressChanged += UnlockInteracability;
+    }
+
+    
+    private void FadeStart()
+    {
+        if (requiredProgress != ProgressManager.Progress.None)
+            isInteractable = false;
+        isDoor = false;
+    }
+    private void FadeEnd()
+    {
+        if (requiredProgress != ProgressManager.Progress.None)
+            isInteractable = true;
+        isDoor = true;
     }
 
     private void OnDestroy()
     {
-        progressManager.OnProgressChanged -= ChangeInteractability;
+        progressManager.OnProgressChanged -= UnlockInteracability;
     }
 
     private void Start()
     {
         if (requiredProgress != ProgressManager.Progress.None)
-        {
             isInteractable = false;
-        }
     }
 
-    private void ChangeInteractability(ProgressManager.Progress progress)
+    private void UnlockInteracability(ProgressManager.Progress progress)
     {
         if (progress == requiredProgress)
         {
+            requiredProgress = ProgressManager.Progress.None; 
             isInteractable = true;
         }
     }
     
     public void Interact()
     {
-        if (isPickup)
+        if (isInteractable)
         {
-            inInventory = true;
+            if (isPickup)
+            {
+                inInventory = true;
             
-            inSceneObject.gameObject.SetActive(false);
-            inInventoryObject.gameObject.SetActive(true);
-            gameObject.transform.SetParent(inventoryLayout.transform);
-        }
+                inSceneObject.gameObject.SetActive(false);
+                inInventoryObject.gameObject.SetActive(true);
+                gameObject.transform.SetParent(inventoryLayout.transform);
+            }
 
-        if (dialogueID != 0)
-        {
-            DialogManager.Instance.StartDialog(dialogueID);
-        }
+            if (dialogueID != 0)
+            {
+                DialogManager.Instance.StartDialog(dialogueID);
+            }
         
-        if (interactAnimation)
-        {
-            /*play anim*/
+            if (interactAnimation)
+            {
+                /*play anim*/
+            }
+
+            if (isDoor)
+            {
+                RoomManager.Instance.LoadRoom(targetroom.myRoom);
+            }
         }
-        
     }
 
     public void Merge(InteractableObject otherObject)
