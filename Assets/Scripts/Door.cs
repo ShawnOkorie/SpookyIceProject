@@ -4,12 +4,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-public class Door : MonoBehaviour
+public class Door : Singleton<RoomManager>
 {
     public Room targetroom;
-    
+
     private void OnMouseDown()
     {
-        RoomManager.Instance.LoadRoom(targetroom.myRoom);
+        Instance.LoadRoom(targetroom.myRoom);
     }
 }

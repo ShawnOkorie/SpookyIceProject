@@ -33,6 +33,7 @@ public class LoadingScreen : MonoBehaviour
     {
         myCanvas.sortingOrder = 10;
         blackScreen.alpha = 1;
+        
         yield return new WaitForSeconds(waitDuration);
         
         for (float t = 0; t < fadeDuration; t += Time.deltaTime)

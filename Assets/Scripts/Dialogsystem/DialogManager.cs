@@ -34,7 +34,7 @@ namespace DialogSystem
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.F) && finishedLine)
+            if (Input.GetMouseButtonDown(0) && finishedLine)
             {
                 NextPassage();
             }
