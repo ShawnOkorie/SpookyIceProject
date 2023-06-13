@@ -53,7 +53,6 @@ public class ClickManager : MonoBehaviour
                     lastClicked = interactable;
                 }
                 
-                
                 if (interactable != null)
                 {
                     interactable.Interact();

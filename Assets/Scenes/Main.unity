@@ -470,7 +470,7 @@ MonoBehaviour:
   mergedObject: {fileID: 0}
   solvingObjectID: 0
   dontDestroyOnSolve: 0
-  dialogueID: 0
+  dialogList: 
   interactAnimation: {fileID: 0}
 --- !u!61 &129865579
 BoxCollider2D:
@@ -1079,7 +1079,7 @@ MonoBehaviour:
   - {fileID: 560379098}
   - {fileID: 315678436}
   defaultroom: 1
-  targetroom: 1
+  targetroom: 0
 --- !u!4 &608595605
 Transform:
   m_ObjectHideFlags: 0
@@ -1747,7 +1747,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 880586396994313584, guid: 2458035b93ce24949af9f222d884f7f8, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3001893814399599008, guid: 2458035b93ce24949af9f222d884f7f8, type: 3}
       propertyPath: m_Sprite

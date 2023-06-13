@@ -22,7 +22,8 @@ public class Dialog
 }
 
 [Serializable]
-public struct Passage
+public struct 
+    Passage
 {
     public string text;
     public List<Link> links;

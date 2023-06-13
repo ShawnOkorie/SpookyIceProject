@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using DialogSystem;
 using Unity.Mathematics;
 using UnityEngine;
@@ -11,6 +12,7 @@ public class InteractableObject : MonoBehaviour
 {
     private ProgressManager progressManager;
     private GridLayoutGroup inventoryLayout;
+    private TextBox textBox;
 
     [SerializeField] private GameObject inSceneObject;
     [SerializeField] private GameObject inInventoryObject;
@@ -32,39 +34,46 @@ public class InteractableObject : MonoBehaviour
     public int solvingObjectID;
     private ProgressManager.Progress addedProgress;
     public bool dontDestroyOnSolve;
-    
-    public int dialogueID;
+
+    public int start_pid;
 
     public AnimationClip interactAnimation;
 
     private void Awake()
     {
-        LoadingScreen.onFadeStart += FadeStart;
-        LoadingScreen.onFadeEnd += FadeEnd;
-        
         progressManager = FindObjectOfType<ProgressManager>();
         inventoryLayout = FindObjectOfType<GridLayoutGroup>();
-
+        //textBox = FindObjectOfType<TextBox>();
+        
+        LoadingScreen.onFadeStart += MakeUninteractible;
+        LoadingScreen.onFadeEnd += MakeInteractible;
         progressManager.OnProgressChanged += UnlockInteracability;
+        DialogManager.Instance.OnDialogStart += MakeUninteractible;
+        DialogManager.Instance.OnDialogEnd += MakeUninteractible;
     }
 
     
-    private void FadeStart()
+    private void MakeUninteractible()
     {
         if (requiredProgress != ProgressManager.Progress.None)
             isInteractable = false;
-        isDoor = false;
+        isInteractable = false;
     }
-    private void FadeEnd()
+    private void MakeInteractible()
     {
         if (requiredProgress != ProgressManager.Progress.None)
-            isInteractable = true;
-        isDoor = true;
+            isInteractable = false;
+        isInteractable = true;
+        
     }
 
     private void OnDestroy()
     {
+        LoadingScreen.onFadeStart -= MakeUninteractible;
+        LoadingScreen.onFadeEnd -= MakeInteractible;
         progressManager.OnProgressChanged -= UnlockInteracability;
+        DialogManager.Instance.OnDialogStart -= MakeUninteractible;
+        DialogManager.Instance.OnDialogEnd -= MakeUninteractible;
     }
 
     private void Start()
@@ -95,9 +104,9 @@ public class InteractableObject : MonoBehaviour
                 gameObject.transform.SetParent(inventoryLayout.transform);
             }
 
-            if (dialogueID != 0)
+            if (start_pid != 0)
             {
-                DialogManager.Instance.StartDialog(dialogueID);
+                DialogManager.Instance.StartDialog(start_pid);
             }
         
             if (interactAnimation)
@@ -105,7 +114,7 @@ public class InteractableObject : MonoBehaviour
                 /*play anim*/
             }
 
-            if (isDoor)
+            if (isDoor && isInteractable)
             {
                 RoomManager.Instance.LoadRoom(targetroom.myRoom);
             }
@@ -143,5 +152,7 @@ public class InteractableObject : MonoBehaviour
             }
         }
     }
+
+    
 }
 
