@@ -10,9 +10,10 @@ using UnityEngine.UI;
 
 public class InteractableObject : MonoBehaviour
 {
-    private ProgressManager progressManager;
-    private GridLayoutGroup inventoryLayout;
-    private TextBox textBox;
+    private static ProgressManager progressManager;
+    private static GridLayoutGroup inventoryLayout;
+    //private static TextBox textBox;
+    private MiniGameTrigger miniGameTrigger;
 
     [SerializeField] private GameObject inSceneObject;
     [SerializeField] private GameObject inInventoryObject;
@@ -34,20 +35,25 @@ public class InteractableObject : MonoBehaviour
     public int solvingObjectID;
     private ProgressManager.Progress addedProgress;
     public bool dontDestroyOnSolve;
+    public bool isSolved;
+    private bool mingameBeat = false;
 
     public int start_pid;
 
     public AnimationClip interactAnimation;
+    
 
     private void Awake()
     {
-        progressManager = FindObjectOfType<ProgressManager>();
-        inventoryLayout = FindObjectOfType<GridLayoutGroup>();
-        //textBox = FindObjectOfType<TextBox>();
+        progressManager ??= FindObjectOfType<ProgressManager>();
+        inventoryLayout ??= FindObjectOfType<GridLayoutGroup>();
+        //textBox ??= FindObjectOfType<TextBox>();
+
+        miniGameTrigger = GetComponent<MiniGameTrigger>();
         
+        progressManager.OnProgressChanged += UnlockInteracability;
         LoadingScreen.onFadeStart += MakeUninteractible;
         LoadingScreen.onFadeEnd += MakeInteractible;
-        progressManager.OnProgressChanged += UnlockInteracability;
         DialogManager.Instance.OnDialogStart += MakeUninteractible;
         DialogManager.Instance.OnDialogEnd += MakeUninteractible;
     }
@@ -69,9 +75,9 @@ public class InteractableObject : MonoBehaviour
 
     private void OnDestroy()
     {
+        progressManager.OnProgressChanged -= UnlockInteracability;
         LoadingScreen.onFadeStart -= MakeUninteractible;
         LoadingScreen.onFadeEnd -= MakeInteractible;
-        progressManager.OnProgressChanged -= UnlockInteracability;
         DialogManager.Instance.OnDialogStart -= MakeUninteractible;
         DialogManager.Instance.OnDialogEnd -= MakeUninteractible;
     }
@@ -118,6 +124,11 @@ public class InteractableObject : MonoBehaviour
             {
                 RoomManager.Instance.LoadRoom(targetroom.myRoom);
             }
+
+            if (miniGameTrigger != null && isSolved)
+            {
+                miniGameTrigger.StartMiniGame();
+            }
         }
     }
 
@@ -141,13 +152,12 @@ public class InteractableObject : MonoBehaviour
             if (otherObject.solvingObjectID == objectID)
             {
                 if (otherObject.dontDestroyOnSolve)
-                {
                     return;
-                }
                 
                 Destroy(otherObject.gameObject);
                 
                 progressManager.AddProgress(addedProgress);
+                otherObject.isSolved = true;
                 print("solved");
             }
         }

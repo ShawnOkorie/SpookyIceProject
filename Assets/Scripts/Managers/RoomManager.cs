@@ -22,7 +22,11 @@ public class RoomManager : Singleton<RoomManager>
         CaveEntrance,
         Lab,
         HallwayEG,
-        Hallway1st
+        Hallway1st,
+        LabSafeOpen,
+        LabSafeClosed,
+        LabMonitor,
+        GenRoomTanks
     }
 
     private void Start()

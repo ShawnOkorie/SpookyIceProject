@@ -175,7 +175,7 @@ MonoBehaviour:
   mergedObject: {fileID: 0}
   solvingObjectID: 0
   dontDestroyOnSolve: 0
-  dialogueID: 0
+  start_pid: 0
   interactAnimation: {fileID: 0}
 --- !u!61 &-1094491355378667230
 BoxCollider2D:

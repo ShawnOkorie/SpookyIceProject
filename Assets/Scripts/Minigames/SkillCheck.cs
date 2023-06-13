@@ -7,7 +7,7 @@ using Random = UnityEngine.Random;
 
 namespace Minigames
 {
-    public class SkillCheck : MonoBehaviour
+    public class SkillCheck : MonoBehaviour, IMinigames
     {
         [SerializeField] private Canvas myCanvas;
         
@@ -21,24 +21,28 @@ namespace Minigames
         private Coroutine currentPlay;
         private int counter;
 
+        public int difficulty;
+        public int timeLimit;
+        
         [Header("Timer")]
         [SerializeField] private TextMeshProUGUI timertext;
         int seconds, milliseconds;
+        
         private void Start()
         {
             counter = 0;
         }
 
-        public void StartSkillCheck() //int difficulty, int timeLimit
+        /*public void StartMinigame() //int difficulty, int timeLimit
         {
             myCanvas.gameObject.SetActive(true);
-            currentPlay = StartCoroutine(Play(4));
-        }
+            currentPlay = StartCoroutine(Play(difficulty));
+        }*/
     
         private IEnumerator Play(int length)
         {
             yield return new WaitForSeconds(0.5f);
-            StartCoroutine(Timer(20));
+            StartCoroutine(Timer(timeLimit));
         
             asciiValues = new int[length];
             characters = new char[length];
@@ -80,9 +84,7 @@ namespace Minigames
                 //animation false
 
                 counter = 0;
-
-            
-
+                
                 StopCoroutine(currentPlay);
                 currentPlay = StartCoroutine(Play(4));
                 break;
@@ -109,6 +111,12 @@ namespace Minigames
                 yield return new WaitForEndOfFrame();
             }
             print("Fail");
+        }
+
+        public void StartMinigame(int difficulty = 4, int timelimit = 15)
+        {
+            myCanvas.gameObject.SetActive(true);
+            currentPlay = StartCoroutine(Play(difficulty));
         }
     }
 }

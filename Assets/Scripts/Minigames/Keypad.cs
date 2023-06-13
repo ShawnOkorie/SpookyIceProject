@@ -4,34 +4,33 @@ using System.Collections.Generic;
 using System.Security.Cryptography.X509Certificates;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class Keypad : MonoBehaviour
 { 
-  [SerializeField]private TextMeshProUGUI Ans;
-  
-  private string Answer = "46239";
+ [SerializeField]private TextMeshProUGUI Display;
+
+  public string Answer = "46239";
 
   public void Number(int number)
   {
-    Ans.text += number.ToString();
+    Display.text += number.ToString();
   }
 
   public void Enter()
   {
-    if (Ans.text == Answer)
-    {
-      Ans.text = "True";
-      
-    }
+    if (Display.text == Answer)
+      Display.text = "True";
+    
     else
-    {
-      Ans.text = "FALSE";
-    }
+      Display.text = "FALSE";
   }
 
   public void Clear()
   {
-    Ans.text = null;
+    Display.text = null;
   }
+  
+  
 }

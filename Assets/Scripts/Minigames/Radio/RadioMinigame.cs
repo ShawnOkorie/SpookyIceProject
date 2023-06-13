@@ -6,7 +6,7 @@ using UnityEngine.Serialization;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
-public class RadioMinigame : MonoBehaviour
+public class RadioMinigame : MonoBehaviour, IMinigames
 {
    [SerializeField] private Canvas myCanvas;
    [Header("Graphs")]
@@ -24,7 +24,7 @@ public class RadioMinigame : MonoBehaviour
    [SerializeField] private float sliderValueOffset = 3;
    public bool movementIsFixed;
 
-   public void StartMinigame()
+   public void StartMinigame(int difficulty = 4, int timelimit = 15)
    {
       myCanvas.gameObject.SetActive(true);
       
