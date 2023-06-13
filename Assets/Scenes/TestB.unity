@@ -1398,7 +1398,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &605225628
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1434,7 +1434,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0015c4ddcb692c94ea61e28128f455d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Ans: {fileID: 972045073}
+  Display: {fileID: 972045073}
+  Answer: 46239
 --- !u!1 &650773057
 GameObject:
   m_ObjectHideFlags: 0
@@ -2506,7 +2507,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1e130178e2d3ef4dacf73cc16e71355, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 808322284}
+  targetroom: {fileID: 0}
 --- !u!114 &1068810282
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2523,11 +2524,17 @@ MonoBehaviour:
   inInventoryObject: {fileID: 0}
   objectID: 0
   isInteractable: 0
-  ispickup: 0
+  isPickup: 0
+  inInventory: 0
+  isDoor: 0
+  targetroom: {fileID: 0}
   mergeableObjectID: 0
   mergedObject: {fileID: 0}
-  dialogueID: 0
-  interactAnimation: 0
+  solvingObjectID: 0
+  dontDestroyOnSolve: 0
+  isSolved: 0
+  start_pid: 0
+  interactAnimation: {fileID: 0}
 --- !u!1 &1082129826
 GameObject:
   m_ObjectHideFlags: 0
@@ -3743,6 +3750,8 @@ MonoBehaviour:
   mainCamera: {fileID: 896663358}
   mousePosWorld: {x: 0, y: 0, z: 0}
   mousePosWorld2D: {x: 0, y: 0}
+  interactable: {fileID: 0}
+  lastClicked: {fileID: 0}
 --- !u!1 &1553374305
 GameObject:
   m_ObjectHideFlags: 0
@@ -3772,9 +3781,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e11b5378017498a4588032258fcebbd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  loadingScreen: {fileID: 0}
   Room:
   - {fileID: 774099506}
   - {fileID: 808322284}
+  defaultroom: 0
   targetroom: 0
 --- !u!4 &1553374307
 Transform:
