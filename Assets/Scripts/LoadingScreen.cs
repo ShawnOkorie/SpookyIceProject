@@ -19,28 +19,20 @@ public class LoadingScreen : MonoBehaviour
     public delegate void FadeEnd();
     public static event FadeEnd onFadeEnd;
     
-    
-
     private void Awake()
     {
         myCanvas = GetComponent<Canvas>();
         blackScreen = GetComponent<CanvasGroup>();
         DontDestroyOnLoad(gameObject);
     }
-
     
 
-    private void Start()
+    public void StartFadeIn()
     {
-        StartCoroutine(FadeOut(waitDuration, fadeDuration));
-    }
-
-    public void ActivateLoadingScreen()
-    {
-        StartCoroutine(FadeOut(waitDuration, fadeDuration));
+        StartCoroutine(FadeIn(waitDuration, fadeDuration));
     }
     
-    private IEnumerator FadeOut(float waitDuration, float fadeDuration)
+    private IEnumerator FadeIn(float waitDuration, float fadeDuration)
     {
         onFadeStart?.Invoke();
         myCanvas.sortingOrder = 10;
@@ -57,6 +49,24 @@ public class LoadingScreen : MonoBehaviour
         
         blackScreen.alpha = 0;
         myCanvas.sortingOrder = 0;
+        onFadeEnd?.Invoke();
+    }
+    
+    private IEnumerator FadeOut(float waitDuration, float fadeDuration)
+    {
+        onFadeStart?.Invoke();
+        blackScreen.alpha = 0;
+        myCanvas.sortingOrder = 10;
+        
+        yield return new WaitForSeconds(waitDuration);
+        
+        for (float t = 0; t < fadeDuration; t += Time.deltaTime)
+        {
+            blackScreen.alpha = Mathf.Lerp(0,1,t / fadeDuration);
+            
+            yield return null;
+        }
+        blackScreen.alpha = 1;
         onFadeEnd?.Invoke();
     }
 }

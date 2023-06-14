@@ -40,7 +40,7 @@ public class RoomManager : Singleton<RoomManager>
             loadingScreen = FindObjectOfType<LoadingScreen>();
 
         if (Application.isPlaying)
-            loadingScreen.ActivateLoadingScreen();
+            loadingScreen.StartFadeIn();
         
         /*if (currentroom == Rooms.None)
             currentroom = defaultroom;*/

@@ -11,11 +11,12 @@ public class MiniGameTrigger : MonoBehaviour
     [SerializeField] private int difficulty;
     [SerializeField] private int timeLimit;
     
-    private SkillCheck skillCheck;
-    private RadioMinigame radioMinigame;
-    private Keypad keypad;
+    [SerializeField] private SkillCheck skillCheck;
+    [SerializeField] private RadioMinigame radioMinigame;
+    [SerializeField] private Keypad keypad;
+    //private Switches switches;
     
-    private Minigame myMinigame;
+    [SerializeField] private Minigame myMinigame;
     
     private enum Minigame
     {
@@ -25,7 +26,7 @@ public class MiniGameTrigger : MonoBehaviour
         Switches
     }
 
-    private void Awake()
+    /*private void Awake()
     {
         switch (myMinigame)
         {
@@ -39,7 +40,7 @@ public class MiniGameTrigger : MonoBehaviour
                 keypad = FindObjectOfType<Keypad>();
                 break;
         }
-    }
+    }*/
 
     public void StartMiniGame()
     {

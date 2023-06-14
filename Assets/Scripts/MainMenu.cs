@@ -15,7 +15,7 @@ public class MainMenu : MonoBehaviour
 
    public void Play()
    {
-      loadingScreen.ActivateLoadingScreen();
+      loadingScreen.StartFadeIn();
       SceneManager.LoadScene("Main");
    }
 

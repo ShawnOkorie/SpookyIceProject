@@ -15,33 +15,43 @@ public class InteractableObject : MonoBehaviour
     //private static TextBox textBox;
     private MiniGameTrigger miniGameTrigger;
 
+    [Header("References")]
     [SerializeField] private GameObject inSceneObject;
     [SerializeField] private GameObject inInventoryObject;
 
-    public int objectID;
+    [SerializeField] private int objectID;
     
-    public bool isInteractable;
-    private ProgressManager.Progress requiredProgress;
+    [Header("Interaction")]
+    [SerializeField] private bool isInteractable;
+    [SerializeField] private ProgressManager.Progress requiredProgress;
     
+    [Header("Pickup")]
+    [SerializeField]
     public bool isPickup;
-    [HideInInspector] public bool inInventory;
 
-    public bool isDoor;
-    public Room targetroom;
+    public bool inInventory;
 
+    [Header("Door")]
+    [SerializeField] private bool isDoor;
+    [SerializeField] private Room targetroom;
+
+    [Header("Merge")]
+    [SerializeField]
     public int mergeableObjectID;
     [SerializeField] private GameObject mergedObject;
 
-    public int solvingObjectID;
-    private ProgressManager.Progress addedProgress;
-    public bool dontDestroyOnSolve;
-    public bool isSolved;
-
-    public int start_pid;
-
-    public AnimationClip interactAnimation;
+    [Header("Riddle")]
+    [SerializeField] private int solvingObjectID;
+    [SerializeField] private ProgressManager.Progress addedProgress;
+    [SerializeField] private bool dontDestroyOnSolve;
+    [SerializeField] private bool isSolved;
     
-
+    [Header("Dialogue")]
+    [SerializeField] private int start_pid;
+    
+    [Header("Animation")]
+    [SerializeField] private AnimationClip interactAnimation;
+    
     private void Awake()
     {
         progressManager ??= FindObjectOfType<ProgressManager>();
@@ -119,7 +129,7 @@ public class InteractableObject : MonoBehaviour
                 /*play anim*/
             }
 
-            if (isDoor && isInteractable)
+            if (isDoor)
             {
                 RoomManager.Instance.LoadRoom(targetroom.myRoom);
             }

@@ -98,6 +98,11 @@ namespace Minigames
                     counter = 0;
                 }
             }
+            
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                ExitCanvas();
+            }
         }
 
         private IEnumerator Timer(float timeLimit)
@@ -121,6 +126,11 @@ namespace Minigames
             myTimeLimit = timeLimit;
             
             currentPlay = StartCoroutine(Play(difficulty, timeLimit));
-            }
+        }
+        
+        public void ExitCanvas()
+        {
+            myCanvas.gameObject.SetActive(false);
+        }
     }
 }
