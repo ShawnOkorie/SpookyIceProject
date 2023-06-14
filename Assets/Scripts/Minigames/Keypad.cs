@@ -9,7 +9,7 @@ using UnityEngine.UI;
 
 public class Keypad : MonoBehaviour
 { 
- [SerializeField]private TextMeshProUGUI Display;
+ [SerializeField] private TextMeshProUGUI Display;
 
   public string Answer = "46239";
 

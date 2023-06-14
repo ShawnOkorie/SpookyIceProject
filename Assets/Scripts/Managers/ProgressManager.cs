@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ProgressManager : MonoBehaviour
+public class ProgressManager : Singleton<ProgressManager>
 {
     public delegate void ProgressChanged(Progress progress);
     public event ProgressChanged OnProgressChanged;

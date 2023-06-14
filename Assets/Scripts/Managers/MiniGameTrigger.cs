@@ -6,6 +6,10 @@ using UnityEngine;
 
 public class MiniGameTrigger : MonoBehaviour
 {
+    [SerializeField] private ProgressManager.Progress minigameProgress;
+
+    
+    
     private SkillCheck skillCheck;
     private RadioMinigame radioMinigame;
     private Keypad keypad;
@@ -40,15 +44,30 @@ public class MiniGameTrigger : MonoBehaviour
         switch (myMinigame)
         {
             case Minigame.Skillcheck:
-                skillCheck.StartMinigame();
+                skillCheck.StartMinigame(difficulty,timelimit);
                 break;
           
             case Minigame.Radio:
-                radioMinigame.StartMinigame();
+                radioMinigame.StartMinigame(difficulty);
                 break;
            
             case Minigame.Keypad:
                 //keypad.StartMinigame();
+                break;
+        }
+    }
+
+    public void EndMiniGame(bool solved)
+    {
+        switch (solved)
+        {
+            case true:
+                ProgressManager.Instance.AddProgress(ProgressManager.Progress.Pee);
+                //Destroy(this);
+                break;
+            
+            case false:
+                
                 break;
         }
     }

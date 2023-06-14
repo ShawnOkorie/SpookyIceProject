@@ -36,7 +36,6 @@ public class InteractableObject : MonoBehaviour
     private ProgressManager.Progress addedProgress;
     public bool dontDestroyOnSolve;
     public bool isSolved;
-    private bool mingameBeat = false;
 
     public int start_pid;
 

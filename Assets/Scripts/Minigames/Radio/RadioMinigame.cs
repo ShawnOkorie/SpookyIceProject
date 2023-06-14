@@ -16,6 +16,7 @@ public class RadioMinigame : MonoBehaviour, IMinigames
    public List<GraphAsset> graphAssetList = new List<GraphAsset>();
    private GraphAsset currentGraph;
    private int listindex;
+   
    [Header("Sliders")]
    [SerializeField] private Slider amplitudeSlider;
    [SerializeField] private Slider frequencySlider;
@@ -24,7 +25,7 @@ public class RadioMinigame : MonoBehaviour, IMinigames
    [SerializeField] private float sliderValueOffset = 3;
    public bool movementIsFixed;
 
-   public void StartMinigame(int difficulty = 4, int timelimit = 15)
+   public void StartMinigame(int difficulty = 4, int timeLimit = 15)
    {
       myCanvas.gameObject.SetActive(true);
       
