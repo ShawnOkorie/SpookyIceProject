@@ -20,7 +20,9 @@ namespace Minigames
         private int[] asciiValues;
         private Coroutine currentPlay;
         private int counter;
-        
+
+        [SerializeField] private int myDifficulty;
+        [SerializeField] private int myTimeLimit;
         
         [Header("Timer")]
         [SerializeField] private TextMeshProUGUI timertext;
@@ -84,7 +86,7 @@ namespace Minigames
                 counter = 0;
                 
                 StopCoroutine(currentPlay);
-                currentPlay = StartCoroutine(Play());
+                currentPlay = StartCoroutine(Play(myDifficulty, myTimeLimit));
                 break;
             }
 
@@ -111,10 +113,14 @@ namespace Minigames
             print("Fail");
         }
 
-        public void StartMinigame(int difficulty = 4, int timeLimit = 15)
+        public void StartMinigame(int difficulty, int timeLimit)
         {
             myCanvas.gameObject.SetActive(true);
+
+            myDifficulty = difficulty;
+            myTimeLimit = timeLimit;
+            
             currentPlay = StartCoroutine(Play(difficulty, timeLimit));
-        }
+            }
     }
 }

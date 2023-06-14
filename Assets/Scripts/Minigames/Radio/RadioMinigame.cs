@@ -25,7 +25,7 @@ public class RadioMinigame : MonoBehaviour, IMinigames
    [SerializeField] private float sliderValueOffset = 3;
    public bool movementIsFixed;
 
-   public void StartMinigame(int difficulty = 4, int timeLimit = 15)
+   public void StartMinigame(int difficulty, int timeLimit)
    {
       myCanvas.gameObject.SetActive(true);
       

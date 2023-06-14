@@ -8,7 +8,8 @@ public class MiniGameTrigger : MonoBehaviour
 {
     [SerializeField] private ProgressManager.Progress minigameProgress;
 
-    
+    [SerializeField] private int difficulty;
+    [SerializeField] private int timeLimit;
     
     private SkillCheck skillCheck;
     private RadioMinigame radioMinigame;
@@ -20,7 +21,8 @@ public class MiniGameTrigger : MonoBehaviour
     {
         Skillcheck,
         Radio,
-        Keypad
+        Keypad,
+        Switches
     }
 
     private void Awake()
@@ -44,11 +46,11 @@ public class MiniGameTrigger : MonoBehaviour
         switch (myMinigame)
         {
             case Minigame.Skillcheck:
-                skillCheck.StartMinigame(difficulty,timelimit);
+                skillCheck.StartMinigame(difficulty,timeLimit);
                 break;
           
             case Minigame.Radio:
-                radioMinigame.StartMinigame(difficulty);
+                radioMinigame.StartMinigame(difficulty,timeLimit);
                 break;
            
             case Minigame.Keypad:

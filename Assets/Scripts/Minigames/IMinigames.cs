@@ -4,7 +4,7 @@ using UnityEngine;
 
 public interface IMinigames
 {
-   public void StartMinigame(int difficulty = 4, int timeLimit = 15);
+   public void StartMinigame(int difficulty, int timeLimit);
 
    //public void EndMiniGame();
 }
