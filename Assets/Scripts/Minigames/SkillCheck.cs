@@ -7,7 +7,7 @@ using Random = UnityEngine.Random;
 
 namespace Minigames
 {
-    public class SkillCheck : Singleton<SkillCheck>, IMinigames, IShouldForceAwake
+    public class SkillCheck : Singleton<SkillCheck>, IMinigames
     {
         public delegate void MinigameFail();
         public event MinigameFail OnMinigameEnd;

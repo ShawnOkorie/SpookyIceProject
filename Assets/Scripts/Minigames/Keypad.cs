@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
-public class Keypad : Singleton<Keypad>, IMinigames, IShouldForceAwake
+public class Keypad : Singleton<Keypad>, IMinigames
 {
   public delegate void MinigameFail();
   public event MinigameFail OnMinigameEnd;

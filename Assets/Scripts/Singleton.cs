@@ -3,7 +3,7 @@ using UnityEngine;
 
 //Code von Michi
 
-public class Singleton<T> : MonoBehaviour where T : MonoBehaviour, IShouldForceAwake
+public class Singleton<T> : MonoBehaviour, IShouldForceAwake where T : MonoBehaviour
 {
     protected bool isAwake;
     public static T Instance { get; private set; }
@@ -13,11 +13,12 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour, IShouldForceA
         {
             Instance = this as T;
         }
+        
+        isAwake = true;
     }
 
     public void ForceAwake()
     {
         Awake();
-        isAwake = true;
     }
 }

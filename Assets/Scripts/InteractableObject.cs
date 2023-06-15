@@ -59,12 +59,12 @@ public class InteractableObject : MonoBehaviour,IShouldForceAwake
 
             miniGameTrigger = GetComponent<MiniGameTrigger>();
         }
+        isAwake = true;
     }
     
     public void ForceAwake()
     {
         Awake();
-        isAwake = true;
     }
 
     private void OnDestroy()

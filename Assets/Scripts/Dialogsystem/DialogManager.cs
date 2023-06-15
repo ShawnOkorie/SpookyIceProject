@@ -4,9 +4,9 @@ using UnityEngine;
 
 namespace DialogSystem
 {
-   //Code von Michi
+   //Code from Michael Lambertz
     
-    public class DialogManager : Singleton<DialogManager>, IShouldForceAwake
+    public class DialogManager : Singleton<DialogManager>
     {
         public event Action<string> OnSpeakerChanged;
         public event Action<string> OnTextChanged;

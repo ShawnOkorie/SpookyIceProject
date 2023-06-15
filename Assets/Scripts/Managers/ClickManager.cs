@@ -2,7 +2,7 @@
 using UnityEngine;
 
 
-public class ClickManager : MonoBehaviour
+public class ClickManager : Singleton<ClickManager>
 {
     public Vector3 mousePos;
     private RaycastHit2D hit;

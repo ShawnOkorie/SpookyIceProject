@@ -1,7 +1,8 @@
 using System;
 using System.Collections.Generic;
 
-//Code von Michi
+//Code from Michael Lambertz
+
 public class Dialog
 {
     public List<Passage> passages;
