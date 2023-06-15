@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using DialogSystem;
 using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
@@ -48,6 +49,10 @@ public class InteractableObject : MonoBehaviour,IShouldForceAwake
     
     [Header("Animation")]
     [SerializeField] private AnimationClip interactAnimation;
+    
+    
+    
+    
     
     protected virtual void Awake()
     {
