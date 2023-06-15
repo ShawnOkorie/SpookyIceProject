@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-public class LoadingScreen : MonoBehaviour
+public class LoadingScreen : Singleton<LoadingScreen>
 {
     private Canvas myCanvas;
     private CanvasGroup blackScreen;
@@ -14,13 +14,14 @@ public class LoadingScreen : MonoBehaviour
     public float fadeDuration;
 
     public delegate void FadeStart();
-    public static event FadeStart onFadeStart;
+    public event FadeStart OnFadeStart;
     
     public delegate void FadeEnd();
-    public static event FadeEnd onFadeEnd;
+    public event FadeEnd OnFadeEnd;
     
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         myCanvas = GetComponent<Canvas>();
         blackScreen = GetComponent<CanvasGroup>();
         DontDestroyOnLoad(gameObject);
@@ -34,7 +35,7 @@ public class LoadingScreen : MonoBehaviour
     
     private IEnumerator FadeIn(float waitDuration, float fadeDuration)
     {
-        onFadeStart?.Invoke();
+        OnFadeStart?.Invoke();
         myCanvas.sortingOrder = 10;
         blackScreen.alpha = 1;
         
@@ -49,12 +50,12 @@ public class LoadingScreen : MonoBehaviour
         
         blackScreen.alpha = 0;
         myCanvas.sortingOrder = 0;
-        onFadeEnd?.Invoke();
+        OnFadeEnd?.Invoke();
     }
     
     private IEnumerator FadeOut(float waitDuration, float fadeDuration)
     {
-        onFadeStart?.Invoke();
+        OnFadeStart?.Invoke();
         blackScreen.alpha = 0;
         myCanvas.sortingOrder = 10;
         
@@ -67,6 +68,6 @@ public class LoadingScreen : MonoBehaviour
             yield return null;
         }
         blackScreen.alpha = 1;
-        onFadeEnd?.Invoke();
+        OnFadeEnd?.Invoke();
     }
 }

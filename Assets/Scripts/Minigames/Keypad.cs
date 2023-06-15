@@ -7,8 +7,11 @@ using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
-public class Keypad : MonoBehaviour, IMinigames
+public class Keypad : Singleton<Keypad>, IMinigames
 {
+  public delegate void MinigameFail();
+  public event MinigameFail OnMinigameFail;
+  
   [SerializeField] private Canvas myCanvas;
   [SerializeField] private TextMeshProUGUI display;
 
@@ -26,9 +29,13 @@ public class Keypad : MonoBehaviour, IMinigames
       display.text = "True";
       ProgressManager.Instance.AddProgress(ProgressManager.Progress.Poo);
     }
-    
+
     else
+    {
       display.text = "FALSE";
+      OnMinigameFail.Invoke();
+    } 
+      
   }
 
   public void Clear()
@@ -45,15 +52,9 @@ public class Keypad : MonoBehaviour, IMinigames
   
   public void ExitCanvas()
   {
-    myCanvas.gameObject.SetActive(false);
+     myCanvas.gameObject.SetActive(false);
   }
 
-  private void Update()
-  {
-    if (Input.GetKeyDown(KeyCode.Escape))
-      {
-        ExitCanvas();
-      }
-  }
+  
   
 }

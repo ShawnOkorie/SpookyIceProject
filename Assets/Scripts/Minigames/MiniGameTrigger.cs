@@ -6,6 +6,14 @@ using UnityEngine;
 
 public class MiniGameTrigger : MonoBehaviour
 {
+    public delegate void MinigameStart();
+    public event MinigameStart OnMinigameStart;
+    
+    public delegate void MinigameEnd();
+    public event MinigameEnd OnMinigameEnd;
+   
+    private InteractableObject interactableObject;
+    
     [SerializeField] private ProgressManager.Progress minigameProgress;
 
     [SerializeField] private int difficulty;
@@ -20,42 +28,41 @@ public class MiniGameTrigger : MonoBehaviour
     
     private enum Minigame
     {
+        None,
         Skillcheck,
         Radio,
         Keypad,
         Switches
     }
 
-    /*private void Awake()
+    private void Awake()
     {
-        switch (myMinigame)
-        {
-            case Minigame.Skillcheck:
-                skillCheck = FindObjectOfType<SkillCheck>();
-                break;
-            case Minigame.Radio:
-                radioMinigame = FindObjectOfType<RadioMinigame>();
-                break;
-            case Minigame.Keypad:
-                keypad = FindObjectOfType<Keypad>();
-                break;
-        }
-    }*/
+        interactableObject = GetComponent<InteractableObject>();
+        
+        SkillCheck.Instance.OnMinigameEnd += ExitCanvas;
+        RadioMinigame.Instance.OnMinigameEnd += ExitCanvas;
+        Keypad.Instance.OnMinigameEnd += ExitCanvas;
+    }
 
     public void StartMiniGame()
     {
+        OnMinigameStart?.Invoke();
+        
         switch (myMinigame)
         {
+            case Minigame.None:
+                return;
+            
             case Minigame.Skillcheck:
-                skillCheck.StartMinigame(difficulty,timeLimit);
+                SkillCheck.Instance.StartMinigame(difficulty,timeLimit);
                 break;
           
             case Minigame.Radio:
-                radioMinigame.StartMinigame(difficulty,timeLimit);
+                RadioMinigame.Instance.StartMinigame(difficulty,timeLimit);
                 break;
            
             case Minigame.Keypad:
-                //keypad.StartMinigame();
+                Keypad.Instance.StartMinigame(difficulty,timeLimit);
                 break;
         }
     }
@@ -70,8 +77,37 @@ public class MiniGameTrigger : MonoBehaviour
                 break;
             
             case false:
-                
+                ExitCanvas();
                 break;
         }
     }
+    
+    public void ExitCanvas()
+    {
+        switch (myMinigame)
+        {
+            case Minigame.None:
+                return;
+            
+            case Minigame.Skillcheck:
+                SkillCheck.Instance.ExitCanvas();
+                break;
+          
+            case Minigame.Radio:
+                RadioMinigame.Instance.ExitCanvas();
+                break;
+           
+            case Minigame.Keypad:
+                Keypad.Instance.ExitCanvas();
+                break;
+        }
+    }
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            ExitCanvas();
+        }
+    }
+    
 }

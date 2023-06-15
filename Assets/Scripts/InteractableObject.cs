@@ -60,39 +60,36 @@ public class InteractableObject : MonoBehaviour
 
         miniGameTrigger = GetComponent<MiniGameTrigger>();
         
-        progressManager.OnProgressChanged += UnlockInteracability;
-        LoadingScreen.onFadeStart += MakeUninteractible;
-        LoadingScreen.onFadeEnd += MakeInteractible;
-        DialogManager.Instance.OnDialogStart += MakeUninteractible;
-        DialogManager.Instance.OnDialogEnd += MakeUninteractible;
-    }
-
-    
-    private void MakeUninteractible()
-    {
-        if (requiredProgress != ProgressManager.Progress.None)
-            isInteractable = false;
-        isInteractable = false;
-    }
-    private void MakeInteractible()
-    {
-        if (requiredProgress != ProgressManager.Progress.None)
-            isInteractable = false;
-        isInteractable = true;
         
     }
 
     private void OnDestroy()
     {
         progressManager.OnProgressChanged -= UnlockInteracability;
-        LoadingScreen.onFadeStart -= MakeUninteractible;
-        LoadingScreen.onFadeEnd -= MakeInteractible;
-        DialogManager.Instance.OnDialogStart -= MakeUninteractible;
-        DialogManager.Instance.OnDialogEnd -= MakeUninteractible;
+        
+        GameStateManager.Instance.OnSetUninteractible -= SetUninteractible;
+        GameStateManager.Instance.OnSetInteractible -= SetInteractible;
     }
+
+    public void SetUninteractible()
+    {
+        isInteractable = false;
+    }
+
+    public void SetInteractible()
+    {
+        isInteractable = true;
+        if (requiredProgress != ProgressManager.Progress.None)
+            isInteractable = false;
+    }
+    
 
     private void Start()
     {
+        progressManager.OnProgressChanged += UnlockInteracability;
+        GameStateManager.Instance.OnSetUninteractible += SetUninteractible;
+        GameStateManager.Instance.OnSetInteractible += SetInteractible;
+        
         if (requiredProgress != ProgressManager.Progress.None)
             isInteractable = false;
     }
