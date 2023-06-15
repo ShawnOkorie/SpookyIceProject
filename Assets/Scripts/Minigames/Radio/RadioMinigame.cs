@@ -6,8 +6,12 @@ using UnityEngine.Serialization;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
-public class RadioMinigame : MonoBehaviour, IMinigames
+public class RadioMinigame : Singleton<RadioMinigame>, IMinigames, IShouldForceAwake
 {
+   
+   public delegate void MinigameFail();
+   public event MinigameFail OnMinigameEnd;
+   
    [SerializeField] private Canvas myCanvas;
    [Header("Graphs")]
    [SerializeField] private GraphRenderer solutionGraph;
@@ -46,6 +50,12 @@ public class RadioMinigame : MonoBehaviour, IMinigames
       
       SetSliderValues(currentGraph);
    }
+
+   public void ExitCanvas()
+   {
+      myCanvas.gameObject.SetActive(false);
+   }
+   
 
    public void SetAmplitude()
    {
@@ -119,7 +129,9 @@ public class RadioMinigame : MonoBehaviour, IMinigames
    private void LoadNext()
    {
       if (listindex == 3 || listindex == 5)
-         myCanvas.gameObject.SetActive(false);
+      {
+         OnMinigameEnd.Invoke();
+      }
       
       ++listindex;
       currentGraph = graphAssetList[listindex];

@@ -3,10 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RoomManager : Singleton<RoomManager>
+public class RoomManager : Singleton<RoomManager>, IShouldForceAwake
 {
-    [SerializeField] private LoadingScreen loadingScreen;
-    
     public List<Room> Room = new List<Room>();
 
     private Rooms currentroom;
@@ -29,6 +27,11 @@ public class RoomManager : Singleton<RoomManager>
         GenRoomTanks
     }
 
+    protected override void Awake()
+    {
+        
+    }
+    
     private void Start()
     {
        LoadRoom(defaultroom);
@@ -36,11 +39,8 @@ public class RoomManager : Singleton<RoomManager>
 
     public void LoadRoom(Rooms target)
     {
-        if (loadingScreen == null)
-            loadingScreen = FindObjectOfType<LoadingScreen>();
-
         if (Application.isPlaying)
-            loadingScreen.ActivateLoadingScreen();
+            LoadingScreen.Instance.StartFadeIn();
         
         /*if (currentroom == Rooms.None)
             currentroom = defaultroom;*/

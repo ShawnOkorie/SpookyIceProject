@@ -19,11 +19,9 @@ public class ClickManager : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             mousePos = Input.mousePosition;
-            print(mousePos);
-            
+
             mousePosWorld = mainCamera.ScreenToWorldPoint(mousePos);
-            print(mousePosWorld);
-            
+
             mousePosWorld2D = new Vector2(mousePosWorld.x, mousePosWorld.y);
             
             hit = Physics2D.Raycast(mousePosWorld2D, Vector2.zero);

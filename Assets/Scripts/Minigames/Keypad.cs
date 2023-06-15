@@ -7,30 +7,54 @@ using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
-public class Keypad : MonoBehaviour
-{ 
- [SerializeField] private TextMeshProUGUI Display;
+public class Keypad : Singleton<Keypad>, IMinigames, IShouldForceAwake
+{
+  public delegate void MinigameFail();
+  public event MinigameFail OnMinigameEnd;
+  
+  [SerializeField] private Canvas myCanvas;
+  [SerializeField] private TextMeshProUGUI display;
 
-  public string Answer = "46239";
+  private string answer = "46239";
 
   public void Number(int number)
   {
-    Display.text += number.ToString();
+    display.text += number.ToString();
   }
 
   public void Enter()
   {
-    if (Display.text == Answer)
-      Display.text = "True";
-    
+    if (display.text == answer)
+    {
+      display.text = "True";
+      //ProgressManager.Instance.AddProgress(ProgressManager.Progress.Poo);
+    }
+
     else
-      Display.text = "FALSE";
+    {
+      display.text = "FALSE";
+      OnMinigameEnd.Invoke();
+    } 
+      
   }
 
   public void Clear()
   {
-    Display.text = null;
+    display.text = null;
   }
+
+
+  public void StartMinigame(int difficulty, int timeLimit)
+  {
+    answer = difficulty.ToString();
+    myCanvas.gameObject.SetActive(true);
+  }
+  
+  public void ExitCanvas()
+  {
+     myCanvas.gameObject.SetActive(false);
+  }
+
   
   
 }
