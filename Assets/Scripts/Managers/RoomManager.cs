@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RoomManager : Singleton<RoomManager>
+public class RoomManager : Singleton<RoomManager>, IShouldForceAwake
 {
     public List<Room> Room = new List<Room>();
 

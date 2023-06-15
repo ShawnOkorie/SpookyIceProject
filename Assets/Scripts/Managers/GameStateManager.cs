@@ -6,7 +6,7 @@ using DialogSystem;
 using Minigames;
 using UnityEngine;
 
-public class GameStateManager : Singleton<GameStateManager>
+public class GameStateManager : Singleton<GameStateManager>, IShouldForceAwake
 {
     public delegate void SetUninteractible();
     public event SetUninteractible OnSetUninteractible;

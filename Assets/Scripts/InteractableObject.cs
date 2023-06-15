@@ -8,13 +8,13 @@ using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
-public class InteractableObject : MonoBehaviour
+public class InteractableObject : MonoBehaviour,IShouldForceAwake
 {
     private static ProgressManager progressManager;
     private static GridLayoutGroup inventoryLayout;
-    //private static TextBox textBox;
+    protected bool isAwake;
     private MiniGameTrigger miniGameTrigger;
-
+    
     [Header("References")]
     [SerializeField] private GameObject inSceneObject;
     [SerializeField] private GameObject inInventoryObject;
@@ -51,11 +51,20 @@ public class InteractableObject : MonoBehaviour
     
     protected virtual void Awake()
     {
-        progressManager ??= FindObjectOfType<ProgressManager>();
-        inventoryLayout ??= FindObjectOfType<GridLayoutGroup>();
-        //textBox ??= FindObjectOfType<TextBox>();
+        if (isAwake)
+        {
+            progressManager ??= FindObjectOfType<ProgressManager>();
+            inventoryLayout ??= FindObjectOfType<GridLayoutGroup>();
+            //textBox ??= FindObjectOfType<TextBox>();
 
-        miniGameTrigger = GetComponent<MiniGameTrigger>();
+            miniGameTrigger = GetComponent<MiniGameTrigger>();
+        }
+    }
+    
+    public void ForceAwake()
+    {
+        Awake();
+        isAwake = true;
     }
 
     private void OnDestroy()
@@ -98,7 +107,7 @@ public class InteractableObject : MonoBehaviour
         }
     }
     
-    protected virtual void Interact()
+    public virtual void Interact()
     {
         if (isInteractable)
         {
@@ -146,7 +155,7 @@ public class InteractableObject : MonoBehaviour
         }
     }
 
-    private void Solve(InteractableObject otherObject)
+    public void Solve(InteractableObject otherObject)
     {
         if (isInteractable)
         {

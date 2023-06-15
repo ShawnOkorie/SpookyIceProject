@@ -6,7 +6,7 @@ using UnityEngine.Serialization;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
-public class RadioMinigame : Singleton<RadioMinigame>, IMinigames
+public class RadioMinigame : Singleton<RadioMinigame>, IMinigames, IShouldForceAwake
 {
    
    public delegate void MinigameFail();

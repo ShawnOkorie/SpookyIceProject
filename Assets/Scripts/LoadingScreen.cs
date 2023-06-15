@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-public class LoadingScreen : Singleton<LoadingScreen>
+public class LoadingScreen : Singleton<LoadingScreen>, IShouldForceAwake
 {
     private Canvas myCanvas;
     private CanvasGroup blackScreen;

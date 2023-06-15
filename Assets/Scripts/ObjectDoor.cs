@@ -1,25 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class ObjectDoor : InteractableObject
 {
-    [SerializeField] private Collider2D mycollider;
+    [SerializeField] private Collider2D myCollider;
     [SerializeField] private Image myImage;
     
     [SerializeField] private bool isOpen;
     [SerializeField] private Sprite closedSprite;
     [SerializeField] private Sprite openSprite;
     
-    [SerializeField] private List<InteractableObject> myObjects;
+    [SerializeField] private List<GameObject> myObjects;
     
     protected override void Awake()
     {
-        mycollider = GetComponent<Collider2D>();
+        if (isAwake)
+        {
+            myCollider = GetComponent<Collider2D>();
+        }
     }
 
-    protected override void Interact()
+    public override void Interact()
     {
         if (isSolved == false)
         {
@@ -31,10 +35,10 @@ public class ObjectDoor : InteractableObject
             {
                 case true:
                     isOpen = false;
-                    mycollider.enabled = true;
+                    myCollider.enabled = true;
                     myImage.sprite = closedSprite;
 
-                    foreach (InteractableObject obj in myObjects)
+                    foreach (GameObject obj in myObjects)
                     {
                         obj.gameObject.SetActive(true);
                     }
@@ -42,10 +46,10 @@ public class ObjectDoor : InteractableObject
             
                 case false:
                     isOpen = true;
-                    mycollider.enabled = false;
+                    myCollider.enabled = false;
                     myImage.sprite = openSprite;
                     
-                    foreach (InteractableObject obj in myObjects)
+                    foreach (GameObject obj in myObjects)
                     {
                         obj.gameObject.SetActive(false);
                     }

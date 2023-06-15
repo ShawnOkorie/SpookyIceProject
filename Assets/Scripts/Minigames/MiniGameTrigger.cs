@@ -72,7 +72,7 @@ public class MiniGameTrigger : MonoBehaviour
         switch (solved)
         {
             case true:
-                ProgressManager.Instance.AddProgress(ProgressManager.Progress.Pee);
+                //ProgressManager.Instance.AddProgress(ProgressManager.Progress.Pee);
                 //Destroy(this);
                 break;
             

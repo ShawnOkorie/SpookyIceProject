@@ -6,7 +6,7 @@ namespace DialogSystem
 {
    //Code von Michi
     
-    public class DialogManager : Singleton<DialogManager>
+    public class DialogManager : Singleton<DialogManager>, IShouldForceAwake
     {
         public event Action<string> OnSpeakerChanged;
         public event Action<string> OnTextChanged;
