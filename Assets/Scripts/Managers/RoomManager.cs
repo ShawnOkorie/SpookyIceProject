@@ -41,7 +41,7 @@ public class RoomManager : Singleton<RoomManager>, IShouldForceAwake
     {
         if (Application.isPlaying)
             LoadingScreen.Instance.StartFadeIn();
-        
+
         /*if (currentroom == Rooms.None)
             currentroom = defaultroom;*/
 
