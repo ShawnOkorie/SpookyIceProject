@@ -125,7 +125,7 @@ namespace Minigames
         
         public void ExitCanvas()
         {
-            myCanvas.sortingOrder = 9;
+           gameObject.SetActive(false);
         }
     }
 }

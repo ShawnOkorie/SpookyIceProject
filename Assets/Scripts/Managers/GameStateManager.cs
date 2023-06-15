@@ -29,7 +29,6 @@ public class GameStateManager : Singleton<GameStateManager>, IShouldForceAwake
             trigger.OnMinigameStart += InvokeUninteractible;
             trigger.OnMinigameEnd += InvokeInteractible;
         }
-        
     }
 
     private void Start()

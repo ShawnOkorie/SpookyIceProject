@@ -38,10 +38,13 @@ public class MiniGameTrigger : MonoBehaviour
     private void Awake()
     {
         interactableObject = GetComponent<InteractableObject>();
-        
-        SkillCheck.Instance.OnMinigameEnd += ExitCanvas;
-        RadioMinigame.Instance.OnMinigameEnd += ExitCanvas;
-        Keypad.Instance.OnMinigameEnd += ExitCanvas;
+    }
+
+    private void Start()
+    {
+        skillCheck.OnMinigameEnd += ExitCanvas;
+        radioMinigame.OnMinigameEnd += ExitCanvas;
+        keypad.OnMinigameEnd += ExitCanvas;
     }
 
     public void StartMiniGame()
@@ -54,15 +57,15 @@ public class MiniGameTrigger : MonoBehaviour
                 return;
             
             case Minigame.Skillcheck:
-                SkillCheck.Instance.StartMinigame(difficulty,timeLimit);
+                skillCheck.StartMinigame(difficulty,timeLimit);
                 break;
           
             case Minigame.Radio:
-                RadioMinigame.Instance.StartMinigame(difficulty,timeLimit);
+                radioMinigame.StartMinigame(difficulty,timeLimit);
                 break;
            
             case Minigame.Keypad:
-                Keypad.Instance.StartMinigame(difficulty,timeLimit);
+                keypad.StartMinigame(difficulty,timeLimit);
                 break;
         }
     }
@@ -90,15 +93,15 @@ public class MiniGameTrigger : MonoBehaviour
                 return;
             
             case Minigame.Skillcheck:
-                SkillCheck.Instance.ExitCanvas();
+                skillCheck.ExitCanvas();
                 break;
           
             case Minigame.Radio:
-                RadioMinigame.Instance.ExitCanvas();
+                radioMinigame.ExitCanvas();
                 break;
            
             case Minigame.Keypad:
-                Keypad.Instance.ExitCanvas();
+                keypad.ExitCanvas();
                 break;
         }
     }
@@ -107,6 +110,7 @@ public class MiniGameTrigger : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             ExitCanvas();
+            OnMinigameEnd?.Invoke();
         }
     }
     

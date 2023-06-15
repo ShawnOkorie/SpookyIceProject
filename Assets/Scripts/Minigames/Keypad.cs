@@ -16,7 +16,7 @@ public class Keypad : Singleton<Keypad>, IMinigames
   [SerializeField] private TextMeshProUGUI display;
 
   private string answer = "46239";
-
+  
   public void Number(int number)
   {
     display.text += number.ToString();

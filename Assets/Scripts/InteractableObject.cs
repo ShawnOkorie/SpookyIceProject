@@ -12,6 +12,7 @@ public class InteractableObject : MonoBehaviour,IShouldForceAwake
 {
     private static ProgressManager progressManager;
     private static GridLayoutGroup inventoryLayout;
+    private static RoomManager roomManager;
     protected bool isAwake;
     private MiniGameTrigger miniGameTrigger;
     
@@ -27,7 +28,7 @@ public class InteractableObject : MonoBehaviour,IShouldForceAwake
     
     [Header("Pickup")]
     public bool isPickup;
-    public bool inInventory;
+    [HideInInspector] public bool inInventory;
 
     [Header("Door")]
     [SerializeField] private bool isDoor;
@@ -55,6 +56,7 @@ public class InteractableObject : MonoBehaviour,IShouldForceAwake
         {
             progressManager ??= FindObjectOfType<ProgressManager>();
             inventoryLayout ??= FindObjectOfType<GridLayoutGroup>();
+            roomManager ??= FindObjectOfType<RoomManager>();
             //textBox ??= FindObjectOfType<TextBox>();
 
             miniGameTrigger = GetComponent<MiniGameTrigger>();
@@ -65,14 +67,6 @@ public class InteractableObject : MonoBehaviour,IShouldForceAwake
     public void ForceAwake()
     {
         Awake();
-    }
-
-    private void OnDestroy()
-    {
-        progressManager.OnProgressChanged -= UnlockInteracability;
-        
-        GameStateManager.Instance.OnSetUninteractible -= SetUninteractible;
-        GameStateManager.Instance.OnSetInteractible -= SetInteractible;
     }
 
     public void SetUninteractible()
@@ -96,6 +90,14 @@ public class InteractableObject : MonoBehaviour,IShouldForceAwake
         
         if (requiredProgress != ProgressManager.Progress.None)
             isInteractable = false;
+    }
+    
+    private void OnDestroy()
+    {
+        progressManager.OnProgressChanged -= UnlockInteracability;
+        
+        GameStateManager.Instance.OnSetUninteractible -= SetUninteractible;
+        GameStateManager.Instance.OnSetInteractible -= SetInteractible;
     }
 
     private void UnlockInteracability(ProgressManager.Progress progress)
@@ -132,7 +134,7 @@ public class InteractableObject : MonoBehaviour,IShouldForceAwake
             
             if (isDoor)
             {
-                RoomManager.Instance.LoadRoom(targetroom.myRoom);
+                roomManager.LoadRoom(targetroom.myRoom);
             }
 
             if (miniGameTrigger != null && isSolved)
