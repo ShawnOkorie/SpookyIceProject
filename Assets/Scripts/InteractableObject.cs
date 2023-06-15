@@ -19,16 +19,14 @@ public class InteractableObject : MonoBehaviour
     [SerializeField] private GameObject inSceneObject;
     [SerializeField] private GameObject inInventoryObject;
 
-    [SerializeField] private int objectID;
+    [SerializeField] protected int objectID;
     
     [Header("Interaction")]
-    [SerializeField] private bool isInteractable;
+    [SerializeField] protected bool isInteractable;
     [SerializeField] private ProgressManager.Progress requiredProgress;
     
     [Header("Pickup")]
-    [SerializeField]
     public bool isPickup;
-
     public bool inInventory;
 
     [Header("Door")]
@@ -36,15 +34,14 @@ public class InteractableObject : MonoBehaviour
     [SerializeField] private Room targetroom;
 
     [Header("Merge")]
-    [SerializeField]
-    public int mergeableObjectID;
+    [SerializeField] public int mergeableObjectID;
     [SerializeField] private GameObject mergedObject;
 
     [Header("Riddle")]
-    [SerializeField] private int solvingObjectID;
-    [SerializeField] private ProgressManager.Progress addedProgress;
-    [SerializeField] private bool dontDestroyOnSolve;
-    [SerializeField] private bool isSolved;
+    [SerializeField] protected int solvingObjectID;
+    [SerializeField] protected ProgressManager.Progress addedProgress;
+    [SerializeField] protected bool dontDestroyOnSolve;
+    [SerializeField] protected bool isSolved;
     
     [Header("Dialogue")]
     [SerializeField] private int start_pid;
@@ -52,15 +49,13 @@ public class InteractableObject : MonoBehaviour
     [Header("Animation")]
     [SerializeField] private AnimationClip interactAnimation;
     
-    private void Awake()
+    protected virtual void Awake()
     {
         progressManager ??= FindObjectOfType<ProgressManager>();
         inventoryLayout ??= FindObjectOfType<GridLayoutGroup>();
         //textBox ??= FindObjectOfType<TextBox>();
 
         miniGameTrigger = GetComponent<MiniGameTrigger>();
-        
-        
     }
 
     private void OnDestroy()
@@ -103,7 +98,7 @@ public class InteractableObject : MonoBehaviour
         }
     }
     
-    public void Interact()
+    protected virtual void Interact()
     {
         if (isInteractable)
         {
@@ -125,7 +120,7 @@ public class InteractableObject : MonoBehaviour
             {
                 /*play anim*/
             }
-
+            
             if (isDoor)
             {
                 RoomManager.Instance.LoadRoom(targetroom.myRoom);
@@ -151,7 +146,7 @@ public class InteractableObject : MonoBehaviour
         }
     }
 
-    public void Solve(InteractableObject otherObject)
+    private void Solve(InteractableObject otherObject)
     {
         if (isInteractable)
         {
@@ -168,7 +163,5 @@ public class InteractableObject : MonoBehaviour
             }
         }
     }
-
-    
 }
 
