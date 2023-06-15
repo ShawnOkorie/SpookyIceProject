@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-public class LoadingScreen : Singleton<LoadingScreen>, IShouldForceAwake
+public class LoadingScreen : MonoBehaviour
 {
     private Canvas myCanvas;
     private CanvasGroup blackScreen;
@@ -14,28 +14,35 @@ public class LoadingScreen : Singleton<LoadingScreen>, IShouldForceAwake
     public float fadeDuration;
 
     public delegate void FadeStart();
-    public event FadeStart OnFadeStart;
+    public static event FadeStart onFadeStart;
     
     public delegate void FadeEnd();
-    public event FadeEnd OnFadeEnd;
+    public static event FadeEnd onFadeEnd;
     
-    protected override void Awake()
+    
+
+    private void Awake()
     {
-        base.Awake();
         myCanvas = GetComponent<Canvas>();
         blackScreen = GetComponent<CanvasGroup>();
         DontDestroyOnLoad(gameObject);
     }
+
     
 
-    public void StartFadeIn()
+    private void Start()
     {
-        StartCoroutine(FadeIn(waitDuration, fadeDuration));
+        StartCoroutine(FadeOut(waitDuration, fadeDuration));
+    }
+
+    public void ActivateLoadingScreen()
+    {
+        StartCoroutine(FadeOut(waitDuration, fadeDuration));
     }
     
-    private IEnumerator FadeIn(float waitDuration, float fadeDuration)
+    private IEnumerator FadeOut(float waitDuration, float fadeDuration)
     {
-        OnFadeStart?.Invoke();
+        onFadeStart?.Invoke();
         myCanvas.sortingOrder = 10;
         blackScreen.alpha = 1;
         
@@ -50,24 +57,6 @@ public class LoadingScreen : Singleton<LoadingScreen>, IShouldForceAwake
         
         blackScreen.alpha = 0;
         myCanvas.sortingOrder = 0;
-        OnFadeEnd?.Invoke();
-    }
-    
-    private IEnumerator FadeOut(float waitDuration, float fadeDuration)
-    {
-        OnFadeStart?.Invoke();
-        blackScreen.alpha = 0;
-        myCanvas.sortingOrder = 10;
-        
-        yield return new WaitForSeconds(waitDuration);
-        
-        for (float t = 0; t < fadeDuration; t += Time.deltaTime)
-        {
-            blackScreen.alpha = Mathf.Lerp(0,1,t / fadeDuration);
-            
-            yield return null;
-        }
-        blackScreen.alpha = 1;
-        OnFadeEnd?.Invoke();
+        onFadeEnd?.Invoke();
     }
 }

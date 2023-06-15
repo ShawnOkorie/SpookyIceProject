@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ProgressManager : Singleton<ProgressManager>, IShouldForceAwake
+public class ProgressManager : Singleton<ProgressManager>
 {
     public delegate void ProgressChanged(Progress progress);
     public event ProgressChanged OnProgressChanged;
@@ -12,18 +12,8 @@ public class ProgressManager : Singleton<ProgressManager>, IShouldForceAwake
     public enum Progress
     {
         None,
-        healedSelf,
-        activatedGenerator,
-        radioRepaired,
-        unlockedCreate,
-        motorPart1,
-        motorPart2,
-        motorpart3,
-        openedFloor,
-        meltedIce,
-        unlockedLab,
-        unlockedSafe,
-        snowmobileRepaired
+        Pee,
+        Poo
     }
 
     public void AddProgress(Progress progress)

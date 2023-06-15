@@ -7,11 +7,8 @@ using Random = UnityEngine.Random;
 
 namespace Minigames
 {
-    public class SkillCheck : Singleton<SkillCheck>, IMinigames, IShouldForceAwake
+    public class SkillCheck : MonoBehaviour, IMinigames
     {
-        public delegate void MinigameFail();
-        public event MinigameFail OnMinigameEnd;
-        
         [SerializeField] private Canvas myCanvas;
         
         [Header("Skill Check")]
@@ -31,6 +28,10 @@ namespace Minigames
         [SerializeField] private TextMeshProUGUI timertext;
         int seconds, milliseconds;
         
+        private void Start()
+        {
+            counter = 0;
+        }
 
         /*public void StartMinigame() //int difficulty, int timeLimit
         {
@@ -85,7 +86,7 @@ namespace Minigames
                 counter = 0;
                 
                 StopCoroutine(currentPlay);
-                OnMinigameEnd?.Invoke();
+                currentPlay = StartCoroutine(Play(myDifficulty, myTimeLimit));
                 break;
             }
 
@@ -110,7 +111,6 @@ namespace Minigames
                 yield return new WaitForEndOfFrame();
             }
             print("Fail");
-            OnMinigameEnd?.Invoke();
         }
 
         public void StartMinigame(int difficulty, int timeLimit)
@@ -121,11 +121,6 @@ namespace Minigames
             myTimeLimit = timeLimit;
             
             currentPlay = StartCoroutine(Play(difficulty, timeLimit));
-        }
-        
-        public void ExitCanvas()
-        {
-            myCanvas.sortingOrder = 9;
-        }
+            }
     }
 }

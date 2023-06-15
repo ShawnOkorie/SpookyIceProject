@@ -3,21 +3,8 @@ using UnityEngine;
 
 //Code von Michi
 
-public class Singleton<T> : MonoBehaviour where T : MonoBehaviour, IShouldForceAwake
+public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
 {
-    protected bool isAwake;
     public static T Instance { get; private set; }
-    protected virtual void Awake()
-    {
-        if (isAwake)
-        {
-            Instance = this as T;
-        }
-    }
-
-    public void ForceAwake()
-    {
-        Awake();
-        isAwake = true;
-    }
+    protected virtual void Awake() => Instance = this as T;
 }
