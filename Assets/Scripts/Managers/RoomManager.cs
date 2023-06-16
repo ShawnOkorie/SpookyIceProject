@@ -3,8 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RoomManager : Singleton<RoomManager>, IShouldForceAwake
+public class RoomManager : Singleton<RoomManager>
 {
+    public delegate void RoomChange(Rooms targetroom);
+    public event RoomChange OnRoomChange;
+    
     public List<Room> Room = new List<Room>();
 
     private Rooms currentroom;
@@ -14,24 +17,19 @@ public class RoomManager : Singleton<RoomManager>, IShouldForceAwake
     public enum Rooms
     {
         None,
-        CryoRoom,
-        GeneratorRoom,
-        Infirmary,
-        CaveEntrance,
-        Lab,
-        HallwayEG,
-        Hallway1st,
-        LabSafeOpen,
-        LabSafeClosed,
-        LabMonitor,
-        GenRoomTanks
+        CryoRoom = 0,
+        GeneratorRoom = 1,
+        Infirmary = 2,
+        CaveEntrance = 3,
+        Lab = 4,
+        HallwayEG = 5,
+        Hallway1st = 6,
+        LabSafeOpen = 7,
+        LabSafeClosed = 8,
+        LabMonitor = 9,
+        GenRoomTanks = 10
     }
 
-    protected override void Awake()
-    {
-        
-    }
-    
     private void Start()
     {
        LoadRoom(defaultroom);
@@ -41,9 +39,6 @@ public class RoomManager : Singleton<RoomManager>, IShouldForceAwake
     {
         if (Application.isPlaying)
             LoadingScreen.Instance.StartFadeIn();
-
-        /*if (currentroom == Rooms.None)
-            currentroom = defaultroom;*/
 
         if (target == Rooms.None)
         {
@@ -67,7 +62,8 @@ public class RoomManager : Singleton<RoomManager>, IShouldForceAwake
                     room.gameObject.SetActive(true);
                 }
             }
+            OnRoomChange?.Invoke(target);
+            GameManager.Instance.Save();
         }
-       
     }
 }

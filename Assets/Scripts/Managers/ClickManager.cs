@@ -40,13 +40,13 @@ public class ClickManager : Singleton<ClickManager>
 
                 if (lastClicked != null)
                 {
-                    if (lastClicked.inInventory && interactable.isPickup == false)
+                    if (lastClicked.collected && interactable.isPickup == false)
                     {
                         interactable.Solve(lastClicked);
                     }    
                 }
                 
-                if (interactable.inInventory)
+                if (interactable.collected)
                 {
                     lastClicked = interactable;
                 }

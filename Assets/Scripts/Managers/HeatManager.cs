@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Minigames;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
@@ -8,7 +10,10 @@ using Object = UnityEngine.Object;
 
 public class HeatManager : Singleton<HeatManager>
 {
-    private Coroutine currentTimer;
+    [SerializeField] private List<Canvas> mingameCanvasList = new List<Canvas>();
+    [SerializeField] private Button respawnButton;
+    [SerializeField] private TextMeshProUGUI gameOverText;
+    
     [SerializeField] private float timeLimit = 300; 
     private float timer;
     private bool timerIsZero;
@@ -25,8 +30,19 @@ public class HeatManager : Singleton<HeatManager>
     
     private void Update()
     {
-        timer -= Time.deltaTime;
-
+        foreach (Canvas canvas in mingameCanvasList)
+        {
+            if (canvas.gameObject.activeSelf)
+            {
+                return;
+            }
+        }
+        
+        if (timerIsZero == false)
+        {
+            timer -= Time.deltaTime;
+        }
+        
         if (timer <= 0 && timerIsZero == false)
         {
             TimerEnded();
@@ -34,7 +50,7 @@ public class HeatManager : Singleton<HeatManager>
 
         freezePercent =  timer / timeLimit;
 
-        print(freezePercent);
+        //print(freezePercent);
         
         if (freezePercent <= 0)
         {
@@ -87,6 +103,8 @@ public class HeatManager : Singleton<HeatManager>
     private IEnumerator FadeOut(float waitDuration, float fadeDuration)
     {
         timerIsZero = true;
+        gameOverText.gameObject.SetActive(false);
+        respawnButton.gameObject.SetActive(false);
         
         CanvasGroup canvasGroup = freezingStages[3].GetComponent<CanvasGroup>(); 
         canvasGroup.alpha = 0.7f;
@@ -99,5 +117,8 @@ public class HeatManager : Singleton<HeatManager>
             yield return null;
         }
         canvasGroup.alpha = 1;
+        
+        gameOverText.gameObject.SetActive(true);
+        respawnButton.gameObject.SetActive(true);
     }
 }

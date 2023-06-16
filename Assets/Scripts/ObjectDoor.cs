@@ -6,10 +6,21 @@ using UnityEngine.UI;
 
 public class ObjectDoor : InteractableObject
 {
+    public delegate void DoorStateChange(bool isOpen);
+    public event DoorStateChange OnDoorStateChange;
+    
     private Collider2D myCollider;
     private Image myImage;
-
-    private bool isOpen;
+    
+    public bool isOpen
+    {
+        get { return isOpen;}
+        set
+        {
+            isOpen = value;
+            OnDoorStateChange.Invoke(isOpen);
+        }
+    }
     [SerializeField] private Sprite closedSprite;
     [SerializeField] private Sprite openSprite;
     
@@ -23,6 +34,33 @@ public class ObjectDoor : InteractableObject
         }
     }
 
+    protected override void Start()
+    {
+        base.Start();
+        OnDoorStateChange += ChangeSprite;
+    }
+
+    protected override void OnDestroy()
+    {
+        base.OnDestroy();
+        OnDoorStateChange -= ChangeSprite;
+    }
+
+    private void ChangeSprite(bool isOpen)
+    {
+        switch (isOpen)
+        {
+            case true:
+                myCollider.enabled = false;
+                myImage.sprite = openSprite;
+                break;
+            case false:
+                myCollider.enabled = true;
+                myImage.sprite = closedSprite;
+                break;
+        }
+    }
+    
     public override void Interact()
     {
         if (isSolved == false)
@@ -35,23 +73,29 @@ public class ObjectDoor : InteractableObject
             {
                 case true:
                     isOpen = false;
-                    myCollider.enabled = true;
-                    myImage.sprite = closedSprite;
-
+                    
                     foreach (GameObject obj in myObjects)
                     {
-                        obj.gameObject.SetActive(true);
+                        InteractableObject interactableObject = obj.GetComponent<InteractableObject>();
+
+                        if (interactableObject.collected == false)
+                        {
+                            obj.gameObject.SetActive(true);
+                        }
                     }
                     break;
             
                 case false:
                     isOpen = true;
-                    myCollider.enabled = false;
-                    myImage.sprite = openSprite;
                     
                     foreach (GameObject obj in myObjects)
                     {
-                        obj.gameObject.SetActive(false);
+                        InteractableObject interactableObject = obj.GetComponent<InteractableObject>();
+
+                        if (interactableObject.collected == false)
+                        {
+                            obj.gameObject.SetActive(false);
+                        }
                     }
                     break;
             }
