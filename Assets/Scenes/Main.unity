@@ -1002,7 +1002,7 @@ MonoBehaviour:
   inSceneObject: {fileID: 0}
   inInventoryObject: {fileID: 0}
   objectID: 0
-  isInteractable: 1
+  isInteractable: 0
   requiredProgress: 0
   isPickup: 0
   inInventory: 0
@@ -7936,7 +7936,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1900237140
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9263,7 +9263,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 880586396994313584, guid: 2458035b93ce24949af9f222d884f7f8, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3001893814399599008, guid: 2458035b93ce24949af9f222d884f7f8, type: 3}
       propertyPath: m_Sprite
