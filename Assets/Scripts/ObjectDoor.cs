@@ -11,16 +11,9 @@ public class ObjectDoor : InteractableObject
     
     private Collider2D myCollider;
     private Image myImage;
-    
-    public bool isOpen
-    {
-        get { return isOpen;}
-        set
-        {
-            isOpen = value;
-            OnDoorStateChange.Invoke(isOpen);
-        }
-    }
+
+    public bool isOpen;
+  
     [SerializeField] private Sprite closedSprite;
     [SerializeField] private Sprite openSprite;
     
@@ -73,6 +66,7 @@ public class ObjectDoor : InteractableObject
             {
                 case true:
                     isOpen = false;
+                    OnDoorStateChange.Invoke(isOpen);
                     
                     foreach (GameObject obj in myObjects)
                     {
@@ -87,6 +81,7 @@ public class ObjectDoor : InteractableObject
             
                 case false:
                     isOpen = true;
+                    OnDoorStateChange.Invoke(isOpen);
                     
                     foreach (GameObject obj in myObjects)
                     {

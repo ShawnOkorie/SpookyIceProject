@@ -31,15 +31,8 @@ public class InteractableObject : MonoBehaviour,IShouldForceAwake
     [Header("Pickup")]
     public bool isPickup;
     public bool collected => inInventory;
-    private bool inInventory
-    {
-        get { return inInventory;}
-        set
-        {
-            inInventory = value;
-            OnInventoryStateChange.Invoke(inInventory);
-        }
-    }
+    private bool inInventory;
+   
 
     [Header("Door")]
     [SerializeField] private bool isDoor;
@@ -144,6 +137,7 @@ public class InteractableObject : MonoBehaviour,IShouldForceAwake
             if (isPickup)
             {
                 inInventory = true;
+                //OnInventoryStateChange.Invoke(inInventory);
                 gameObject.transform.SetParent(inventoryLayout.transform);
             }
 
