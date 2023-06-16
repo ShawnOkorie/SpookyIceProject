@@ -6,10 +6,10 @@ using UnityEngine.UI;
 
 public class ObjectDoor : InteractableObject
 {
-    [SerializeField] private Collider2D myCollider;
-    [SerializeField] private Image myImage;
-    
-    [SerializeField] private bool isOpen;
+    private Collider2D myCollider;
+    private Image myImage;
+
+    private bool isOpen;
     [SerializeField] private Sprite closedSprite;
     [SerializeField] private Sprite openSprite;
     

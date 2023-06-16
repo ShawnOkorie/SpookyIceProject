@@ -57,7 +57,7 @@ public class InteractableObject : MonoBehaviour,IShouldForceAwake
     
     protected virtual void Awake()
     {
-        if (isAwake)
+        if (isAwake == false)
         {
             progressManager ??= FindObjectOfType<ProgressManager>();
             inventoryLayout ??= FindObjectOfType<GridLayoutGroup>();
@@ -169,12 +169,17 @@ public class InteractableObject : MonoBehaviour,IShouldForceAwake
             if (otherObject.solvingObjectID == objectID)
             {
                 if (otherObject.dontDestroyOnSolve)
-                    return;
-                
-                Destroy(otherObject.gameObject);
+                {
+                    otherObject.dontDestroyOnSolve = false;
+                    return;  
+                }
+                if (otherObject.dontDestroyOnSolve == false)
+                {
+                    Destroy(otherObject.gameObject);
+                }
                 
                 progressManager.AddProgress(addedProgress);
-                otherObject.isSolved = true;
+                isSolved = true;
                 print("solved");
             }
         }

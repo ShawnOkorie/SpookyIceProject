@@ -42,9 +42,9 @@ public class MiniGameTrigger : MonoBehaviour
 
     private void Start()
     {
-        skillCheck.OnMinigameEnd += ExitCanvas;
-        radioMinigame.OnMinigameEnd += ExitCanvas;
-        keypad.OnMinigameEnd += ExitCanvas;
+        SkillCheck.Instance.OnMinigameEnd += ExitCanvas;
+        RadioMinigame.Instance.OnMinigameEnd += ExitCanvas;
+        Keypad.Instance.OnMinigameEnd += ExitCanvas;
     }
 
     public void StartMiniGame()
@@ -57,15 +57,15 @@ public class MiniGameTrigger : MonoBehaviour
                 return;
             
             case Minigame.Skillcheck:
-                skillCheck.StartMinigame(difficulty,timeLimit);
+                SkillCheck.Instance.StartMinigame(difficulty,timeLimit);
                 break;
           
             case Minigame.Radio:
-                radioMinigame.StartMinigame(difficulty,timeLimit);
+                RadioMinigame.Instance.StartMinigame(difficulty,timeLimit);
                 break;
            
             case Minigame.Keypad:
-                keypad.StartMinigame(difficulty,timeLimit);
+                Keypad.Instance.StartMinigame(difficulty,timeLimit);
                 break;
         }
     }
@@ -93,15 +93,15 @@ public class MiniGameTrigger : MonoBehaviour
                 return;
             
             case Minigame.Skillcheck:
-                skillCheck.ExitCanvas();
+                SkillCheck.Instance.ExitCanvas();
                 break;
           
             case Minigame.Radio:
-                radioMinigame.ExitCanvas();
+                RadioMinigame.Instance.ExitCanvas();
                 break;
            
             case Minigame.Keypad:
-                keypad.ExitCanvas();
+                Keypad.Instance.ExitCanvas();
                 break;
         }
     }

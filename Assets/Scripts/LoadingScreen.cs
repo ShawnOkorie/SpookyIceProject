@@ -30,7 +30,14 @@ public class LoadingScreen : Singleton<LoadingScreen>, IShouldForceAwake
 
     public void StartFadeIn()
     {
+        gameObject.SetActive(true);
         StartCoroutine(FadeIn(waitDuration, fadeDuration));
+    }
+    
+    public void StartFadeOut()
+    {
+        gameObject.SetActive(true);
+        StartCoroutine(FadeOut(waitDuration, fadeDuration));
     }
     
     private IEnumerator FadeIn(float waitDuration, float fadeDuration)
@@ -49,7 +56,7 @@ public class LoadingScreen : Singleton<LoadingScreen>, IShouldForceAwake
         }
         
         blackScreen.alpha = 0;
-        myCanvas.sortingOrder = 0;
+        gameObject.SetActive(false);
         OnFadeEnd?.Invoke();
     }
     
@@ -68,6 +75,7 @@ public class LoadingScreen : Singleton<LoadingScreen>, IShouldForceAwake
             yield return null;
         }
         blackScreen.alpha = 1;
+        gameObject.SetActive(false);
         OnFadeEnd?.Invoke();
     }
 }

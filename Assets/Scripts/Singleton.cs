@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-//Code von Michi
+//Code from Michael Lambertz
 
 public class Singleton<T> : MonoBehaviour, IShouldForceAwake where T : MonoBehaviour
 {
@@ -9,7 +9,7 @@ public class Singleton<T> : MonoBehaviour, IShouldForceAwake where T : MonoBehav
     public static T Instance { get; private set; }
     protected virtual void Awake()
     {
-        if (isAwake)
+        if (isAwake == false)
         {
             Instance = this as T;
         }
