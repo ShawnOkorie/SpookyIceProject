@@ -713,7 +713,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -819,7 +819,7 @@ RectTransform:
   m_Children:
   - {fileID: 293585580}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -858,7 +858,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 343201924e4f7fc43acba0a140f7bf86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentSaveData:
+    IntObjects: []
   myRoom: 0
+  myIntObjects: []
 --- !u!114 &106249600
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -946,7 +949,7 @@ RectTransform:
   - {fileID: 1766151303}
   - {fileID: 1900237140}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1005,7 +1008,6 @@ MonoBehaviour:
   isInteractable: 0
   requiredProgress: 0
   isPickup: 0
-  inInventory: 0
   isDoor: 1
   targetroom: {fileID: 2076332189}
   mergeableObjectID: 0
@@ -3116,6 +3118,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 615764855}
   m_CullTransparentMesh: 1
+--- !u!1 &676495590
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 676495592}
+  - component: {fileID: 676495591}
+  m_Layer: 0
+  m_Name: GameStateManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &676495591
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 676495590}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49f085b8db0c89549b3c70eb8bfecf3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &676495592
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 676495590}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -7.1, y: 5.39, z: 181.97104}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &732185402
 GameObject:
   m_ObjectHideFlags: 0
@@ -3958,7 +4004,6 @@ MonoBehaviour:
   isInteractable: 1
   requiredProgress: 0
   isPickup: 0
-  inInventory: 0
   isDoor: 1
   targetroom: {fileID: 3535651965969992647}
   mergeableObjectID: 0
@@ -7786,7 +7831,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!224 &1806844941 stripped
 RectTransform:

@@ -18,12 +18,7 @@ public class MiniGameTrigger : MonoBehaviour
 
     [SerializeField] private int difficulty;
     [SerializeField] private int timeLimit;
-    
-    [SerializeField] private SkillCheck skillCheck;
-    [SerializeField] private RadioMinigame radioMinigame;
-    [SerializeField] private Keypad keypad;
-    //private Switches switches;
-    
+
     [SerializeField] private Minigame myMinigame;
     
     private enum Minigame

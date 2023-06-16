@@ -11,9 +11,10 @@ using UnityEngine.UI;
 
 public class InteractableObject : MonoBehaviour,IShouldForceAwake
 {
-    private static ProgressManager progressManager;
+    public delegate void InventoryStateChange(bool inInventory);
+    public event InventoryStateChange OnInventoryStateChange;
+    
     private static GridLayoutGroup inventoryLayout;
-    private static RoomManager roomManager;
     protected bool isAwake;
     private MiniGameTrigger miniGameTrigger;
     
@@ -21,7 +22,7 @@ public class InteractableObject : MonoBehaviour,IShouldForceAwake
     [SerializeField] private GameObject inSceneObject;
     [SerializeField] private GameObject inInventoryObject;
 
-    [SerializeField] protected int objectID;
+    public int objectID;
     
     [Header("Interaction")]
     [SerializeField] protected bool isInteractable;
@@ -29,7 +30,16 @@ public class InteractableObject : MonoBehaviour,IShouldForceAwake
     
     [Header("Pickup")]
     public bool isPickup;
-    [HideInInspector] public bool inInventory;
+    public bool collected => inInventory;
+    private bool inInventory
+    {
+        get { return inInventory;}
+        set
+        {
+            inInventory = value;
+            OnInventoryStateChange.Invoke(inInventory);
+        }
+    }
 
     [Header("Door")]
     [SerializeField] private bool isDoor;
@@ -51,17 +61,11 @@ public class InteractableObject : MonoBehaviour,IShouldForceAwake
     [Header("Animation")]
     [SerializeField] private AnimationClip interactAnimation;
     
-    
-    
-    
-    
     protected virtual void Awake()
     {
         if (isAwake == false)
         {
-            progressManager ??= FindObjectOfType<ProgressManager>();
             inventoryLayout ??= FindObjectOfType<GridLayoutGroup>();
-            roomManager ??= FindObjectOfType<RoomManager>();
             //textBox ??= FindObjectOfType<TextBox>();
 
             miniGameTrigger = GetComponent<MiniGameTrigger>();
@@ -73,7 +77,54 @@ public class InteractableObject : MonoBehaviour,IShouldForceAwake
     {
         Awake();
     }
+    
+    protected virtual void Start()
+    {
+        OnInventoryStateChange += ChangeActiveObject;
+        
+        ProgressManager.Instance.OnProgressChanged += UnlockInteracability;
+       
+        GameStateManager.Instance.OnSetUninteractible += SetUninteractible;
+        GameStateManager.Instance.OnSetInteractible += SetInteractible;
+        
+        if (requiredProgress != ProgressManager.Progress.None)
+            isInteractable = false;
+    }
+    
+    protected virtual void OnDestroy()
+    {
+        OnInventoryStateChange -= ChangeActiveObject;
+        
+        ProgressManager.Instance.OnProgressChanged -= UnlockInteracability;
+        
+        GameStateManager.Instance.OnSetUninteractible -= SetUninteractible;
+        GameStateManager.Instance.OnSetInteractible -= SetInteractible;
+    }
 
+    private void ChangeActiveObject(bool inInventory)
+    {
+        switch (inInventory)
+        {
+            case true:
+                inSceneObject.gameObject.SetActive(false);
+                inInventoryObject.gameObject.SetActive(true);
+                break;
+            case false:
+                inSceneObject.gameObject.SetActive(true);
+                inInventoryObject.gameObject.SetActive(false);
+                break;
+        }
+    }
+    
+    private void UnlockInteracability(ProgressManager.Progress progress)
+    {
+        if (progress == requiredProgress)
+        {
+            requiredProgress = ProgressManager.Progress.None; 
+            isInteractable = true;
+        }
+    }
+    
     public void SetUninteractible()
     {
         isInteractable = false;
@@ -86,34 +137,6 @@ public class InteractableObject : MonoBehaviour,IShouldForceAwake
             isInteractable = false;
     }
     
-
-    private void Start()
-    {
-        progressManager.OnProgressChanged += UnlockInteracability;
-        GameStateManager.Instance.OnSetUninteractible += SetUninteractible;
-        GameStateManager.Instance.OnSetInteractible += SetInteractible;
-        
-        if (requiredProgress != ProgressManager.Progress.None)
-            isInteractable = false;
-    }
-    
-    private void OnDestroy()
-    {
-        progressManager.OnProgressChanged -= UnlockInteracability;
-        
-        GameStateManager.Instance.OnSetUninteractible -= SetUninteractible;
-        GameStateManager.Instance.OnSetInteractible -= SetInteractible;
-    }
-
-    private void UnlockInteracability(ProgressManager.Progress progress)
-    {
-        if (progress == requiredProgress)
-        {
-            requiredProgress = ProgressManager.Progress.None; 
-            isInteractable = true;
-        }
-    }
-    
     public virtual void Interact()
     {
         if (isInteractable)
@@ -121,9 +144,6 @@ public class InteractableObject : MonoBehaviour,IShouldForceAwake
             if (isPickup)
             {
                 inInventory = true;
-            
-                inSceneObject.gameObject.SetActive(false);
-                inInventoryObject.gameObject.SetActive(true);
                 gameObject.transform.SetParent(inventoryLayout.transform);
             }
 
@@ -139,7 +159,7 @@ public class InteractableObject : MonoBehaviour,IShouldForceAwake
             
             if (isDoor)
             {
-                roomManager.LoadRoom(targetroom.myRoom);
+                RoomManager.Instance.LoadRoom(targetroom.myRoom);
             }
 
             if (miniGameTrigger != null && isSolved)
@@ -178,7 +198,7 @@ public class InteractableObject : MonoBehaviour,IShouldForceAwake
                     Destroy(otherObject.gameObject);
                 }
                 
-                progressManager.AddProgress(addedProgress);
+                ProgressManager.Instance.AddProgress(addedProgress);
                 isSolved = true;
                 print("solved");
             }
