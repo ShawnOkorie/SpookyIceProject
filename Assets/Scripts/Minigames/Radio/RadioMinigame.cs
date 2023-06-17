@@ -6,12 +6,16 @@ using UnityEngine.Serialization;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
-public class RadioMinigame : Singleton<RadioMinigame>, IMinigames, IShouldForceAwake
+public class RadioMinigame : Singleton<RadioMinigame>, IMinigames
 {
    
-   public delegate void MinigameFail();
-   public event MinigameFail OnMinigameEnd;
-   
+   public delegate void MinigameEnd(bool solved);
+   public event MinigameEnd OnMinigameEnd;
+
+   [SerializeField] private InteractableObject myIntObject;
+   [SerializeField] private MiniGameTrigger myMiniGameTrigger;
+   [SerializeField] private Image greenLight;
+   [SerializeField] private GameObject brokenSlider;
    [SerializeField] private Canvas myCanvas;
    [Header("Graphs")]
    [SerializeField] private GraphRenderer solutionGraph;
@@ -27,16 +31,23 @@ public class RadioMinigame : Singleton<RadioMinigame>, IMinigames, IShouldForceA
    [SerializeField] private Slider movementSpeedSlider;
 
    [SerializeField] private float sliderValueOffset = 3;
-   public bool movementIsFixed;
+   [HideInInspector] public bool movementIsFixed;
+   
 
    public void StartMinigame(int difficulty, int timeLimit)
    {
       myCanvas.gameObject.SetActive(true);
       
+      if (ProgressManager.Instance.ContainsProgress(ProgressManager.Progress.radioRepaired))
+      {
+         movementIsFixed = true;
+      }
+      
       if (movementIsFixed)
       {
          listindex = 3;
          movementSpeedSlider.gameObject.SetActive(true);
+         brokenSlider.gameObject.SetActive(false);
          currentGraph = graphAssetList[listindex];
          solutionGraph.graph = currentGraph;
       }
@@ -44,11 +55,13 @@ public class RadioMinigame : Singleton<RadioMinigame>, IMinigames, IShouldForceA
       {
          listindex = 0;
          movementSpeedSlider.gameObject.SetActive(false);
+         brokenSlider.gameObject.SetActive(true);
          currentGraph = graphAssetList[listindex];
          solutionGraph.graph = currentGraph;
       }
       
-      SetSliderValues(currentGraph);
+      //SetSliderValues(currentGraph);
+      SetHandlePosition(currentGraph);
    }
 
    public void ExitCanvas()
@@ -61,16 +74,14 @@ public class RadioMinigame : Singleton<RadioMinigame>, IMinigames, IShouldForceA
    {
       graphRenderer.amplitude = amplitudeSlider.value;
 
-      if (CheckIfSolved())
-         LoadNext();
+      ChangeLamp(CheckIfSolved());
    }
    
    public void SetFrequency()
    {
       graphRenderer.frequency = frequencySlider.value;
       
-      if (CheckIfSolved())
-         LoadNext();
+      ChangeLamp(CheckIfSolved());
    }
 
    public void SetMovementSpeed()
@@ -78,11 +89,10 @@ public class RadioMinigame : Singleton<RadioMinigame>, IMinigames, IShouldForceA
       if (movementIsFixed)
          graphRenderer.movementSpeed = movementSpeedSlider.value;
       
-      if (CheckIfSolved())
-         LoadNext();
+      ChangeLamp(CheckIfSolved());
    }
 
-   private void SetSliderValues(GraphAsset graphAsset)
+   /*private void SetSliderValues(GraphAsset graphAsset)
    {
       amplitudeSlider.minValue = graphAsset.baseAmplitude - sliderValueOffset;
       amplitudeSlider.maxValue = graphAsset.baseAmplitude + sliderValueOffset;
@@ -90,17 +100,24 @@ public class RadioMinigame : Singleton<RadioMinigame>, IMinigames, IShouldForceA
       frequencySlider.minValue = graphAsset.baseFrequency - sliderValueOffset;
       frequencySlider.maxValue = graphAsset.baseFrequency + sliderValueOffset;
 
+      
+      if (movementIsFixed)
+      {
+         movementSpeedSlider.minValue = graphAsset.baseMovementSpeed - sliderValueOffset;
+         movementSpeedSlider.maxValue = graphAsset.baseMovementSpeed + sliderValueOffset;
+      }
+   }*/
+
+   private void SetHandlePosition(GraphAsset graphAsset)
+   {
       while (amplitudeSlider.minValue == amplitudeSlider.value || graphAsset.baseAmplitude == amplitudeSlider.value)
          amplitudeSlider.value = Random.Range(amplitudeSlider.minValue, amplitudeSlider.maxValue);
       
       while (frequencySlider.minValue == frequencySlider.value || graphAsset.baseFrequency == frequencySlider.value)
          frequencySlider.value = Random.Range(frequencySlider.minValue, frequencySlider.maxValue);
-
+      
       if (movementIsFixed)
       {
-         movementSpeedSlider.minValue = graphAsset.baseMovementSpeed - sliderValueOffset;
-         movementSpeedSlider.maxValue = graphAsset.baseMovementSpeed + sliderValueOffset;
-
          while (movementSpeedSlider.minValue == movementSpeedSlider.value || solutionGraph.graph.baseMovementSpeed == movementSpeedSlider.value)
             movementSpeedSlider.value = Random.Range(movementSpeedSlider.minValue, movementSpeedSlider.maxValue);
       }
@@ -126,17 +143,46 @@ public class RadioMinigame : Singleton<RadioMinigame>, IMinigames, IShouldForceA
       return false;
    }
 
-   private void LoadNext()
+   public void LoadNext()
    {
-      if (listindex == 3 || listindex == 5)
+      if (greenLight.gameObject.activeSelf)
       {
-         OnMinigameEnd.Invoke();
+         ++listindex;
+         greenLight.gameObject.SetActive(false);
+         
+         if (listindex == 3)
+         {
+            OnMinigameEnd.Invoke(true);
+            //myIntObject.solvingObjectID = ;
+            myIntObject.isSolved = false;
+            myIntObject.addedProgress = ProgressManager.Progress.radioRepaired;
+            myMiniGameTrigger.minigameProgress = ProgressManager.Progress.radiosolved2;
+            return;
+         }
+
+         if (listindex == 6)
+         {
+            OnMinigameEnd.Invoke(true);
+            return;
+         }
+      
+         currentGraph = graphAssetList[listindex];
+         solutionGraph.graph = currentGraph;
+      
+         //SetSliderValues(currentGraph);
       }
-      
-      ++listindex;
-      currentGraph = graphAssetList[listindex];
-      solutionGraph.graph = currentGraph;
-      
-      SetSliderValues(currentGraph);
+   }
+
+   private void ChangeLamp(bool solved)
+   {
+      switch (solved)
+      {
+         case true:
+            greenLight.gameObject.SetActive(true);
+            break;
+         case false:
+            greenLight.gameObject.SetActive(false);
+            break;
+      }
    }
 }

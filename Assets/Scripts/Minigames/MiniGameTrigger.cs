@@ -11,10 +11,8 @@ public class MiniGameTrigger : MonoBehaviour
     
     public delegate void MinigameEnd();
     public event MinigameEnd OnMinigameEnd;
-   
-    private InteractableObject interactableObject;
     
-    [SerializeField] private ProgressManager.Progress minigameProgress;
+    public ProgressManager.Progress minigameProgress;
 
     [SerializeField] private int difficulty;
     [SerializeField] private int timeLimit;
@@ -29,23 +27,17 @@ public class MiniGameTrigger : MonoBehaviour
         Keypad,
         Switches
     }
-
-    private void Awake()
-    {
-        interactableObject = GetComponent<InteractableObject>();
-    }
-
+    
     private void Start()
     {
-        SkillCheck.Instance.OnMinigameEnd += ExitCanvas;
-        RadioMinigame.Instance.OnMinigameEnd += ExitCanvas;
-        Keypad.Instance.OnMinigameEnd += ExitCanvas;
+        SkillCheck.Instance.OnMinigameEnd += EndMiniGame;
+        RadioMinigame.Instance.OnMinigameEnd += EndMiniGame;
+        Keypad.Instance.OnMinigameEnd += EndMiniGame;
     }
 
     public void StartMiniGame()
     {
         OnMinigameStart?.Invoke();
-        
         switch (myMinigame)
         {
             case Minigame.None:
@@ -70,8 +62,8 @@ public class MiniGameTrigger : MonoBehaviour
         switch (solved)
         {
             case true:
-                //ProgressManager.Instance.AddProgress(ProgressManager.Progress.Pee);
-                //Destroy(this);
+                ProgressManager.Instance.AddProgress(minigameProgress);
+                ExitCanvas();
                 break;
             
             case false:

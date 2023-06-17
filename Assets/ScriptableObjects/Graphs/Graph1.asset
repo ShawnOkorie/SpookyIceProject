@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Graph1
   m_EditorClassIdentifier: 
   graphType: 1
-  baseAmplitude: 4
-  baseFrequency: 3
+  baseAmplitude: 5
+  baseFrequency: 2
   baseMovementSpeed: 2

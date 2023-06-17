@@ -43,10 +43,10 @@ public class InteractableObject : MonoBehaviour,IShouldForceAwake
     [SerializeField] private GameObject mergedObject;
 
     [Header("Riddle")]
-    [SerializeField] protected int solvingObjectID;
-    [SerializeField] protected ProgressManager.Progress addedProgress;
+    public int solvingObjectID;
+    public ProgressManager.Progress addedProgress;
     [SerializeField] protected bool dontDestroyOnSolve;
-    [SerializeField] protected bool isSolved;
+    public bool isSolved;
     
     [Header("Dialogue")]
     [SerializeField] private int start_pid;
@@ -155,11 +155,12 @@ public class InteractableObject : MonoBehaviour,IShouldForceAwake
             {
                 RoomManager.Instance.LoadRoom(targetroom.myRoom);
             }
-
-            if (miniGameTrigger != null && isSolved)
-            {
-                miniGameTrigger.StartMiniGame();
-            }
+            
+        }
+        
+        if (miniGameTrigger != null && isSolved)
+        {
+            miniGameTrigger.StartMiniGame();
         }
     }
 
