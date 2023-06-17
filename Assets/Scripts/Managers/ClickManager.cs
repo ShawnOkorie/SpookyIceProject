@@ -55,6 +55,8 @@ public class ClickManager : Singleton<ClickManager>
                 {
                     interactable.Interact();
                 }
+
+                
             }
            
         }
