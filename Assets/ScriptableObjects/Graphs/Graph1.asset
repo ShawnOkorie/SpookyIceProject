@@ -15,4 +15,4 @@ MonoBehaviour:
   graphType: 1
   baseAmplitude: 5
   baseFrequency: 2
-  baseMovementSpeed: 2
+  baseMovementSpeed: 5

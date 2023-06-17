@@ -29,8 +29,7 @@ public class RadioMinigame : Singleton<RadioMinigame>, IMinigames
    [SerializeField] private Slider amplitudeSlider;
    [SerializeField] private Slider frequencySlider;
    [SerializeField] private Slider movementSpeedSlider;
-
-   [SerializeField] private float sliderValueOffset = 3;
+   
    [HideInInspector] public bool movementIsFixed;
    
 
