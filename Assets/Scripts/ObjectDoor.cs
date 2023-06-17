@@ -14,8 +14,8 @@ public class ObjectDoor : InteractableObject
 
     public bool isOpen;
   
-    [SerializeField] private Sprite closedSprite;
-    [SerializeField] private Sprite openSprite;
+    [SerializeField] private GameObject isOpend;
+    [SerializeField] private GameObject isClosed;
     
     [SerializeField] private List<GameObject> myObjects;
     
@@ -23,7 +23,7 @@ public class ObjectDoor : InteractableObject
     {
         if (isAwake)
         {
-            myCollider = GetComponent<Collider2D>();
+            
         }
     }
 
@@ -44,12 +44,12 @@ public class ObjectDoor : InteractableObject
         switch (isOpen)
         {
             case true:
-                myCollider.enabled = false;
-                myImage.sprite = openSprite;
+                isClosed.gameObject.SetActive(false);
+                isOpend.gameObject.SetActive(true);
                 break;
             case false:
-                myCollider.enabled = true;
-                myImage.sprite = closedSprite;
+                isClosed.gameObject.SetActive(true);
+               isOpend.gameObject.SetActive(false);
                 break;
         }
     }
