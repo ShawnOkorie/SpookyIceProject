@@ -12,8 +12,7 @@ public class ClickManager : Singleton<ClickManager>
 
     public InteractableObject interactable;
     public InteractableObject lastClicked;
-    
-   
+
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
@@ -28,13 +27,16 @@ public class ClickManager : Singleton<ClickManager>
             
             if (hit.collider != null)
             {
-                print("hit");
                 print(hit.collider.gameObject.name);
                 
                 interactable = hit.transform.gameObject.GetComponentInParent<InteractableObject>();
 
                 if (lastClicked?.mergeableObjectID == interactable.mergeableObjectID)
                 {
+                    if (interactable.mergeableObjectID == 0 || lastClicked?.mergeableObjectID == 0)
+                    {
+                        return;
+                    }
                     interactable.Merge(lastClicked);
                 }
 
@@ -55,8 +57,6 @@ public class ClickManager : Singleton<ClickManager>
                 {
                     interactable.Interact();
                 }
-
-                
             }
            
         }

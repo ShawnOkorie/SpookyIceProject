@@ -9,7 +9,7 @@ namespace Minigames
 {
     public class SkillCheck : Singleton<SkillCheck>, IMinigames
     {
-        public delegate void MinigameFail();
+        public delegate void MinigameFail(bool solved);
         public event MinigameFail OnMinigameEnd;
         
         [SerializeField] private Canvas myCanvas;
@@ -85,7 +85,7 @@ namespace Minigames
                 counter = 0;
                 
                 StopCoroutine(currentPlay);
-                OnMinigameEnd?.Invoke();
+                OnMinigameEnd?.Invoke(false);
                 break;
             }
 
@@ -94,6 +94,7 @@ namespace Minigames
                 if (counter == characters.Length)
                 {
                     print("Good Job");
+                    OnMinigameEnd.Invoke(true);
                     counter = 0;
                 }
             }
@@ -110,7 +111,7 @@ namespace Minigames
                 yield return new WaitForEndOfFrame();
             }
             print("Fail");
-            OnMinigameEnd?.Invoke();
+            OnMinigameEnd?.Invoke(false);
         }
 
         public void StartMinigame(int difficulty, int timeLimit)

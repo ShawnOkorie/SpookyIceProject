@@ -1,15 +1,9 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Security.Cryptography.X509Certificates;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Serialization;
-using UnityEngine.UI;
 
 public class Keypad : Singleton<Keypad>, IMinigames
 {
-  public delegate void MinigameFail();
+  public delegate void MinigameFail(bool solved);
   public event MinigameFail OnMinigameEnd;
   
   [SerializeField] private Canvas myCanvas;
@@ -27,13 +21,13 @@ public class Keypad : Singleton<Keypad>, IMinigames
     if (display.text == answer)
     {
       display.text = "True";
-      //ProgressManager.Instance.AddProgress(ProgressManager.Progress.Poo);
+      OnMinigameEnd.Invoke(true);
     }
 
     else
     {
       display.text = "FALSE";
-      OnMinigameEnd.Invoke();
+      OnMinigameEnd.Invoke(false);
     } 
       
   }
