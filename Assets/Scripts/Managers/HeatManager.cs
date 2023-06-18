@@ -29,6 +29,7 @@ public class HeatManager : Singleton<HeatManager>
     
     private void Start()
     {
+        myAudioSource = GetComponent<AudioSource>();
         ResetTimer();
     }
     

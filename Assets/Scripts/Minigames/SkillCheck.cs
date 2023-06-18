@@ -9,8 +9,8 @@ namespace Minigames
 {
     public class SkillCheck : Singleton<SkillCheck>, IMinigames
     {
-        public delegate void MinigameFail(bool solved);
-        public event MinigameFail OnMinigameEnd;
+        public delegate void MinigameEnd(bool solved);
+        public event MinigameEnd OnMinigameEnd;
         
         [SerializeField] private Canvas myCanvas;
         

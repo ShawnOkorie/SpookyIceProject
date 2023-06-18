@@ -37,7 +37,10 @@ public class GameStateManager : Singleton<GameStateManager>
         LoadingScreen.Instance.OnFadeEnd += InvokeInteractible;
         
         DialogManager.Instance.OnDialogStart += InvokeUninteractible;
-        DialogManager.Instance.OnDialogEnd += InvokeUninteractible;
+        DialogManager.Instance.OnDialogEnd += InvokeInteractible;
+
+        CutSceneCanvas.Instance.OnCutsceneStart += InvokeUninteractible;
+        CutSceneCanvas.Instance.OnCutsceneEnd += InvokeInteractible;
     }
 
     private void InvokeUninteractible()
@@ -47,6 +50,9 @@ public class GameStateManager : Singleton<GameStateManager>
     
     private void InvokeInteractible()
     {
+        if (CutSceneCanvas.Instance.myCanvas.gameObject.activeSelf)
+            return;
+        
         OnSetInteractible?.Invoke();
     }
 }
