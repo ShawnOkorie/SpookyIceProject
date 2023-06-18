@@ -4,12 +4,13 @@ using UnityEngine;
 
 namespace DialogSystem
 {
-   //Code from Michael Lambertz
+   //using Code from Michael Lambertz
     
     public class DialogManager : Singleton<DialogManager>
     {
         public event Action<string> OnSpeakerChanged;
         public event Action<string> OnTextChanged;
+        public event Action<int> OnLineStarted;
         public event Action OnDialogStart;
         public event Action OnDialogEnd;
         public event Action<string, string> OnChoice;
@@ -120,11 +121,13 @@ namespace DialogSystem
                 }
             }
 
-            StartCoroutine(Write(result, passage.links.Count > 1));
+            StartCoroutine(Write(result, passage.links.Count > 1,pid));
         }
 
-        private IEnumerator Write(string result, bool choices)
+        private IEnumerator Write(string result, bool choices, int pid)
         {
+            OnLineStarted?.Invoke(pid);
+            
             string text = "";
             for (int i = 0; i < result.Length; i++)
             {

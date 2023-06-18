@@ -94,6 +94,7 @@ namespace Minigames
                 if (counter == characters.Length)
                 {
                     print("Good Job");
+                    HeatManager.Instance.ResetTimer();
                     OnMinigameEnd.Invoke(true);
                     counter = 0;
                 }

@@ -19,7 +19,7 @@ public class Room : MonoBehaviour
     private void GetMyIntObjects(RoomManager.Rooms targetroom)
     {
         if (targetroom != myRoom) return;
-       // myIntObjects = GetComponentsInChildren<InteractableObject>().ToList();
+        myObjects = GetComponentsInChildren<InteractableObject>().ToList();
        
 
        for (int i = 0; i < myObjects.Count; i++)

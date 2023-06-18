@@ -23,6 +23,10 @@ public class HeatManager : Singleton<HeatManager>
     [SerializeField] private float fadeDuration;
     [SerializeField] private float waitDuration;
 
+    private AudioSource myAudioSource;
+    [SerializeField] private AudioClip newStageSound;
+    [SerializeField] private AudioClip deathSound;
+    
     private void Start()
     {
         ResetTimer();
@@ -30,6 +34,8 @@ public class HeatManager : Singleton<HeatManager>
     
     private void Update()
     {
+        //return if cutscene canvas active
+
         foreach (Canvas canvas in mingameCanvasList)
         {
             if (canvas.gameObject.activeSelf)
@@ -72,6 +78,15 @@ public class HeatManager : Singleton<HeatManager>
 
     private void ChangeImage(int index)
     {
+        if (index == 3)
+        {
+            myAudioSource.PlayOneShot(deathSound);
+        }
+        else
+        {
+            myAudioSource.PlayOneShot(newStageSound);
+        }
+
         for (int i = 0; i < freezingStages.Count; i++)
         {
             if (index != i)
@@ -91,7 +106,7 @@ public class HeatManager : Singleton<HeatManager>
         StartCoroutine(FadeOut(fadeDuration,waitDuration));
     }
 
-    private void ResetTimer()
+    public void ResetTimer()
     {
         timer = timeLimit;
         foreach (Image image in freezingStages)
