@@ -156,11 +156,10 @@ public class InteractableObject : MonoBehaviour,IShouldForceAwake
                 RoomManager.Instance.LoadRoom(targetroom.myRoom);
             }
             
-        }
-        
-        if (miniGameTrigger != null && isSolved)
-        {
-            miniGameTrigger.StartMiniGame();
+            if (miniGameTrigger != null && isSolved)
+            {
+                miniGameTrigger.StartMiniGame();
+            }
         }
     }
 

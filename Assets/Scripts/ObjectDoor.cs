@@ -30,16 +30,17 @@ public class ObjectDoor : InteractableObject
     protected override void Start()
     {
         base.Start();
-        OnDoorStateChange += ChangeSprite;
+        OnDoorStateChange += ChangeState;
+        ChangeState(false);
     }
 
     protected override void OnDestroy()
     {
         base.OnDestroy();
-        OnDoorStateChange -= ChangeSprite;
+        OnDoorStateChange -= ChangeState;
     }
 
-    private void ChangeSprite(bool isOpen)
+    private void ChangeState(bool isOpen)
     {
         switch (isOpen)
         {
@@ -49,7 +50,7 @@ public class ObjectDoor : InteractableObject
                 break;
             case false:
                 isClosed.gameObject.SetActive(true);
-               isOpend.gameObject.SetActive(false);
+                isOpend.gameObject.SetActive(false);
                 break;
         }
     }
@@ -74,7 +75,7 @@ public class ObjectDoor : InteractableObject
 
                         if (interactableObject.collected == false)
                         {
-                            obj.gameObject.SetActive(true);
+                            obj.gameObject.SetActive(false);
                         }
                     }
                     break;
@@ -89,7 +90,7 @@ public class ObjectDoor : InteractableObject
 
                         if (interactableObject.collected == false)
                         {
-                            obj.gameObject.SetActive(false);
+                            obj.gameObject.SetActive(true);
                         }
                     }
                     break;

@@ -13,8 +13,7 @@ public class Switches : Singleton<Switches>, IMinigames
     [SerializeField] private Canvas myCanvas;
     [SerializeField] private Toggle[] myToggles;
     [SerializeField] private bool[] solvingValues;
-
-    [SerializeField] private InteractableObject myIntObject;
+    
     private Image myImage;
     [SerializeField] private Sprite uvSprite;
     
@@ -27,7 +26,8 @@ public class Switches : Singleton<Switches>, IMinigames
     public void StartMinigame(int difficulty, int timeLimit)
     {
         myImage = GetComponentInChildren<Image>();
-        if (myIntObject.isSolved)
+        
+        if (ProgressManager.Instance.ContainsProgress(ProgressManager.Progress.UVLampUsed))
         {
             myImage.sprite = uvSprite;
         }

@@ -63,7 +63,10 @@ public class RoomManager : Singleton<RoomManager>
                 }
             }
             OnRoomChange?.Invoke(target);
-            GameManager.Instance.Save();
+            if (Application.isPlaying)
+            {
+                GameManager.Instance.Save();
+            }
         }
     }
 }
