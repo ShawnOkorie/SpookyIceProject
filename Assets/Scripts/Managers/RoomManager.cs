@@ -17,17 +17,21 @@ public class RoomManager : Singleton<RoomManager>
     public enum Rooms
     {
         None,
-        CryoRoom = 0,
-        GeneratorRoom = 1,
-        Infirmary = 2,
-        CaveEntrance = 3,
-        Lab = 4,
-        HallwayEG = 5,
-        Hallway1st = 6,
-        LabSafeOpen = 7,
-        LabSafeClosed = 8,
-        LabMonitor = 9,
-        GenRoomTanks = 10
+        CryoRoom = 1,
+        GeneratorRoom = 2,
+        Infirmary = 3,
+        CaveEntrance = 4,
+        Lab = 5,
+        HallwayEG = 6,
+        Hallway1st = 7,
+        LabSafeOpen = 8,
+        LabSafeClosed = 9,
+        LabMonitor = 10,
+        GenRoomTanks = 11,
+        SchrankInfirmary = 12,
+        CaveAkte = 13,
+        SchneeMobil = 14
+        
     }
 
     private void Start()
