@@ -38,6 +38,7 @@ public class ClickManager : Singleton<ClickManager>
                         return;
                     }
                     interactable.Merge(lastClicked);
+                    return;
                 }
 
                 if (lastClicked != null)
@@ -45,6 +46,7 @@ public class ClickManager : Singleton<ClickManager>
                     if (lastClicked.collected && interactable.isPickup == false)
                     {
                         interactable.Solve(lastClicked);
+                        return;
                     }    
                 }
                 

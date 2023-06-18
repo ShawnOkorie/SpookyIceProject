@@ -33,6 +33,7 @@ public class MiniGameTrigger : MonoBehaviour
         SkillCheck.Instance.OnMinigameEnd += EndMiniGame;
         RadioMinigame.Instance.OnMinigameEnd += EndMiniGame;
         Keypad.Instance.OnMinigameEnd += EndMiniGame;
+        Switches.Instance.OnMinigameEnd += EndMiniGame;
     }
 
     public void StartMiniGame()
@@ -53,6 +54,10 @@ public class MiniGameTrigger : MonoBehaviour
            
             case Minigame.Keypad:
                 Keypad.Instance.StartMinigame(difficulty,timeLimit);
+                break;
+            
+            case Minigame.Switches :
+                Switches.Instance.StartMinigame(difficulty,timeLimit);
                 break;
         }
     }
@@ -88,6 +93,10 @@ public class MiniGameTrigger : MonoBehaviour
                 break;
            
             case Minigame.Keypad:
+                Keypad.Instance.ExitCanvas();
+                break;
+            
+            case Minigame.Switches :
                 Keypad.Instance.ExitCanvas();
                 break;
         }
