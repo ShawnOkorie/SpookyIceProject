@@ -26,12 +26,14 @@ public class InteractableObject : MonoBehaviour,IShouldForceAwake
     
     [Header("Interaction")]
     [SerializeField] protected bool isInteractable;
-    [SerializeField] private ProgressManager.Progress requiredProgress;
+    [SerializeField] protected ProgressManager.Progress requiredProgress;
     
     [Header("Pickup")]
     public bool isPickup;
     public bool collected => inInventory;
     private bool inInventory;
+    public ProgressManager.Progress addProgress;
+    
    
 
     [Header("Door")]
@@ -47,6 +49,7 @@ public class InteractableObject : MonoBehaviour,IShouldForceAwake
     public ProgressManager.Progress addedProgress;
     [SerializeField] protected bool dontDestroyOnSolve;
     public bool isSolved;
+    [SerializeField] private bool destroyOnSolve;
     
     [Header("Dialogue")]
     [SerializeField] private int start_pid;
@@ -137,8 +140,16 @@ public class InteractableObject : MonoBehaviour,IShouldForceAwake
             if (isPickup)
             {
                 inInventory = true;
-                //OnInventoryStateChange.Invoke(inInventory);
+                OnInventoryStateChange?.Invoke(inInventory);
                 gameObject.transform.SetParent(inventoryLayout.transform);
+                ProgressManager.Instance.AddProgress(addProgress);
+                isSolved = true;
+                
+
+                if (destroyOnSolve)
+                {
+                    Destroy(gameObject);
+                }
             }
 
             if (start_pid != 0)
@@ -192,9 +203,13 @@ public class InteractableObject : MonoBehaviour,IShouldForceAwake
                     Destroy(otherObject.gameObject);
                 }
                 
+                
                 ProgressManager.Instance.AddProgress(addedProgress);
-                isSolved = true;
-                print("solved");
+                
+                if (isPickup)
+                {
+                   
+                }
             }
         }
     }

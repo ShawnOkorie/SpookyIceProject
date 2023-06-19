@@ -11,6 +11,7 @@ public class ObjectDoor : InteractableObject
     
     private Collider2D myCollider;
     private Image myImage;
+    [SerializeField] private bool DestroyonOpen;
 
     public bool isOpen;
   
@@ -42,6 +43,15 @@ public class ObjectDoor : InteractableObject
 
     private void ChangeState(bool isOpen)
     {
+        if (ProgressManager.Instance.ContainsProgress(requiredProgress) || requiredProgress != ProgressManager.Progress.None)
+        {
+            return;
+        }
+
+        if (DestroyonOpen)
+        {
+            Destroy(gameObject);
+        }
         switch (isOpen)
         {
             case true:
@@ -63,6 +73,10 @@ public class ObjectDoor : InteractableObject
         }
         else
         {
+            if (ProgressManager.Instance.ContainsProgress(requiredProgress) || requiredProgress != ProgressManager.Progress.None)
+            {
+                return;
+            }
             switch (isOpen)
             {
                 case true:
