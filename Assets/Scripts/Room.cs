@@ -8,11 +8,12 @@ using UnityEngine.Serialization;
 
 public class Room : MonoBehaviour
 {
-    public RoomManager.Rooms myRoom;
-    [FormerlySerializedAs("DialogueId")] public int DialogueID;
+    public RoomManager.Rooms myRoom; 
+    public int DialogueID;
     private List<InteractableObject> myObjects = new List<InteractableObject>();
     [SerializeField] private List<ObjectDoor> myObjDoor = new List<ObjectDoor>();
     private RoomInfo currRoomInfo;
+    
     private void Start()
     {
         RoomManager.Instance.OnRoomChange += SetupMyIntObjects;
@@ -79,6 +80,9 @@ public class Room : MonoBehaviour
 
     public void StartDialogue(RoomManager.Rooms targetroom)
     {
-        DialogManager.Instance.StartDialog(DialogueID);
+        if (DialogueID > 0)
+        {
+            DialogManager.Instance.StartDialog(DialogueID);
+        }
     }
 }

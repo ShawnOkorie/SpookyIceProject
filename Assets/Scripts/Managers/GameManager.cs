@@ -2,23 +2,28 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : Singleton<GameManager>
 {
-   public const int roomNumber = 14;
+   public const int roomNumber = 16;
    public SaveData GetSavedata => saveData;
    private SaveData saveData;
-
+   private InventoryInfo invInfo;
+   
    protected override void Awake()
    {
       base.Awake();
       SaveSystem.Load(out SaveData saveData);
+
+      /*inventory = FindObjectOfType<GridLayoutGroup>();
+      invObjects = new InteractableObject[10];*/
+      
       this.saveData = saveData;
       if (saveData.RoomInfos == null || saveData.RoomInfos.Length < 1)
       {
          this.saveData.RoomInfos = new RoomInfo[roomNumber];
       }
-
       if (this.saveData.firstLoad)
       {
          this.saveData.firstLoad = false;
@@ -44,6 +49,8 @@ public class GameManager : Singleton<GameManager>
 
    public void Save()
    {
+      invInfo = new InventoryInfo();
+
       saveData.heatTimer = HeatManager.Instance.currentTimer;
       saveData.progressList = ProgressManager.Instance.checkpointList;
       
