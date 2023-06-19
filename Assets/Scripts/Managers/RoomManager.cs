@@ -30,7 +30,10 @@ public class RoomManager : Singleton<RoomManager>
         GenRoomTanks = 11,
         SchrankInfirmary = 12,
         CaveAkte = 13,
-        SchneeMobil = 14
+        SchneeMobil = 14,
+        PinBoard = 15,
+        RadioCloseUp = 16,
+        EndRoom = 17
         
     }
 
