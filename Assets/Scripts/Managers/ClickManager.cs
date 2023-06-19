@@ -55,7 +55,7 @@ public class ClickManager : Singleton<ClickManager>
                         return;
                     }    
                 }
-                
+
                 if (interactable.collected)
                 {
                     lastClicked = interactable;

@@ -50,7 +50,8 @@ public class InteractableObject : MonoBehaviour,IShouldForceAwake
     public ProgressManager.Progress addedProgress;
     [SerializeField] protected bool dontDestroyOnSolve;
     public bool isSolved;
-    [SerializeField] private bool destroyOnSolve;
+    public bool Destroy;
+    
     
     [Header("Dialogue")]
     [SerializeField] private int start_PID;
@@ -186,7 +187,7 @@ public class InteractableObject : MonoBehaviour,IShouldForceAwake
     {
         if (isInteractable)
         {
-            if (otherObject.solvingObjectID == objectID)
+            if (otherObject.objectID == solvingObjectID)
             {
                 if (otherObject.dontDestroyOnSolve)
                 {
@@ -197,11 +198,14 @@ public class InteractableObject : MonoBehaviour,IShouldForceAwake
                 {
                     Destroy(otherObject.gameObject);
                 }
+
+                isSolved = true;
                 
                 ProgressManager.Instance.AddProgress(addedProgress);
                 DialogManager.Instance.StartDialog(solve_PID);
             }
         }
     }
+    
 }
 
