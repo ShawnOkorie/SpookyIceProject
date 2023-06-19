@@ -20,6 +20,8 @@ public class VoicelineManager : Singleton<VoicelineManager>
     private void PlayVoiceLine(int pid)
     {
         voiceline = Resources.Load<AudioClip>("Voicelines/" + pid);
-        myAudioSource.PlayOneShot(voiceline);
+        myAudioSource.Stop();
+        myAudioSource.clip = voiceline;
+        myAudioSource.Play();
     }
 }

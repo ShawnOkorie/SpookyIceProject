@@ -25,8 +25,9 @@ public class InteractableObject : MonoBehaviour,IShouldForceAwake
     public int objectID;
     
     [Header("Interaction")]
-    [SerializeField] protected bool isInteractable;
-    [SerializeField] protected ProgressManager.Progress requiredProgress;
+    [SerializeField]
+    public bool isInteractable;
+    public ProgressManager.Progress requiredProgress;
     
     [Header("Pickup")]
     public bool isPickup;
