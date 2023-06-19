@@ -152,7 +152,7 @@ public class RadioMinigame : Singleton<RadioMinigame>, IMinigames
          if (listindex == 3)
          {
             OnMinigameEnd.Invoke(true);
-            //myIntObject.solvingObjectID = ;
+            myIntObject.solvingObjectID = 99;
             myIntObject.isSolved = false;
             myIntObject.addedProgress = ProgressManager.Progress.radioRepaired;
             myMiniGameTrigger.minigameProgress = ProgressManager.Progress.radiosolved2;

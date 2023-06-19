@@ -1,18 +1,20 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class Inventory : MonoBehaviour
+public class Inventory : Singleton<Inventory>
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+   public GridLayoutGroup myLayout;
+   public List<InteractableObject> invObjects = new List<InteractableObject>();
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+   protected override void Awake()
+   {
+      base.Awake();
+      myLayout = GetComponent<GridLayoutGroup>();
+      invObjects = GetComponentsInChildren<InteractableObject>().ToList();
+   }
+   
 }

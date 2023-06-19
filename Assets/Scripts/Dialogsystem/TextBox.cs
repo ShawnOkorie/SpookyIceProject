@@ -5,36 +5,40 @@ using DialogSystem;
 using UnityEngine;
 using TMPro;
 
-public class TextBox : MonoBehaviour
+public class TextBox : Singleton<TextBox>
 {
-    private TextMeshProUGUI textBox;
+   [SerializeField] private TextMeshProUGUI textBox;
     private Canvas textBoxCanvas;
-    
-    private void Awake()
+    private string speakerName;
+    private TextMeshProUGUI speakerText;
+
+    protected override void Awake()
     {
-        textBox = GetComponentInChildren<TextMeshProUGUI>();
+        base.Awake();
         textBoxCanvas = GetComponent<Canvas>();
-        
+    }
+    
+
+    private void Start()
+    {
         DialogManager.Instance.OnDialogStart += DialogueStart;
         DialogManager.Instance.OnDialogEnd += DialogueEnd;
         DialogManager.Instance.OnTextChanged += TextChange;
         DialogManager.Instance.OnSpeakerChanged += SpeakerChange;
-    }
-
-    private void Start()
-    {
-        textBoxCanvas.sortingOrder = 0;
+        
+        gameObject.SetActive(false);
     }
 
     private void DialogueStart()
     {
         textBox.text = null;
-        textBoxCanvas.sortingOrder = 9;
+        gameObject.SetActive(true);
+        Inventory.Instance.gameObject.SetActive(false);
     }
 
     private void DialogueEnd()
     {
-        textBoxCanvas.sortingOrder = 0;
+        gameObject.SetActive(false);
     }
 
     private void TextChange(string text)
@@ -44,7 +48,7 @@ public class TextBox : MonoBehaviour
 
     private void SpeakerChange(string text)
     {
-        
+        speakerText.text = text;
     }
 
     /*public IEnumerator PlayDialogue(List<int> pidList)

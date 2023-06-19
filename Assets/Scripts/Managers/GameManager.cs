@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,15 +11,14 @@ public class GameManager : Singleton<GameManager>
    public SaveData GetSavedata => saveData;
    private SaveData saveData;
    private InventoryInfo invInfo;
-   
+
+   private List<InteractableObject> interactableObjects = new List<InteractableObject>();
+
    protected override void Awake()
    {
       base.Awake();
       SaveSystem.Load(out SaveData saveData);
 
-      /*inventory = FindObjectOfType<GridLayoutGroup>();
-      invObjects = new InteractableObject[10];*/
-      
       this.saveData = saveData;
       if (saveData.RoomInfos == null || saveData.RoomInfos.Length < 1)
       {
@@ -36,6 +36,13 @@ public class GameManager : Singleton<GameManager>
 
    private void Start()
    {
+      if (invInfo == null)
+      {
+         invInfo = new InventoryInfo(Inventory.Instance.invObjects.Count);
+      }
+
+      saveData.InventoryInfo = invInfo;
+      
       if (saveData.heatTimer == 0 || HeatManager.Instance.currentTimer <= 0)
       {
          saveData.heatTimer = HeatManager.Instance.currentTimer;
@@ -49,8 +56,13 @@ public class GameManager : Singleton<GameManager>
 
    public void Save()
    {
-      invInfo = new InventoryInfo();
+      for (int i = 0; i < Inventory.Instance.invObjects.Count; i++)
+      {
+         invInfo.InvObjects[i] = new IntObject(Inventory.Instance.invObjects[i].objectID,
+            Inventory.Instance.invObjects[i].isSolved, Inventory.Instance.invObjects[i].requiredProgress);
+      }
 
+      saveData.InventoryInfo = invInfo;
       saveData.heatTimer = HeatManager.Instance.currentTimer;
       saveData.progressList = ProgressManager.Instance.checkpointList;
       
@@ -61,6 +73,22 @@ public class GameManager : Singleton<GameManager>
    {
       SaveSystem.Load(out SaveData saveData);
 
+      for (int i = 0; i < saveData.InventoryInfo.InvObjects.Length; i++)
+      {
+        int currObjID = saveData.InventoryInfo.InvObjects[i].objectID;
+        interactableObjects = FindObjectsOfType<InteractableObject>().ToList();
+
+        foreach (InteractableObject obj in interactableObjects)
+        {
+           if (obj.objectID != currObjID)
+           {
+              break;
+           }
+
+           obj.transform.SetParent(Inventory.Instance.myLayout.transform);
+        }
+      }
+      
       HeatManager.Instance.currentTimer = saveData.heatTimer + 60;
       ProgressManager.Instance.checkpointList = saveData.progressList;
       return saveData;

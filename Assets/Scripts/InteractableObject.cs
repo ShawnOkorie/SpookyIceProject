@@ -53,7 +53,8 @@ public class InteractableObject : MonoBehaviour,IShouldForceAwake
     [SerializeField] private bool destroyOnSolve;
     
     [Header("Dialogue")]
-    [SerializeField] private int start_pid;
+    [SerializeField] private int start_PID;
+    [SerializeField] private int solve_PID;
     
     [Header("Animation")]
     [SerializeField] private AnimationClip interactAnimation;
@@ -144,18 +145,11 @@ public class InteractableObject : MonoBehaviour,IShouldForceAwake
                 OnInventoryStateChange?.Invoke(inInventory);
                 gameObject.transform.SetParent(inventoryLayout.transform);
                 ProgressManager.Instance.AddProgress(addProgress);
-                isSolved = true;
-                
-
-                if (destroyOnSolve)
-                {
-                    Destroy(gameObject);
-                }
             }
 
-            if (start_pid != 0)
+            if (start_PID != 0)
             {
-                DialogManager.Instance.StartDialog(start_pid);
+                DialogManager.Instance.StartDialog(start_PID);
             }
         
             if (interactAnimation)
@@ -204,13 +198,8 @@ public class InteractableObject : MonoBehaviour,IShouldForceAwake
                     Destroy(otherObject.gameObject);
                 }
                 
-                
                 ProgressManager.Instance.AddProgress(addedProgress);
-                
-                if (isPickup)
-                {
-                   
-                }
+                DialogManager.Instance.StartDialog(solve_PID);
             }
         }
     }

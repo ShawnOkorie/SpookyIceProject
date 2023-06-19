@@ -43,6 +43,7 @@ public class SaveData
     public RoomInfo[] RoomInfos;
     public List<ProgressManager.Progress> progressList;
     public float heatTimer;
+    public InventoryInfo InventoryInfo;
 }
 
 [Serializable]
