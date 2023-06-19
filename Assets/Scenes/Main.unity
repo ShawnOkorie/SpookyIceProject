@@ -1383,7 +1383,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myRoom: 0
-  myObjects: []
+  DialogueID: 0
+  myObjDoor: []
 --- !u!114 &106249600
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2704,7 +2705,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &214249838
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6713,10 +6714,10 @@ MonoBehaviour:
   - {fileID: 1990110957}
   - {fileID: 644125141}
   - {fileID: 1814661871}
-  - {fileID: 0}
   - {fileID: 1918305837}
   - {fileID: 385613669}
   - {fileID: 357398063}
+  currentroom: 0
   defaultroom: 1
   targetroom: 1
 --- !u!4 &608595605
@@ -11041,6 +11042,10 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2852591172113872792, guid: 47b06a6896e264f4f9769697dd0dc962, type: 3}
+      propertyPath: m_SortingOrder
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3930640453969819529, guid: 47b06a6896e264f4f9769697dd0dc962, type: 3}
       propertyPath: m_LocalScale.y
       value: 1.0339
@@ -13946,6 +13951,10 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3594968697873472257, guid: 47b06a6896e264f4f9769697dd0dc962, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 59caa10112aecc242992742f402769cc, type: 3}
     - target: {fileID: 3930640453969819529, guid: 47b06a6896e264f4f9769697dd0dc962, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.76
@@ -16707,6 +16716,22 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3594968697873472257, guid: 47b06a6896e264f4f9769697dd0dc962, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 116e8d426db70a34a8845a1f1a31cdad, type: 3}
+    - target: {fileID: 3594968697873472257, guid: 47b06a6896e264f4f9769697dd0dc962, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3594968697873472257, guid: 47b06a6896e264f4f9769697dd0dc962, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3594968697873472257, guid: 47b06a6896e264f4f9769697dd0dc962, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3930640453969819529, guid: 47b06a6896e264f4f9769697dd0dc962, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.1
@@ -17990,7 +18015,7 @@ MonoBehaviour:
   inSceneObject: {fileID: 0}
   inInventoryObject: {fileID: 0}
   objectID: 0
-  isInteractable: 0
+  isInteractable: 1
   requiredProgress: 0
   isPickup: 0
   addProgress: 0
@@ -18568,9 +18593,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 859aaf519fc2fd04da0d921b8d8a9e52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  saveData:
-    firstLoad: 0
-    RoomInfos: []
 --- !u!4 &1931596254
 Transform:
   m_ObjectHideFlags: 0

@@ -14,7 +14,7 @@ public class CutSceneCanvas : Singleton<CutSceneCanvas>
    public delegate void CutsceneEnd();
    public event CutsceneEnd OnCutsceneEnd;
 
-   [HideInInspector] public Canvas myCanvas;
+   [SerializeField] public Canvas myCanvas;
    private Image myImage;
 
    [SerializeField] private List<Sprite> cutsceneImages = new List<Sprite>();
