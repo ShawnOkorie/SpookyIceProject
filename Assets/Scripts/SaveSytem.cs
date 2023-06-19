@@ -50,7 +50,6 @@ public class IntObject
 {
     public int objectID;
     public bool isSolved;
-    public bool isInteractible;
     public ProgressManager.Progress requiredProgress;
 
     public IntObject()
@@ -58,12 +57,29 @@ public class IntObject
         
     }
     
-    public IntObject(int objectID, bool isSolved, bool isInteractible, ProgressManager.Progress reqProgress)
+    public IntObject(int objectID, bool isSolved, ProgressManager.Progress reqProgress)
     {
         this.objectID = objectID;
         this.isSolved = isSolved;
-        this.isInteractible = isInteractible;
         requiredProgress = reqProgress;
+    }
+}
+
+[Serializable]
+public class ObjDoor
+{
+    public int objectID;
+    public bool isOpen;
+
+    public ObjDoor()
+    {
+        
+    }
+    
+    public ObjDoor(bool isOpen, int objectID)
+    {
+        this.isOpen = isOpen;
+        this.objectID = objectID;
     }
 }
 
@@ -71,15 +87,33 @@ public class IntObject
 public class RoomInfo
 {
     public IntObject[] IntObjects;
+    public ObjDoor[] objectDoors;
 
     public RoomInfo()
     {
         
     }
     
-    public RoomInfo(int objectCount)
+    public RoomInfo(int objectCount, int doorCount)
     {
         IntObjects = new IntObject[objectCount];
+        objectDoors = new ObjDoor[doorCount];
+    }
+}
+
+[Serializable]
+public class InventoryInfo
+{
+    public IntObject[] InvObjects;
+
+    public InventoryInfo()
+    {
+        
+    }
+    
+    public InventoryInfo(int objectCount)
+    {
+        InvObjects = new IntObject[objectCount];
     }
 }
 

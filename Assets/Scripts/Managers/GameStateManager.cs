@@ -14,6 +14,9 @@ public class GameStateManager : Singleton<GameStateManager>
     public delegate void SetInteractible();
     public event SetInteractible OnSetInteractible;
     
+    public delegate void RespawnPlayer(RoomManager.Rooms currentroom);
+    public event RespawnPlayer OnRespawn;
+    
     private List<MiniGameTrigger> triggerList = new List<MiniGameTrigger>();
 
     protected override void Awake()
@@ -54,5 +57,11 @@ public class GameStateManager : Singleton<GameStateManager>
             return;
         
         OnSetInteractible?.Invoke();
+    }
+
+    public void Respawn()
+    {
+        GameManager.Instance.Load();
+        OnRespawn?.Invoke(RoomManager.Instance.currentroom);
     }
 }

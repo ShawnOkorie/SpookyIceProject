@@ -15,7 +15,12 @@ public class HeatManager : Singleton<HeatManager>
     [SerializeField] private TextMeshProUGUI gameOverText;
     
     [SerializeField] private float timeLimit = 300;
-    public float currentTimer => timer;
+    public float currentTimer
+    {
+        get => timer;
+        set => timer = value;
+    }
+
     private float timer;
     private bool timerIsZero;
    

@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
-public class ObjectDoor : InteractableObject
+public partial class ObjectDoor : InteractableObject
 {
     public delegate void DoorStateChange(bool isOpen);
     public event DoorStateChange OnDoorStateChange;

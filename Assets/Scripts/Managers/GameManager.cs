@@ -50,6 +50,15 @@ public class GameManager : Singleton<GameManager>
       SaveSystem.Save(saveData); 
    }
 
+   public SaveData Load()
+   {
+      SaveSystem.Load(out SaveData saveData);
+
+      HeatManager.Instance.currentTimer = saveData.heatTimer + 60;
+      ProgressManager.Instance.checkpointList = saveData.progressList;
+      return saveData;
+   }
+
    private void InitRoom()
    {
       saveData.RoomInfos = new RoomInfo[roomNumber];

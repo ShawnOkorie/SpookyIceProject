@@ -10,7 +10,7 @@ public class RoomManager : Singleton<RoomManager>
     
     public List<Room> Room = new List<Room>();
 
-    private Rooms currentroom;
+    public Rooms currentroom;
     [SerializeField] private Rooms defaultroom;
     public Rooms targetroom;
     
