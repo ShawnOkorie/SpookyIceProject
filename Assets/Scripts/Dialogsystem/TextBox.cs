@@ -10,7 +10,7 @@ public class TextBox : Singleton<TextBox>
    [SerializeField] private TextMeshProUGUI textBox;
     private Canvas textBoxCanvas;
     private string speakerName;
-    private TextMeshProUGUI speakerText;
+    [SerializeField] private TextMeshProUGUI speakerText;
 
     protected override void Awake()
     {
