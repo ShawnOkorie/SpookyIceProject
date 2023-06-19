@@ -31,6 +31,11 @@ public class ClickManager : Singleton<ClickManager>
                 
                 interactable = hit.transform.gameObject.GetComponentInParent<InteractableObject>();
 
+                if (lastClicked == interactable || interactable.mergeableObjectID == 0)
+                {
+                    lastClicked = null;
+                }
+
                 if (lastClicked?.mergeableObjectID == interactable.mergeableObjectID)
                 {
                     if (interactable.mergeableObjectID == 0 || lastClicked?.mergeableObjectID == 0)
@@ -38,6 +43,7 @@ public class ClickManager : Singleton<ClickManager>
                         return;
                     }
                     interactable.Merge(lastClicked);
+                    lastClicked = null;
                     return;
                 }
 

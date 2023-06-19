@@ -9,9 +9,11 @@ public partial class ObjectDoor : InteractableObject
     public delegate void DoorStateChange(bool isOpen);
     public event DoorStateChange OnDoorStateChange;
     
-    private Collider2D myCollider;
+    [SerializeField] private Collider2D myCollider;
     private Image myImage;
     [SerializeField] private bool DestroyonOpen;
+    [SerializeField] private bool DestroyCollider;
+    
 
     public bool isOpen;
   
@@ -51,6 +53,11 @@ public partial class ObjectDoor : InteractableObject
         if (DestroyonOpen)
         {
             Destroy(gameObject);
+        }
+
+        if (DestroyCollider)
+        {
+            Destroy(myCollider);
         }
         switch (isOpen)
         {
