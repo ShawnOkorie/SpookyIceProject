@@ -9,23 +9,23 @@ public class Room : MonoBehaviour
 {
     public RoomManager.Rooms myRoom;
 
-    public List<InteractableObject> myObjects = new List<InteractableObject>();
-
     private void Start()
     {
-        RoomManager.Instance.OnRoomChange += GetMyIntObjects;
+        RoomManager.Instance.OnRoomChange += SetupMyIntObjects;
     }
 
-    private void GetMyIntObjects(RoomManager.Rooms targetroom)
+    private void SetupMyIntObjects(RoomManager.Rooms targetroom)
     {
         if (targetroom != myRoom) return;
-        myObjects = GetComponentsInChildren<InteractableObject>().ToList();
-       
+        
+        List<InteractableObject> myObjects = GetComponentsInChildren<InteractableObject>().ToList();
 
-       for (int i = 0; i < myObjects.Count; i++)
+        RoomInfo currentroom = new RoomInfo(myObjects.Count);
+        for (int i = 0; i < myObjects.Count; i++)
        {
-           GameManager.Instance.saveData.RoomInfos[(int)myRoom].IntObjects[i] = new IntObject();
-           GameManager.Instance.saveData.RoomInfos[(int)myRoom].IntObjects[i].objectID = myObjects[i].objectID;
+           currentroom.IntObjects[i] = new IntObject(myObjects[i].objectID,myObjects[i].isInteractable,myObjects[i].requiredProgress);
        }
+
+       GameManager.Instance.GetSavedata.RoomInfos[(int)myRoom] = currentroom;
     }
 }

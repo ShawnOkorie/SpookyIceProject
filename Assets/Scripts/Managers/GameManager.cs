@@ -1,17 +1,23 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : Singleton<GameManager>
 {
-   private const int roomNumber = 11;
-   public SaveData saveData;
+   public const int roomNumber = 14;
+   public SaveData GetSavedata => saveData;
+   private SaveData saveData;
 
    protected override void Awake()
    {
       base.Awake();
       SaveSystem.Load(out SaveData saveData);
       this.saveData = saveData;
+      if (saveData.RoomInfos == null || saveData.RoomInfos.Length < 1)
+      {
+         this.saveData.RoomInfos = new RoomInfo[roomNumber];
+      }
 
       if (this.saveData.firstLoad)
       {
@@ -23,9 +29,25 @@ public class GameManager : Singleton<GameManager>
       }
    }
 
+   private void Start()
+   {
+      if (saveData.heatTimer == 0 || HeatManager.Instance.currentTimer <= 0)
+      {
+         saveData.heatTimer = HeatManager.Instance.currentTimer;
+      }
+
+      if (saveData.progressList == null || saveData.progressList.Count < 1)
+      {
+         saveData.progressList = ProgressManager.Instance.checkpointList;
+      }
+   }
+
    public void Save()
    {
-      SaveSystem.Save(saveData);
+      saveData.heatTimer = HeatManager.Instance.currentTimer;
+      saveData.progressList = ProgressManager.Instance.checkpointList;
+      
+      SaveSystem.Save(saveData); 
    }
 
    private void InitRoom()

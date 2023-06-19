@@ -3675,9 +3675,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 859aaf519fc2fd04da0d921b8d8a9e52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  saveData:
-    firstLoad: 0
-    RoomInfos: []
 --- !u!4 &637477133
 Transform:
   m_ObjectHideFlags: 0
@@ -4033,10 +4030,10 @@ MonoBehaviour:
   - {fileID: 35451119}
   - {fileID: 1359320826}
   - {fileID: 469819262}
-  - {fileID: 0}
+  - {fileID: 1862197574}
   respawnButton: {fileID: 610433535}
   gameOverText: {fileID: 0}
-  timeLimit: 500
+  timeLimit: 300
   freezingStages:
   - {fileID: 1688854789}
   - {fileID: 757742091}
@@ -4835,6 +4832,22 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7525930653736410313, guid: 47b06a6896e264f4f9769697dd0dc962, type: 3}
   m_PrefabInstance: {fileID: 649462373}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &882978276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 882978273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4503747727bd6d040bf1aef4803bef92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minigameProgress: 0
+  difficulty: 1234
+  timeLimit: 0
+  myMinigame: 3
 --- !u!1 &918599329
 GameObject:
   m_ObjectHideFlags: 0
@@ -7842,7 +7855,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myRoom: 6
-  myObjects: []
 --- !u!114 &1551396388
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7933,7 +7945,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myRoom: 7
-  myObjects: []
 --- !u!114 &1590054528
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9394,7 +9405,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1862197570}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
@@ -10643,7 +10654,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7210715996382403425, guid: 47b06a6896e264f4f9769697dd0dc962, type: 3}
       propertyPath: isPickup
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7210715996382403425, guid: 47b06a6896e264f4f9769697dd0dc962, type: 3}
       propertyPath: isSolved

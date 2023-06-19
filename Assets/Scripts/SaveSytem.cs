@@ -35,24 +35,52 @@ public static class SaveSystem
             Save(data);
         }
     }
-}
+}//End Code from Michael Lambertz
 [Serializable]
 public class SaveData
 {
     public bool firstLoad;
     public RoomInfo[] RoomInfos;
+    public List<ProgressManager.Progress> progressList;
+    public float heatTimer;
 }
 
 [Serializable]
 public class IntObject
 {
     public int objectID;
+    public bool isSolved;
+    public bool isInteractible;
+    public ProgressManager.Progress requiredProgress;
+
+    public IntObject()
+    {
+        
+    }
+    
+    public IntObject(int objectID, bool isSolved, bool isInteractible, ProgressManager.Progress reqProgress)
+    {
+        this.objectID = objectID;
+        this.isSolved = isSolved;
+        this.isInteractible = isInteractible;
+        requiredProgress = reqProgress;
+    }
 }
 
 [Serializable]
 public class RoomInfo
 {
     public IntObject[] IntObjects;
+
+    public RoomInfo()
+    {
+        
+    }
+    
+    public RoomInfo(int objectCount)
+    {
+        IntObjects = new IntObject[objectCount];
+    }
 }
 
     

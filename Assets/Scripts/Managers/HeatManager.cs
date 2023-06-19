@@ -14,7 +14,8 @@ public class HeatManager : Singleton<HeatManager>
     [SerializeField] private Button respawnButton;
     [SerializeField] private TextMeshProUGUI gameOverText;
     
-    [SerializeField] private float timeLimit = 300; 
+    [SerializeField] private float timeLimit = 300;
+    public float currentTimer => timer;
     private float timer;
     private bool timerIsZero;
    
