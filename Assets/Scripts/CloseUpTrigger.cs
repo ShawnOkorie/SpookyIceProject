@@ -13,7 +13,7 @@ public class CloseUpTrigger : MonoBehaviour
    
    [SerializeField] private Canvas myCloseUp;
 
-   private void OpenCloseUp()
+   public void OpenCloseUp()
    {
       OnCloseUpOpen?.Invoke();
       

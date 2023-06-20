@@ -23,8 +23,8 @@ public class GameStateManager : Singleton<GameStateManager>
     protected override void Awake()
     {
         base.Awake();
-        triggerList = FindObjectsOfType<MiniGameTrigger>().ToList();
-        closeupList = FindObjectsOfType<CloseUpTrigger>().ToList();
+        /*triggerList = FindObjectsOfType<MiniGameTrigger>().ToList();
+        closeupList = FindObjectsOfType<CloseUpTrigger>().ToList();*/
     }
     
     private void OnEnable()
