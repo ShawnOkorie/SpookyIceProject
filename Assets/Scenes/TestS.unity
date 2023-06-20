@@ -1837,6 +1837,7 @@ MonoBehaviour:
   timeLimit: 0
   myMinigame: 4
   destroyOnSolve: 0
+  solve_PID: 0
 --- !u!1001 &312475039
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4996,6 +4997,7 @@ MonoBehaviour:
   timeLimit: 15
   myMinigame: 1
   destroyOnSolve: 0
+  solve_PID: 0
 --- !u!1 &918599329
 GameObject:
   m_ObjectHideFlags: 0
@@ -7151,6 +7153,7 @@ MonoBehaviour:
   timeLimit: 0
   myMinigame: 2
   destroyOnSolve: 0
+  solve_PID: 0
 --- !u!114 &1240665564 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7210715996382403425, guid: 47b06a6896e264f4f9769697dd0dc962, type: 3}
@@ -7688,6 +7691,7 @@ MonoBehaviour:
   timeLimit: 15
   myMinigame: 1
   destroyOnSolve: 0
+  solve_PID: 0
 --- !u!1 &1484612979
 GameObject:
   m_ObjectHideFlags: 0

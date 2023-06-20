@@ -140,6 +140,11 @@ public class InteractableObject : MonoBehaviour,IShouldForceAwake
     {
         if (isInteractable)
         {
+            if (start_PID != 0 && inInventory == false)
+            {
+                DialogManager.Instance.StartDialog(start_PID);
+            }
+            
             if (isPickup)
             {
                 inInventory = true;
@@ -147,12 +152,7 @@ public class InteractableObject : MonoBehaviour,IShouldForceAwake
                 gameObject.transform.SetParent(inventoryLayout.transform);
                 ProgressManager.Instance.AddProgress(addProgress);
             }
-
-            if (start_PID != 0 && inInventory == false)
-            {
-                DialogManager.Instance.StartDialog(start_PID);
-            }
-
+            
             if (isDoor)
             {
                 RoomManager.Instance.LoadRoom(targetroom.myRoom);
