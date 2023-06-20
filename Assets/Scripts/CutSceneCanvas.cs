@@ -29,7 +29,6 @@ public class CutSceneCanvas : Singleton<CutSceneCanvas>
 
    private void Start()
    {
-      myCanvas = GetComponent<Canvas>();
       myImage = GetComponentInChildren<Image>();
       myAnimator = GetComponent<Animator>();
 

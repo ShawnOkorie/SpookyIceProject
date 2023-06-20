@@ -11,6 +11,7 @@ public class TextBox : Singleton<TextBox>
     private Canvas textBoxCanvas;
     private string speakerName;
     [SerializeField] private TextMeshProUGUI speakerText;
+    private TMP_FontAsset currentFont;
 
     protected override void Awake()
     {
@@ -48,6 +49,10 @@ public class TextBox : Singleton<TextBox>
 
     private void SpeakerChange(string text)
     {
+        currentFont = Resources.Load<TMP_FontAsset>("Fonts/" + text);
+        textBox.font = currentFont;
+        speakerText.font = currentFont;
+        
         speakerText.text = text;
     }
 

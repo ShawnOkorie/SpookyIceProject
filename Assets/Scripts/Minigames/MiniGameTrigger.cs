@@ -18,7 +18,8 @@ public class MiniGameTrigger : MonoBehaviour
     [SerializeField] private int timeLimit;
 
     [SerializeField] private Minigame myMinigame;
-    
+    [SerializeField] private bool destroyOnSolve;
+
     private enum Minigame
     {
         None,
@@ -73,10 +74,16 @@ public class MiniGameTrigger : MonoBehaviour
                 {
                     GameManager.Instance.Save();
                 }
+                OnMinigameEnd?.Invoke();
+                if (destroyOnSolve)
+                {
+                    Destroy(this);
+                }
                 break;
             
             case false:
                 ExitCanvas();
+                OnMinigameEnd?.Invoke();
                 break;
         }
     }
@@ -101,17 +108,17 @@ public class MiniGameTrigger : MonoBehaviour
                 break;
             
             case Minigame.Switches :
-                Keypad.Instance.ExitCanvas();
+                Switches.Instance.ExitCanvas();
                 break;
         }
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        /*if (Input.GetKeyDown(KeyCode.Escape))
         {
             ExitCanvas();
             OnMinigameEnd?.Invoke();
-        }
+        }*/
     }
     
 }

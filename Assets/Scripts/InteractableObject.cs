@@ -148,16 +148,11 @@ public class InteractableObject : MonoBehaviour,IShouldForceAwake
                 ProgressManager.Instance.AddProgress(addProgress);
             }
 
-            if (start_PID != 0)
+            if (start_PID != 0 && inInventory == false)
             {
                 DialogManager.Instance.StartDialog(start_PID);
             }
-        
-            if (interactAnimation)
-            {
-                /*play anim*/
-            }
-            
+
             if (isDoor)
             {
                 RoomManager.Instance.LoadRoom(targetroom.myRoom);
