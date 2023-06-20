@@ -1,10 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DialogSystem;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class MonsterSoundManager : MonoBehaviour
+public class MonsterSoundManager : Singleton<MonsterSoundManager>
 {
     private AudioSource myAudioSource;
 
@@ -20,6 +21,13 @@ public class MonsterSoundManager : MonoBehaviour
     {
         myAudioSource = GetComponent<AudioSource>();
         timer = Random.Range(minTime, maxTime + 1);
+
+        DialogManager.Instance.OnDialogEnd += Reactivate;
+    }
+
+    private void Reactivate()
+    {
+        gameObject.SetActive(true);
     }
 
     private void Update()

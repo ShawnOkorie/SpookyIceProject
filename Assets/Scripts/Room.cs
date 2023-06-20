@@ -13,12 +13,23 @@ public class Room : MonoBehaviour
     private List<InteractableObject> myObjects = new List<InteractableObject>();
     [SerializeField] private List<ObjectDoor> myObjDoor = new List<ObjectDoor>();
     private RoomInfo currRoomInfo;
+
+    [Header("Cutscene")] 
+    [SerializeField] private int startIndex;
+    [SerializeField] private int endIndex;
     
     private void Start()
     {
         RoomManager.Instance.OnRoomChange += SetupMyIntObjects;
         RoomManager.Instance.OnRoomChange += StartDialogue;
+        RoomManager.Instance.OnRoomChange += StartCutscene;
         GameStateManager.Instance.OnRespawn += LoadMyIntObjects;
+    }
+
+    private void StartCutscene(RoomManager.Rooms targetroom)
+    {
+        if (targetroom != myRoom || startIndex <= 0) return;
+        
     }
 
     private void SetupMyIntObjects(RoomManager.Rooms targetroom)

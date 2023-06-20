@@ -37,7 +37,7 @@ public class RadioMinigame : Singleton<RadioMinigame>, IMinigames
    {
       myCanvas.gameObject.SetActive(true);
       
-      if (ProgressManager.Instance.ContainsProgress(ProgressManager.Progress.radioRepaired) || myIntObject.isSolved)
+      if (ProgressManager.Instance.ContainsProgress(ProgressManager.Progress.radioRepaired))
       {
          movementIsFixed = true;
       }
