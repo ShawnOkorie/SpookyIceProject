@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DialogSystem;
 using Minigames;
 using UnityEngine;
 
@@ -19,6 +20,7 @@ public class MiniGameTrigger : MonoBehaviour
 
     [SerializeField] private Minigame myMinigame;
     [SerializeField] private bool destroyOnSolve;
+    [SerializeField] private int solve_PID;
 
     private enum Minigame
     {
@@ -57,7 +59,7 @@ public class MiniGameTrigger : MonoBehaviour
                 Keypad.Instance.StartMinigame(difficulty,timeLimit);
                 break;
             
-            case Minigame.Switches :
+            case Minigame.Switches:
                 Switches.Instance.StartMinigame(difficulty,timeLimit);
                 break;
         }
@@ -75,6 +77,7 @@ public class MiniGameTrigger : MonoBehaviour
                     GameManager.Instance.Save();
                 }
                 OnMinigameEnd?.Invoke();
+                DialogManager.Instance.StartDialog(solve_PID);
                 if (destroyOnSolve)
                 {
                     Destroy(this);
