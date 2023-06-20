@@ -5240,7 +5240,10 @@ MonoBehaviour:
   myMinigame: 3
   destroyOnSolve: 0
   solve_PID: 0
+
+
 --- !u!1 &883005259
+
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -7843,6 +7846,25 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 7305631278929790990, guid: 47b06a6896e264f4f9769697dd0dc962, type: 3}
   m_PrefabInstance: {fileID: 5584617386071604790}
   m_PrefabAsset: {fileID: 0}
+
+--- !u!114 &1460771869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1425407783}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4503747727bd6d040bf1aef4803bef92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minigameProgress: 0
+  difficulty: 4
+  timeLimit: 15
+  myMinigame: 1
+  destroyOnSolve: 0
+  solve_PID: 0
 --- !u!1 &1484612979
 GameObject:
   m_ObjectHideFlags: 0

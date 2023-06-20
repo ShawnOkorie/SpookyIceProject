@@ -27,7 +27,8 @@ public class ProgressManager : Singleton<ProgressManager>, IShouldForceAwake
         unlockedSafe,
         snowmobileRepaired,
         UVLampUsed,
-        unlockShelf
+        unlockShelf,
+        pcKabel
     }
 
     public void AddProgress(Progress progress)
