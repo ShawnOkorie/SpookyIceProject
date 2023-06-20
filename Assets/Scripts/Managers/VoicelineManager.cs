@@ -19,6 +19,8 @@ public class VoicelineManager : Singleton<VoicelineManager>
 
     private void PlayVoiceLine(int pid)
     {
+        MonsterSoundManager.Instance.gameObject.SetActive(false);
+        
         voiceline = Resources.Load<AudioClip>("Voicelines/" + pid);
         myAudioSource.Stop();
         myAudioSource.clip = voiceline;

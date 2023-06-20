@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class ClickManager : Singleton<ClickManager>
 {
+    [SerializeField] private AudioSource myAudioSource;
+    [SerializeField] private AudioClip clickSound;
+    
     public Vector3 mousePos;
     private RaycastHit2D hit;
     public Camera mainCamera;
@@ -17,6 +20,8 @@ public class ClickManager : Singleton<ClickManager>
     {
         if (Input.GetMouseButtonDown(0))
         {
+            myAudioSource.PlayOneShot(clickSound);
+            
             mousePos = Input.mousePosition;
 
             mousePosWorld = mainCamera.ScreenToWorldPoint(mousePos);
