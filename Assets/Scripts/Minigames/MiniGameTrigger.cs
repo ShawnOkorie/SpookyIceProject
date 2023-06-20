@@ -77,7 +77,11 @@ public class MiniGameTrigger : MonoBehaviour
                     GameManager.Instance.Save();
                 }
                 OnMinigameEnd?.Invoke();
-                DialogManager.Instance.StartDialog(solve_PID);
+
+                if (solve_PID > 0)
+                {
+                    DialogManager.Instance.StartDialog(solve_PID);
+                }
                 if (destroyOnSolve)
                 {
                     Destroy(this);

@@ -32,33 +32,37 @@ public class CutSceneCanvas : Singleton<CutSceneCanvas>
       myImage = GetComponentInChildren<Image>();
       myAnimator = GetComponent<Animator>();
 
-      DialogManager.Instance.OnDialogEnd += LoadNext;
+      DialogManager.Instance.OnDialogEnd += StartMinigame;
       SkillCheck.Instance.OnMinigameEnd += PlayAnimation;
    }
 
-   public void StartCutscene(int start, int end)
+   private void StartMinigame()
    {
-      OnCutsceneStart?.Invoke();
-
-      startIndex = start;
-      endIndex = end;
-      
-      myImage.sprite = cutsceneImages[startIndex];
-      DialogManager.Instance.StartDialog(cutsceneTextList[startIndex]);
+      SkillCheck.Instance.StartMinigame(6,10);
    }
 
-   private void LoadNext()
+   public void StartCutscene()
+   {
+      myCanvas.gameObject.SetActive(true);
+      
+      DialogManager.Instance.StartDialog(105);
+   }
+   
+   
+
+   /*private void LoadNext()
    {
       ++startIndex;
 
       myImage.sprite = cutsceneImages[startIndex];
+      
       DialogManager.Instance.StartDialog(cutsceneTextList[startIndex]);
       
       if (startIndex == endIndex)
       {
          SkillCheck.Instance.StartMinigame(6,10);
       }
-   }
+   }*/
 
    private void PlayAnimation(bool solved)
    {
