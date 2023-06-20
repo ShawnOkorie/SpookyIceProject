@@ -18,11 +18,13 @@ public class GameStateManager : Singleton<GameStateManager>
     public event RespawnPlayer OnRespawn;
     
     private List<MiniGameTrigger> triggerList = new List<MiniGameTrigger>();
+    private List<CloseUpTrigger> closeupList = new List<CloseUpTrigger>();
 
     protected override void Awake()
     {
         base.Awake();
         triggerList = FindObjectsOfType<MiniGameTrigger>().ToList();
+        closeupList = FindObjectsOfType<CloseUpTrigger>().ToList();
     }
     
     private void OnEnable()
@@ -31,6 +33,12 @@ public class GameStateManager : Singleton<GameStateManager>
         {
             trigger.OnMinigameStart += InvokeUninteractible;
             trigger.OnMinigameEnd += InvokeInteractible;
+        }
+
+        foreach (CloseUpTrigger closeUp in closeupList)
+        {
+            closeUp.OnCloseUpOpen += InvokeUninteractible;
+            closeUp.OnCloseUpExit += InvokeInteractible;
         }
     }
 
