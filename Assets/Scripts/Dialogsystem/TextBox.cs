@@ -7,19 +7,11 @@ using TMPro;
 
 public class TextBox : Singleton<TextBox>
 {
-   [SerializeField] private TextMeshProUGUI textBox;
-    private Canvas textBoxCanvas;
+    [SerializeField] private TextMeshProUGUI textBox;
     private string speakerName;
     [SerializeField] private TextMeshProUGUI speakerText;
     private TMP_FontAsset currentFont;
-
-    protected override void Awake()
-    {
-        base.Awake();
-        textBoxCanvas = GetComponent<Canvas>();
-    }
     
-
     private void Start()
     {
         DialogManager.Instance.OnDialogStart += DialogueStart;

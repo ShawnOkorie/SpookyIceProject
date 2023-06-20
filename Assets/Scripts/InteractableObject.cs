@@ -17,6 +17,7 @@ public class InteractableObject : MonoBehaviour,IShouldForceAwake
     private static GridLayoutGroup inventoryLayout;
     protected bool isAwake;
     private MiniGameTrigger miniGameTrigger;
+    private CloseUpTrigger closeUpTrigger;
     
     [Header("References")]
     [SerializeField] private GameObject inSceneObject;
@@ -35,8 +36,6 @@ public class InteractableObject : MonoBehaviour,IShouldForceAwake
     private bool inInventory;
     public ProgressManager.Progress addProgress;
     
-   
-
     [Header("Door")]
     [SerializeField] private bool isDoor;
     [SerializeField] private Room targetroom;
@@ -161,6 +160,11 @@ public class InteractableObject : MonoBehaviour,IShouldForceAwake
             if (miniGameTrigger != null && isSolved)
             {
                 miniGameTrigger.StartMiniGame();
+            }
+
+            if (closeUpTrigger != null && isSolved)
+            {
+                closeUpTrigger.OpenCloseUp();
             }
         }
     }
