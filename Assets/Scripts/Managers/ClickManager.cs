@@ -36,22 +36,20 @@ public class ClickManager : Singleton<ClickManager>
                 
                 interactable = hit.transform.gameObject.GetComponentInParent<InteractableObject>();
 
-                if (lastClicked == interactable || interactable.mergeableObjectID == 0)
+                if (interactable.mergeableObjectID > 0)
                 {
-                    lastClicked = null;
-                }
-
-                if (lastClicked?.mergeableObjectID == interactable.mergeableObjectID)
-                {
-                    if (interactable.mergeableObjectID == 0 || lastClicked?.mergeableObjectID == 0)
+                    if (lastClicked?.mergeableObjectID == interactable.mergeableObjectID)
                     {
+                        if (interactable.mergeableObjectID == 0 || lastClicked?.mergeableObjectID == 0)
+                        {
+                            return;
+                        }
+                        interactable.Merge(lastClicked);
+                        lastClicked = null;
                         return;
                     }
-                    interactable.Merge(lastClicked);
-                    lastClicked = null;
-                    return;
                 }
-
+                
                 if (lastClicked != null)
                 {
                     if (lastClicked.collected && interactable.isPickup == false)
@@ -71,7 +69,6 @@ public class ClickManager : Singleton<ClickManager>
                     interactable.Interact();
                 }
             }
-           
         }
         
         if (Input.GetMouseButtonDown(1))

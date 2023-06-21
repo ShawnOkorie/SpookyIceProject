@@ -41,7 +41,16 @@ public class RoomManager : Singleton<RoomManager>
 
     private void Start()
     {
-       LoadRoom(defaultroom);
+        foreach (Room room in Room)
+       {
+           if (room.myRoom == defaultroom)
+           {
+               break;
+           }
+           room.gameObject.SetActive(false);
+       }
+        
+        LoadRoom(defaultroom);
     }
 
     public void LoadRoom(Rooms target)

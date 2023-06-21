@@ -33,7 +33,7 @@ public class InteractableObject : MonoBehaviour,IShouldForceAwake
     [Header("Pickup")]
     public bool isPickup;
     public bool collected => inInventory;
-    private bool inInventory;
+    [SerializeField] private bool inInventory;
     public ProgressManager.Progress addProgress;
     
     [Header("Door")]
@@ -189,14 +189,14 @@ public class InteractableObject : MonoBehaviour,IShouldForceAwake
         {
             if (otherObject.objectID == solvingObjectID)
             {
+                if (otherObject.dontDestroyOnSolve == false)
+                {
+                    Destroy(otherObject.gameObject);
+                }
                 if (otherObject.dontDestroyOnSolve)
                 {
                     otherObject.dontDestroyOnSolve = false;
                     return;  
-                }
-                if (otherObject.dontDestroyOnSolve == false)
-                {
-                    Destroy(otherObject.gameObject);
                 }
 
                 isSolved = true;

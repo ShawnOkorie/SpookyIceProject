@@ -85,4 +85,9 @@ public class Switches : Singleton<Switches>, IMinigames
         OnMinigameEnd?.Invoke(true);
             ExitCanvas();
     }
+
+    private void Start()
+    {
+        gameObject.SetActive(false);
+    }
 }
