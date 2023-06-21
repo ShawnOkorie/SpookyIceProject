@@ -186,9 +186,6 @@ public class CloseUpTrigger : MonoBehaviour
 
       inCanvas = false;
    }
-
-   private void Start()
-   {
-      gameObject.SetActive(false);
-   }
+   
+   
 }
