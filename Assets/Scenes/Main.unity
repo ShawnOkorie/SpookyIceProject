@@ -1833,7 +1833,6 @@ MonoBehaviour:
   addedProgress: 0
   dontDestroyOnSolve: 0
   isSolved: 0
-  Destroy: 0
   start_PID: 0
   solve_PID: 0
   interactAnimation: {fileID: 0}
@@ -2569,7 +2568,6 @@ MonoBehaviour:
   addedProgress: 0
   dontDestroyOnSolve: 0
   isSolved: 0
-  Destroy: 0
   start_PID: 0
   solve_PID: 0
   interactAnimation: {fileID: 0}
@@ -3071,7 +3069,6 @@ MonoBehaviour:
   addedProgress: 0
   dontDestroyOnSolve: 0
   isSolved: 0
-  Destroy: 0
   start_PID: 0
   solve_PID: 0
   interactAnimation: {fileID: 0}
@@ -4119,7 +4116,6 @@ MonoBehaviour:
   addedProgress: 0
   dontDestroyOnSolve: 0
   isSolved: 0
-  Destroy: 0
   start_PID: 0
   solve_PID: 0
   interactAnimation: {fileID: 0}
@@ -4618,7 +4614,6 @@ MonoBehaviour:
   addedProgress: 0
   dontDestroyOnSolve: 0
   isSolved: 1
-  Destroy: 0
   start_PID: 0
   solve_PID: 0
   interactAnimation: {fileID: 0}
@@ -5832,7 +5827,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myAudioSource: {fileID: 0}
-  clickSound: {fileID: 0}
+  clickSound: {fileID: 8300000, guid: 9083cb63275f587438850f8feda4ff87, type: 3}
   mousePos: {x: 0, y: 0, z: 0}
   mainCamera: {fileID: 519420031}
   mousePosWorld: {x: 0, y: 0, z: 0}
@@ -5915,7 +5910,6 @@ MonoBehaviour:
   addedProgress: 0
   dontDestroyOnSolve: 0
   isSolved: 0
-  Destroy: 0
   start_PID: 0
   solve_PID: 0
   interactAnimation: {fileID: 0}
@@ -8070,7 +8064,6 @@ MonoBehaviour:
   addedProgress: 0
   dontDestroyOnSolve: 0
   isSolved: 0
-  Destroy: 0
   start_PID: 108
   solve_PID: 0
   interactAnimation: {fileID: 0}
@@ -8806,7 +8799,6 @@ MonoBehaviour:
   addedProgress: 0
   dontDestroyOnSolve: 0
   isSolved: 1
-  Destroy: 0
   start_PID: 79
   solve_PID: 0
   interactAnimation: {fileID: 0}
@@ -9974,7 +9966,6 @@ MonoBehaviour:
   addedProgress: 0
   dontDestroyOnSolve: 0
   isSolved: 0
-  Destroy: 0
   start_PID: 0
   solve_PID: 0
   interactAnimation: {fileID: 0}
@@ -10118,7 +10109,6 @@ MonoBehaviour:
   addedProgress: 0
   dontDestroyOnSolve: 0
   isSolved: 1
-  Destroy: 0
   start_PID: 0
   solve_PID: 0
   interactAnimation: {fileID: 0}
@@ -10614,7 +10604,6 @@ MonoBehaviour:
   addedProgress: 0
   dontDestroyOnSolve: 0
   isSolved: 0
-  Destroy: 0
   start_PID: 0
   solve_PID: 0
   interactAnimation: {fileID: 0}
@@ -11221,7 +11210,6 @@ MonoBehaviour:
   addedProgress: 0
   dontDestroyOnSolve: 0
   isSolved: 1
-  Destroy: 0
   start_PID: 0
   solve_PID: 0
   interactAnimation: {fileID: 0}
@@ -12988,7 +12976,6 @@ MonoBehaviour:
   addedProgress: 0
   dontDestroyOnSolve: 0
   isSolved: 0
-  Destroy: 0
   start_PID: 0
   solve_PID: 0
   interactAnimation: {fileID: 0}
@@ -13131,7 +13118,6 @@ MonoBehaviour:
   addedProgress: 0
   dontDestroyOnSolve: 0
   isSolved: 0
-  Destroy: 0
   start_PID: 0
   solve_PID: 0
   interactAnimation: {fileID: 0}
@@ -15522,7 +15508,6 @@ MonoBehaviour:
   addedProgress: 0
   dontDestroyOnSolve: 0
   isSolved: 0
-  Destroy: 0
   start_PID: 0
   solve_PID: 0
   interactAnimation: {fileID: 0}
@@ -18516,7 +18501,6 @@ MonoBehaviour:
   addedProgress: 0
   dontDestroyOnSolve: 0
   isSolved: 0
-  Destroy: 0
   start_PID: 0
   solve_PID: 0
   interactAnimation: {fileID: 0}
@@ -20325,7 +20309,6 @@ MonoBehaviour:
   addedProgress: 0
   dontDestroyOnSolve: 0
   isSolved: 0
-  Destroy: 0
   start_PID: 0
   solve_PID: 0
   interactAnimation: {fileID: 0}
@@ -20997,7 +20980,6 @@ MonoBehaviour:
   addedProgress: 0
   dontDestroyOnSolve: 0
   isSolved: 1
-  Destroy: 0
   start_PID: 0
   solve_PID: 0
   interactAnimation: {fileID: 0}
@@ -21607,7 +21589,6 @@ MonoBehaviour:
   addedProgress: 0
   dontDestroyOnSolve: 0
   isSolved: 1
-  Destroy: 0
   start_PID: 0
   solve_PID: 0
   interactAnimation: {fileID: 0}
@@ -23515,7 +23496,6 @@ MonoBehaviour:
   addedProgress: 0
   dontDestroyOnSolve: 0
   isSolved: 0
-  Destroy: 0
   start_PID: 0
   solve_PID: 0
   interactAnimation: {fileID: 0}

@@ -1,8 +1,8 @@
+
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Security.Cryptography;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CloseUpTrigger : MonoBehaviour
 {
@@ -11,7 +11,9 @@ public class CloseUpTrigger : MonoBehaviour
     
    public delegate void CloseUpExit();
    public event CloseUpExit OnCloseUpExit;
-   
+   [SerializeField] private List<Canvas> closeupList = new List<Canvas>();
+   private bool inCanvas;
+
    [SerializeField] private Canvas Pinboard;
    [SerializeField] private Canvas PcClose;
    [SerializeField] private Canvas SafeClose;
@@ -19,7 +21,7 @@ public class CloseUpTrigger : MonoBehaviour
    [SerializeField] private Canvas SchrankCloseUp;
    [SerializeField] private Canvas GenTankClose;
    [SerializeField] private Canvas AkteCloseUp;
-   
+
    [SerializeField] private Closeup CloseUps;
    
    
@@ -34,16 +36,17 @@ public class CloseUpTrigger : MonoBehaviour
       GenTankClose,
       AkteCloseUp
    }
-   
-   
-    private void Update()
-      {
-         if (Input.GetMouseButtonDown(0))
-         {
-            ExitCloseUp();
-         }
-      }
-   
+
+ public void whenButtonClicked()
+ {
+    if (Pinboard.gameObject.activeSelf)
+    {
+       ExitCloseUp();
+    }
+    
+ }
+
+
    public void OpenCloseUp()
    {
       OnCloseUpOpen?.Invoke();
@@ -103,7 +106,7 @@ public class CloseUpTrigger : MonoBehaviour
             return;
             
          case Closeup.PinBoard:
-            RoomManager.Instance.LoadRoom(RoomManager.Rooms.CryoRoom);
+            RoomManager.Instance.LoadRoom(RoomManager.Rooms.Hallway1st);
             Pinboard.gameObject.SetActive(false);
             break;
          
@@ -137,6 +140,8 @@ public class CloseUpTrigger : MonoBehaviour
             break;
          
       }
+
+      inCanvas = false;
    }
 
 }

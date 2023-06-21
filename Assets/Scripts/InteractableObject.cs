@@ -49,7 +49,7 @@ public class InteractableObject : MonoBehaviour,IShouldForceAwake
     public ProgressManager.Progress addedProgress;
     [SerializeField] protected bool dontDestroyOnSolve;
     public bool isSolved;
-    public bool Destroy;
+    
     
     
     [Header("Dialogue")]
