@@ -34,6 +34,10 @@ public class BGMManager : Singleton<BGMManager>
    {
       foreach (MiniGameTrigger trigger in GameStateManager.Instance.triggerList)
       {
+         if (trigger == null)
+         {
+            break;
+         }
          trigger.OnMinigameStart += StartBGMMinigame;
          trigger.OnMinigameEnd += StartBGMNormal;
       }

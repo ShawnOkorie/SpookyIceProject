@@ -29,12 +29,20 @@ public class GameStateManager : Singleton<GameStateManager>
     {
         foreach (MiniGameTrigger trigger in triggerList)
         {
+            if (trigger == null)
+            {
+                break;  
+            }
             trigger.OnMinigameStart += InvokeUninteractible;
             trigger.OnMinigameEnd += InvokeInteractible;
         }
 
         foreach (CloseUpTrigger closeUp in closeupList)
         {
+            if (closeUp == null)
+            {
+                break;
+            }
             closeUp.OnCloseUpOpen += InvokeUninteractible;
             closeUp.OnCloseUpExit += InvokeInteractible;
         }
