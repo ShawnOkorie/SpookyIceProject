@@ -7,23 +7,19 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
    private LoadingScreen loadingScreen;
-
+ 
+   
    private void Awake()
    {
       loadingScreen = FindObjectOfType<LoadingScreen>();
    }
-
+   
    public void Play()
    {
       loadingScreen.StartFadeIn();
       SceneManager.LoadScene("Main");
    }
-
-   public void Settings()
-   {
-      
-   }
-
+   
    public void Exit()
    {
       Application.Quit();

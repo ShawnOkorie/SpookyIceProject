@@ -863,9 +863,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 532727309446477417, guid: f0c76239a38159442a446799ea665d41, type: 2}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 66e21e52ddbb93f4fa894c50ca554086, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.2
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -6506,7 +6506,6 @@ MonoBehaviour:
   addedProgress: 0
   dontDestroyOnSolve: 0
   isSolved: 0
-  Destroy: 0
   start_PID: 0
   solve_PID: 0
   interactAnimation: {fileID: 0}
@@ -6685,6 +6684,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1142754158}
   - component: {fileID: 1142754157}
+  - component: {fileID: 1142754159}
   m_Layer: 0
   m_Name: RoomManager
   m_TagString: Untagged
@@ -6710,6 +6710,7 @@ MonoBehaviour:
   currentroom: 0
   defaultroom: 6
   targetroom: 6
+  myAudioSource: {fileID: 1142754159}
 --- !u!4 &1142754158
 Transform:
   m_ObjectHideFlags: 0
@@ -6725,6 +6726,102 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &1142754159
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1142754156}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 532727309446477417, guid: f0c76239a38159442a446799ea665d41, type: 2}
+  m_audioClip: {fileID: 8300000, guid: 58098d9c0b528304e94439d12c1878ce, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 0.2
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1151138783
 GameObject:
   m_ObjectHideFlags: 0
@@ -8512,7 +8609,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myCanvas: {fileID: 1502810426}
+  myAudioSource: {fileID: 124652120}
   myAnimator: {fileID: 124652119}
+  sucess: {fileID: 7400000, guid: 0967a467b50163942a1c2586b4e949f7, type: 2}
 --- !u!114 &1502810429
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10079,6 +10178,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cc422e5f1f7a0f42a7c7a97692b0adc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myAudioSource: {fileID: 0}
+  startBGM: {fileID: 8300000, guid: ba6a8cda5f282d84e9109e1ffa7db814, type: 3}
+  loopBGM: {fileID: 8300000, guid: 8191ff61e087ed84abe3f642ef184d36, type: 3}
+  cutsceneBGM: {fileID: 8300000, guid: 2917bac6fd9a7c742a14cde1844c9d42, type: 3}
 --- !u!82 &1854421037
 AudioSource:
   m_ObjectHideFlags: 0
