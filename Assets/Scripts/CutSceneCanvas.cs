@@ -17,8 +17,10 @@ public class CutSceneCanvas : Singleton<CutSceneCanvas>
    [SerializeField] public Canvas myCanvas;
    private Image myImage;
    private bool hasDied;
-      
+
+   [SerializeField] private AudioSource myAudioSource;
    [SerializeField] private Animator myAnimator;
+   [SerializeField] private AnimationClip sucess;
 
    private void Start()
    {
@@ -45,6 +47,7 @@ public class CutSceneCanvas : Singleton<CutSceneCanvas>
    {
       hasDied = false;
       myCanvas.gameObject.SetActive(true);
+      OnCutsceneStart?.Invoke();
    }
 
    private void StartDialog()
@@ -76,15 +79,20 @@ public class CutSceneCanvas : Singleton<CutSceneCanvas>
       {
          case true:
             myAnimator.SetTrigger("survived");
-            
-            
-            EndCutscene();
+            StartCoroutine(End());
             break;
          case false:
             myAnimator.SetTrigger("failed");
+            myAudioSource.Play();
             hasDied = true;
             break;
       }
+   }
+
+   private IEnumerator End()
+   {
+      yield return new WaitForSeconds(sucess.length);
+      EndCutscene();
    }
    
    private void EndCutscene()

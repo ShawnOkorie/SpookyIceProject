@@ -13,6 +13,8 @@ public class RoomManager : Singleton<RoomManager>
     public Rooms currentroom;
     [SerializeField] private Rooms defaultroom;
     public Rooms targetroom;
+
+    public AudioSource myAudioSource;
     
     public enum Rooms
     {
@@ -49,6 +51,8 @@ public class RoomManager : Singleton<RoomManager>
 
         if (target == Rooms.None)
         {
+            currentroom = target;
+            
             foreach (Room room in Room)
                 room.gameObject.SetActive(false);
         }

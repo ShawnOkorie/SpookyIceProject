@@ -155,6 +155,7 @@ public class InteractableObject : MonoBehaviour,IShouldForceAwake
             if (isDoor)
             {
                 RoomManager.Instance.LoadRoom(targetroom.myRoom);
+                RoomManager.Instance.myAudioSource.Play();
             }
             
             if (miniGameTrigger != null && isSolved)
