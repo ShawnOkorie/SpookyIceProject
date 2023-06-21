@@ -188,4 +188,12 @@ public class RadioMinigame : Singleton<RadioMinigame>, IMinigames
    {
       gameObject.SetActive(false);
    }
+   
+   private void Update()
+   {
+      if (Input.GetKeyDown(KeyCode.Escape))
+      {
+         gameObject.SetActive(false);
+      }
+   }
 }

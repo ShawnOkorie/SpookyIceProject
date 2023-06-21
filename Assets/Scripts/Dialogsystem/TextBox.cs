@@ -26,7 +26,6 @@ public class TextBox : Singleton<TextBox>
     {
         textBox.text = null;
         gameObject.SetActive(true);
-        Inventory.Instance.gameObject.SetActive(false);
     }
 
     private void DialogueEnd()

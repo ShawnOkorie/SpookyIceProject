@@ -23,11 +23,9 @@ public class GameStateManager : Singleton<GameStateManager>
     protected override void Awake()
     {
         base.Awake();
-        /*triggerList = FindObjectsOfType<MiniGameTrigger>().ToList();
-        closeupList = FindObjectsOfType<CloseUpTrigger>().ToList();*/
     }
-    
-    private void OnEnable()
+
+    private void SubscribeToEvents(RoomManager.Rooms room)
     {
         foreach (MiniGameTrigger trigger in triggerList)
         {
@@ -41,7 +39,7 @@ public class GameStateManager : Singleton<GameStateManager>
             closeUp.OnCloseUpExit += InvokeInteractible;
         }
     }
-
+    
     private void Start()
     {
         LoadingScreen.Instance.OnFadeStart += InvokeUninteractible;
@@ -52,6 +50,8 @@ public class GameStateManager : Singleton<GameStateManager>
 
         CutSceneCanvas.Instance.OnCutsceneStart += InvokeUninteractible;
         CutSceneCanvas.Instance.OnCutsceneEnd += InvokeInteractible;
+
+        RoomManager.Instance.OnRoomChange += SubscribeToEvents;
     }
 
     private void InvokeUninteractible()

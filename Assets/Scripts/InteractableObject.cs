@@ -62,7 +62,6 @@ public class InteractableObject : MonoBehaviour,IShouldForceAwake
     {
         if (isAwake == false)
         {
-            inventoryLayout ??= FindObjectOfType<GridLayoutGroup>();
             //textBox ??= FindObjectOfType<TextBox>();
 
             miniGameTrigger = GetComponent<MiniGameTrigger>();
@@ -142,14 +141,17 @@ public class InteractableObject : MonoBehaviour,IShouldForceAwake
             if (start_PID != 0 && inInventory == false)
             {
                 DialogManager.Instance.StartDialog(start_PID);
+                print(name);
             }
             
             if (isPickup)
             {
                 inInventory = true;
-                OnInventoryStateChange?.Invoke(inInventory);
-                gameObject.transform.SetParent(inventoryLayout.transform);
+                gameObject.transform.SetParent(Inventory.Instance.myLayout.transform);
+                print(Inventory.Instance.myLayout.transform);
+                print(transform.position);
                 ProgressManager.Instance.AddProgress(addProgress);
+                OnInventoryStateChange?.Invoke(inInventory);
             }
             
             if (isDoor)
@@ -202,7 +204,11 @@ public class InteractableObject : MonoBehaviour,IShouldForceAwake
                 isSolved = true;
                 
                 ProgressManager.Instance.AddProgress(addedProgress);
-                DialogManager.Instance.StartDialog(solve_PID);
+
+                if (solve_PID != 0)
+                {
+                    DialogManager.Instance.StartDialog(solve_PID);
+                }
             }
         }
     }

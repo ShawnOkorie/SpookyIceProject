@@ -33,7 +33,7 @@ public class CutSceneCanvas : Singleton<CutSceneCanvas>
 
    private void StartMinigame()
    {
-      if (hasDied)
+      if (hasDied || myCanvas.gameObject.activeSelf == false)
       {
          return;
       }
