@@ -31,7 +31,6 @@ public class RadioMinigame : Singleton<RadioMinigame>, IMinigames
    [SerializeField] private Slider movementSpeedSlider;
    
    [HideInInspector] public bool movementIsFixed;
-   
 
    public void StartMinigame(int difficulty, int timeLimit)
    {

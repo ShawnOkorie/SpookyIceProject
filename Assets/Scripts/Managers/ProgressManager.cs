@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -46,5 +47,13 @@ public class ProgressManager : Singleton<ProgressManager>, IShouldForceAwake
             return true;
         
         return false;
+    }
+
+    private void Update()
+    {
+        if (checkpointList.Contains(Progress.snowmobileRepaired))
+        {
+            Application.Quit();
+        }
     }
 }

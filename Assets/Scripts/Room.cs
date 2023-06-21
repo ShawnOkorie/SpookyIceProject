@@ -8,7 +8,8 @@ using UnityEngine.Serialization;
 
 public class Room : MonoBehaviour
 {
-    public RoomManager.Rooms myRoom; 
+    public RoomManager.Rooms myRoom;
+    [SerializeField] private bool triggerCutscene;
     public int DialogueID;
     private List<InteractableObject> myObjects = new List<InteractableObject>();
     [SerializeField] private List<ObjectDoor> myObjDoor = new List<ObjectDoor>();
@@ -28,8 +29,12 @@ public class Room : MonoBehaviour
 
     private void StartCutscene(RoomManager.Rooms targetroom)
     {
-        if (targetroom != myRoom || startIndex <= 0) return;
-        
+        if (targetroom != myRoom) return;
+        if (triggerCutscene)
+        {
+            CutSceneCanvas.Instance.StartCutscene();
+            triggerCutscene = false;
+        }
     }
 
     private void SetupMyIntObjects(RoomManager.Rooms targetroom)
@@ -37,7 +42,7 @@ public class Room : MonoBehaviour
         if (targetroom != myRoom) return;
         
         myObjects = GetComponentsInChildren<InteractableObject>().ToList();
-
+        
         for (int i = myObjects.Count - 1; i >= 0; i--)
         {
             if (myObjDoor.Contains(myObjects[i]))

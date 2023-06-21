@@ -22,6 +22,7 @@ namespace Minigames
         private TextMeshProUGUI[] charTMPArray;
         private char[] characters;
         private int[] asciiValues;
+        private Vector3[] charPosArray;
         private Coroutine currentPlay;
         private Coroutine currentWait;
         private int counter;
@@ -54,6 +55,7 @@ namespace Minigames
             asciiValues = new int[length];
             characters = new char[length];
             charTMPArray = new TextMeshProUGUI[length];
+            charPosArray = new Vector3[length];
             gridLayoutGroup.enabled = true;
 
             if (gridLayoutGroup.transform.childCount != 0)
@@ -71,11 +73,18 @@ namespace Minigames
             for (int i = 0; i < characters.Length; i++)
             {
                 charTMPArray[i] = Instantiate(charTMPPrefab,gridLayoutGroup.transform);
-
                 charTMPArray[i].text = characters[i].ToString();
+
+                charPosArray[i] = charTMPArray[i].transform.position;
             }
-        
-            yield return null;
+
+            /*for (int i = 0; i < charPosArray.Length; i++)
+            {
+                charTMPArray[i].transform.position = charPosArray[i];
+            }*/
+            yield return new WaitForSeconds(0.5f);
+            
+            gridLayoutGroup.enabled = false;
         }
         private void Update()
         {

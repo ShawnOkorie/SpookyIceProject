@@ -69,7 +69,7 @@ public class GameManager : Singleton<GameManager>
       SaveSystem.Save(saveData); 
    }
 
-   public SaveData Load()
+   public void Load()
    {
       SaveSystem.Load(out SaveData saveData);
 
@@ -91,7 +91,6 @@ public class GameManager : Singleton<GameManager>
       
       HeatManager.Instance.currentTimer = saveData.heatTimer + 60;
       ProgressManager.Instance.checkpointList = saveData.progressList;
-      return saveData;
    }
 
    private void InitRoom()

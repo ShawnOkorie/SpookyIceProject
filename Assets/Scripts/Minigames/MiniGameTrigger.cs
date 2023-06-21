@@ -72,10 +72,6 @@ public class MiniGameTrigger : MonoBehaviour
             case true:
                 ProgressManager.Instance.AddProgress(minigameProgress);
                 ExitCanvas();
-                if (Application.isPlaying)
-                {
-                    GameManager.Instance.Save();
-                }
                 OnMinigameEnd?.Invoke();
 
                 if (solve_PID > 0)

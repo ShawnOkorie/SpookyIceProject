@@ -51,7 +51,6 @@ public class InteractableObject : MonoBehaviour,IShouldForceAwake
     public bool isSolved;
     public bool Destroy;
     
-    
     [Header("Dialogue")]
     [SerializeField] private int start_PID;
     [SerializeField] private int solve_PID;
