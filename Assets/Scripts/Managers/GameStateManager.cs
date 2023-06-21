@@ -64,13 +64,13 @@ public class GameStateManager : Singleton<GameStateManager>
         if (CutSceneCanvas.Instance.myCanvas.gameObject.activeSelf)
             return;
 
-        foreach (Canvas can in HeatManager.Instance.mingameCanvasList)
+        /*foreach (Canvas can in HeatManager.Instance.mingameCanvasList)
         {
             if (can.gameObject.activeSelf)
             {
                 return;
             }
-        }
+        }*/
         
         OnSetInteractible?.Invoke();
     }
