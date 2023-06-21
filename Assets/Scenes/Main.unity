@@ -1833,6 +1833,7 @@ MonoBehaviour:
   isInteractable: 1
   requiredProgress: 0
   isPickup: 0
+  inInventory: 0
   addProgress: 0
   isDoor: 1
   targetroom: {fileID: 2076332189}
@@ -2568,6 +2569,7 @@ MonoBehaviour:
   isInteractable: 1
   requiredProgress: 0
   isPickup: 0
+  inInventory: 0
   addProgress: 0
   isDoor: 1
   targetroom: {fileID: 560379098}
@@ -3066,6 +3068,7 @@ MonoBehaviour:
   isInteractable: 0
   requiredProgress: 12
   isPickup: 0
+  inInventory: 0
   addProgress: 0
   isDoor: 1
   targetroom: {fileID: 315678436}
@@ -4113,6 +4116,7 @@ MonoBehaviour:
   isInteractable: 1
   requiredProgress: 0
   isPickup: 0
+  inInventory: 0
   addProgress: 0
   isDoor: 1
   targetroom: {fileID: 980119091}
@@ -4611,6 +4615,7 @@ MonoBehaviour:
   isInteractable: 1
   requiredProgress: 0
   isPickup: 0
+  inInventory: 0
   addProgress: 0
   isDoor: 0
   targetroom: {fileID: 0}
@@ -6028,6 +6033,7 @@ MonoBehaviour:
   isInteractable: 0
   requiredProgress: 0
   isPickup: 0
+  inInventory: 0
   addProgress: 0
   isDoor: 1
   targetroom: {fileID: 560379098}
@@ -8716,6 +8722,7 @@ MonoBehaviour:
   isInteractable: 0
   requiredProgress: 0
   isPickup: 0
+  inInventory: 0
   addProgress: 0
   isDoor: 0
   targetroom: {fileID: 0}
@@ -9584,6 +9591,7 @@ MonoBehaviour:
   isInteractable: 1
   requiredProgress: 0
   isPickup: 0
+  inInventory: 0
   addProgress: 0
   isDoor: 0
   targetroom: {fileID: 0}
@@ -10771,6 +10779,7 @@ MonoBehaviour:
   isInteractable: 1
   requiredProgress: 0
   isPickup: 0
+  inInventory: 0
   addProgress: 0
   isDoor: 1
   targetroom: {fileID: 1385125311}
@@ -10914,6 +10923,7 @@ MonoBehaviour:
   isInteractable: 1
   requiredProgress: 0
   isPickup: 0
+  inInventory: 0
   addProgress: 0
   isDoor: 0
   targetroom: {fileID: 0}
@@ -11434,6 +11444,7 @@ MonoBehaviour:
   isInteractable: 0
   requiredProgress: 0
   isPickup: 0
+  inInventory: 0
   addProgress: 0
   isDoor: 1
   targetroom: {fileID: 3535651965969992647}
@@ -12040,6 +12051,7 @@ MonoBehaviour:
   isInteractable: 0
   requiredProgress: 0
   isPickup: 0
+  inInventory: 0
   addProgress: 0
   isDoor: 0
   targetroom: {fileID: 0}
@@ -13807,6 +13819,7 @@ MonoBehaviour:
   isInteractable: 0
   requiredProgress: 0
   isPickup: 0
+  inInventory: 0
   addProgress: 0
   isDoor: 1
   targetroom: {fileID: 1878720148}
@@ -13949,6 +13962,7 @@ MonoBehaviour:
   isInteractable: 0
   requiredProgress: 0
   isPickup: 0
+  inInventory: 0
   addProgress: 0
   isDoor: 1
   targetroom: {fileID: 1385125311}
@@ -16713,6 +16727,7 @@ MonoBehaviour:
   isInteractable: 1
   requiredProgress: 0
   isPickup: 0
+  inInventory: 0
   addProgress: 0
   isDoor: 1
   targetroom: {fileID: 2076332189}
@@ -19869,6 +19884,7 @@ MonoBehaviour:
   isInteractable: 1
   requiredProgress: 0
   isPickup: 0
+  inInventory: 0
   addProgress: 0
   isDoor: 1
   targetroom: {fileID: 1878720148}
@@ -21814,6 +21830,7 @@ MonoBehaviour:
   isInteractable: 1
   requiredProgress: 0
   isPickup: 0
+  inInventory: 0
   addProgress: 0
   isDoor: 1
   targetroom: {fileID: 1385125311}
@@ -22509,6 +22526,7 @@ MonoBehaviour:
   isInteractable: 1
   requiredProgress: 0
   isPickup: 0
+  inInventory: 0
   addProgress: 0
   isDoor: 0
   targetroom: {fileID: 0}
@@ -23119,6 +23137,7 @@ MonoBehaviour:
   isInteractable: 0
   requiredProgress: 0
   isPickup: 0
+  inInventory: 0
   addProgress: 0
   isDoor: 0
   targetroom: {fileID: 0}
@@ -25184,6 +25203,7 @@ MonoBehaviour:
   isInteractable: 1
   requiredProgress: 14
   isPickup: 0
+  inInventory: 0
   addProgress: 0
   isDoor: 1
   targetroom: {fileID: 357398063}
