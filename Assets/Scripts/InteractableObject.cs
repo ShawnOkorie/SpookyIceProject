@@ -195,11 +195,7 @@ public class InteractableObject : MonoBehaviour,IShouldForceAwake
                 {
                     Destroy(otherObject.gameObject);
                 }
-                if (otherObject.dontDestroyOnSolve)
-                {
-                    otherObject.dontDestroyOnSolve = false;
-                    return;  
-                }
+                
 
                 isSolved = true;
                 
@@ -209,9 +205,14 @@ public class InteractableObject : MonoBehaviour,IShouldForceAwake
                 {
                     DialogManager.Instance.StartDialog(solve_PID);
                 }
+                if (otherObject.dontDestroyOnSolve)
+                {
+                    otherObject.dontDestroyOnSolve = false;
+                }
             }
+            
         }
-    }
+    }        
     
 }
 
