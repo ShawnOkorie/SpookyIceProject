@@ -33,7 +33,8 @@ public class ProgressManager : Singleton<ProgressManager>
         partsCollected,
         motorPart4,
         motorPart5,
-        motorPart6
+        motorPart6,
+        Kiste,
     }
 
     public void AddProgress(Progress progress)
