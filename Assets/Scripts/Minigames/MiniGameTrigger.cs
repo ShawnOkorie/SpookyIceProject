@@ -20,7 +20,10 @@ public class MiniGameTrigger : MonoBehaviour
 
     [SerializeField] private Minigame myMinigame;
     [SerializeField] private bool destroyOnSolve;
-    [SerializeField] private int solve_PID;
+    [SerializeField] private bool destroyObjectOnSolve;
+    [SerializeField] private GameObject replacementObject;
+    
+    public int solve_PID;
 
     private enum Minigame
     {
@@ -81,6 +84,11 @@ public class MiniGameTrigger : MonoBehaviour
                 if (destroyOnSolve)
                 {
                     Destroy(this);
+                }
+                else if (destroyObjectOnSolve)
+                {
+                    replacementObject.SetActive(true);
+                    Destroy(gameObject);
                 }
                 break;
             

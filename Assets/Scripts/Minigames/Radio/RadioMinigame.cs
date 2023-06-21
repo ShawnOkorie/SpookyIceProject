@@ -155,6 +155,7 @@ public class RadioMinigame : Singleton<RadioMinigame>, IMinigames
             myIntObject.isSolved = false;
             myIntObject.addedProgress = ProgressManager.Progress.radioRepaired;
             myMiniGameTrigger.minigameProgress = ProgressManager.Progress.radiosolved2;
+            myMiniGameTrigger.solve_PID = 109;
             return;
          }
 
