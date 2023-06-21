@@ -164,9 +164,9 @@ namespace Minigames
             myDifficulty = difficulty;
             myTimeLimit = timeLimit;
             
-            currentPlay = StartCoroutine(Play(difficulty, timeLimit));
-            
             myCanvas.gameObject.SetActive(true);
+            
+            currentPlay = StartCoroutine(Play(difficulty, timeLimit));
         }
         
         public void ExitCanvas()

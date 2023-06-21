@@ -17,8 +17,8 @@ public class GameStateManager : Singleton<GameStateManager>
     public delegate void RespawnPlayer(RoomManager.Rooms currentroom);
     public event RespawnPlayer OnRespawn;
     
-    private List<MiniGameTrigger> triggerList = new List<MiniGameTrigger>();
-    private List<CloseUpTrigger> closeupList = new List<CloseUpTrigger>();
+    [SerializeField] private List<MiniGameTrigger> triggerList = new List<MiniGameTrigger>();
+    [SerializeField] private List<CloseUpTrigger> closeupList = new List<CloseUpTrigger>();
 
     protected override void Awake()
     {

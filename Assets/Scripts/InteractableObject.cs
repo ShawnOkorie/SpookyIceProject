@@ -67,6 +67,7 @@ public class InteractableObject : MonoBehaviour,IShouldForceAwake
             //textBox ??= FindObjectOfType<TextBox>();
 
             miniGameTrigger = GetComponent<MiniGameTrigger>();
+            closeUpTrigger = GetComponent<CloseUpTrigger>();
         }
         isAwake = true;
     }
