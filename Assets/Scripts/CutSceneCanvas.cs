@@ -1,6 +1,4 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using DialogSystem;
 using Minigames;
 using UnityEngine;
@@ -35,7 +33,7 @@ public class CutSceneCanvas : Singleton<CutSceneCanvas>
 
    private void StartMinigame()
    {
-      if (hasDied)
+      if (hasDied || myCanvas.gameObject.activeSelf == false)
       {
          return;
       }

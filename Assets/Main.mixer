@@ -19,6 +19,39 @@ AudioMixerGroupController:
   m_Mute: 0
   m_Solo: 0
   m_BypassEffects: 0
+--- !u!244 &-4848778040662379852
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: 456c39e9136740d4398cae75b5aa0501
+  m_EffectName: Attenuation
+  m_MixLevel: 60672edc4eca25f4b97f57c30c869cc3
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
+--- !u!243 &-3585954899143307140
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Voices
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: d89efb7b4de065844855d49d7aa681f2
+  m_Children: []
+  m_Volume: cbc4bf7a6870ff0499067b325c7c9ab5
+  m_Pitch: c176bc7ad6e336c409627d779071c455
+  m_Send: 00000000000000000000000000000000
+  m_Effects:
+  - {fileID: -4848778040662379852}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
 --- !u!244 &-1735050483740568782
 AudioMixerEffectController:
   m_ObjectHideFlags: 3
@@ -54,6 +87,7 @@ AudioMixerController:
     - 72fcdeb605df4fa4ba42baa9e843a7f4
     - 832b792bcc8d9c34cb87d1356f8caae0
     - 5efcfafe26a870845b67dee3641e8a47
+    - d89efb7b4de065844855d49d7aa681f2
     name: View
   m_CurrentViewIndex: 0
   m_TargetSnapshot: {fileID: 24500006}
@@ -69,6 +103,7 @@ AudioMixerGroupController:
   m_Children:
   - {fileID: -6651796116715364723}
   - {fileID: 532727309446477417}
+  - {fileID: -3585954899143307140}
   m_Volume: c76eecac7b3957347bc01cabec5426cd
   m_Pitch: 076f0c0d82251554bb9bb8b99675f014
   m_Send: 00000000000000000000000000000000
@@ -103,6 +138,7 @@ AudioMixerSnapshotController:
   m_SnapshotID: 7025f078c43a1024fad4783b316f7fbd
   m_FloatValues:
     cfb250f5c63cd2e4096072455a5aa542: 20
+    cbc4bf7a6870ff0499067b325c7c9ab5: 20
     e98c8b9acb2bfc944b3c1aa0a04fec03: -10.345207
   m_TransitionOverrides: {}
 --- !u!243 &532727309446477417

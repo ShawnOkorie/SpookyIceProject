@@ -74,7 +74,7 @@ public class MiniGameTrigger : MonoBehaviour
                 ExitCanvas();
                 OnMinigameEnd?.Invoke();
 
-                if (solve_PID > 0)
+                if (solve_PID != 0)
                 {
                     DialogManager.Instance.StartDialog(solve_PID);
                 }
