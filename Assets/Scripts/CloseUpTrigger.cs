@@ -37,13 +37,55 @@ public class CloseUpTrigger : MonoBehaviour
       AkteCloseUp
    }
 
- public void whenButtonClicked()
+ public void WhenButtonClicked()
  {
     if (Pinboard.gameObject.activeSelf)
     {
        ExitCloseUp();
     }
     
+ }
+ public void WhenButtonClicked2()
+ {
+    if (SchrankCloseUp.gameObject.activeSelf)
+    {
+       ExitCloseUp();
+    }
+ }
+ public void WhenButtonClicked3()
+ {
+    if (PcClose.gameObject.activeSelf)
+    {
+       ExitCloseUp();
+    }
+ }
+ public void WhenButtonClicked4()
+ {
+    if (SafeClose.gameObject.activeSelf)
+    {
+       ExitCloseUp();
+    }
+ }
+ public void WhenButtonClicked5()
+ {
+    if (InSafeClose.gameObject.activeSelf)
+    {
+       ExitCloseUp();
+    }
+ }
+ public void WhenButtonClicked6()
+ {
+    if (GenTankClose.gameObject.activeSelf)
+    {
+       ExitCloseUp();
+    }
+ }
+ public void WhenButtonClicked7()
+ {
+    if (AkteCloseUp.gameObject.activeSelf)
+    {
+       ExitCloseUp();
+    }
  }
 
 

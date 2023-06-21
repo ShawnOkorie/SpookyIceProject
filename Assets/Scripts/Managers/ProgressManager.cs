@@ -29,7 +29,11 @@ public class ProgressManager : Singleton<ProgressManager>, IShouldForceAwake
         snowmobileRepaired,
         UVLampUsed,
         unlockShelf,
-        pcKabel
+        pcKabel, 
+        partsCollected,
+        motorPart4,
+        motorPart5,
+        motorPart6
     }
 
     public void AddProgress(Progress progress)
@@ -39,7 +43,27 @@ public class ProgressManager : Singleton<ProgressManager>, IShouldForceAwake
         
         checkpointList.Add(progress);
         OnProgressChanged?.Invoke(progress);
-    }
+        
+        if (checkpointList.Contains(Progress.motorPart1))
+        {
+            if (checkpointList.Contains(Progress.motorPart2))
+            {
+                if (checkpointList.Contains(Progress.motorpart3))
+                {
+                    if (checkpointList.Contains(Progress.motorPart4))
+                    {
+                        if (checkpointList.Contains(Progress.motorPart5))
+                        {
+                            if (checkpointList.Contains(Progress.motorPart6))
+                            {
+                                checkpointList.Add(Progress.partsCollected);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    } 
 
     public bool ContainsProgress(Progress progress)
     {
@@ -47,13 +71,5 @@ public class ProgressManager : Singleton<ProgressManager>, IShouldForceAwake
             return true;
         
         return false;
-    }
-
-    private void Update()
-    {
-        if (checkpointList.Contains(Progress.snowmobileRepaired))
-        {
-            Application.Quit();
-        }
     }
 }
