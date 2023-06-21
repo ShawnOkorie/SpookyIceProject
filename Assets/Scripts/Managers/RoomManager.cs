@@ -24,17 +24,7 @@ public class RoomManager : Singleton<RoomManager>
         Lab = 5,
         HallwayEG = 6,
         Hallway1st = 7,
-        LabSafeOpen = 8,
-        LabSafeClosed = 9,
-        LabMonitor = 10,
-        GenRoomTanks = 11,
-        SchrankInfirmary = 12,
-        CaveAkte = 13,
-        SchneeMobil = 14,
-        PinBoard = 15,
-        RadioCloseUp = 16,
-        EndRoom = 17
-        
+        EndRoom = 8
     }
 
     private void Start()

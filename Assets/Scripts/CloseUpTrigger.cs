@@ -130,7 +130,7 @@ public class CloseUpTrigger : MonoBehaviour
             break;
          
          case Closeup.GenTankClose:
-            RoomManager.Instance.LoadRoom(RoomManager.Rooms.GenRoomTanks);
+            RoomManager.Instance.LoadRoom(RoomManager.Rooms.GeneratorRoom);
             GenTankClose.gameObject.SetActive(false);
             break;
          
