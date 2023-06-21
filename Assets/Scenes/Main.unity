@@ -3538,6 +3538,8 @@ MonoBehaviour:
   timeLimit: 0
   myMinigame: 4
   destroyOnSolve: 1
+  destroyObjectOnSolve: 0
+  replacementObject: {fileID: 0}
   solve_PID: 0
 --- !u!1 &295768639
 GameObject:
@@ -4031,6 +4033,8 @@ MonoBehaviour:
   timeLimit: 20
   myMinigame: 1
   destroyOnSolve: 0
+  destroyObjectOnSolve: 0
+  replacementObject: {fileID: 0}
   solve_PID: 0
 --- !u!1 &356370823
 GameObject:
@@ -4601,7 +4605,7 @@ MonoBehaviour:
   addedProgress: 0
   dontDestroyOnSolve: 0
   isSolved: 1
-  start_PID: 0
+  start_PID: 114
   solve_PID: 0
   interactAnimation: {fileID: 0}
 --- !u!61 &392748887
@@ -4647,6 +4651,8 @@ MonoBehaviour:
   timeLimit: 0
   myMinigame: 2
   destroyOnSolve: 0
+  destroyObjectOnSolve: 0
+  replacementObject: {fileID: 0}
   solve_PID: 0
 --- !u!1 &398330402 stripped
 GameObject:
@@ -8636,6 +8642,8 @@ MonoBehaviour:
   timeLimit: 0
   myMinigame: 3
   destroyOnSolve: 1
+  destroyObjectOnSolve: 0
+  replacementObject: {fileID: 0}
   solve_PID: 0
 --- !u!224 &679630613 stripped
 RectTransform:
@@ -14314,6 +14322,8 @@ MonoBehaviour:
   myAudioSource: {fileID: 1169428809}
   startBGM: {fileID: 8300000, guid: ba6a8cda5f282d84e9109e1ffa7db814, type: 3}
   loopBGM: {fileID: 8300000, guid: 0101f3911eaa7824184b4984d99fe053, type: 3}
+  minigameBGM: {fileID: 8300000, guid: 4e17b61bf9d78e5459c5d3a7fe8cd572, type: 3}
+  minigameLoopBGM: {fileID: 8300000, guid: aa3f84189b5bd4b49adeae99a794a477, type: 3}
   cutsceneBGM: {fileID: 8300000, guid: 2917bac6fd9a7c742a14cde1844c9d42, type: 3}
 --- !u!82 &1169428809
 AudioSource:
@@ -16622,6 +16632,8 @@ MonoBehaviour:
   timeLimit: 0
   myMinigame: 3
   destroyOnSolve: 0
+  destroyObjectOnSolve: 0
+  replacementObject: {fileID: 0}
   solve_PID: 0
 --- !u!1 &1353055282
 GameObject:
@@ -23960,6 +23972,8 @@ MonoBehaviour:
   timeLimit: 0
   myMinigame: 3
   destroyOnSolve: 0
+  destroyObjectOnSolve: 0
+  replacementObject: {fileID: 0}
   solve_PID: 0
 --- !u!1 &1963843651
 GameObject:

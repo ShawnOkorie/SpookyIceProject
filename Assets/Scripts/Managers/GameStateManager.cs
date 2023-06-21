@@ -17,7 +17,7 @@ public class GameStateManager : Singleton<GameStateManager>
     public delegate void RespawnPlayer(RoomManager.Rooms currentroom);
     public event RespawnPlayer OnRespawn;
     
-    [SerializeField] private List<MiniGameTrigger> triggerList = new List<MiniGameTrigger>();
+    public List<MiniGameTrigger> triggerList = new List<MiniGameTrigger>();
     [SerializeField] private List<CloseUpTrigger> closeupList = new List<CloseUpTrigger>();
 
     protected override void Awake()
@@ -63,6 +63,14 @@ public class GameStateManager : Singleton<GameStateManager>
     {
         if (CutSceneCanvas.Instance.myCanvas.gameObject.activeSelf)
             return;
+
+        foreach (Canvas can in HeatManager.Instance.mingameCanvasList)
+        {
+            if (can.gameObject.activeSelf)
+            {
+                return;
+            }
+        }
         
         OnSetInteractible?.Invoke();
     }
