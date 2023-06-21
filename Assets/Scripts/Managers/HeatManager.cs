@@ -10,7 +10,7 @@ using Object = UnityEngine.Object;
 
 public class HeatManager : Singleton<HeatManager>
 {
-    [SerializeField] private List<Canvas> mingameCanvasList = new List<Canvas>();
+    public List<Canvas> mingameCanvasList = new List<Canvas>();
     [SerializeField] private Button respawnButton;
     [SerializeField] private TextMeshProUGUI gameOverText;
     
