@@ -1,6 +1,7 @@
 
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -37,7 +38,7 @@ public class CloseUpTrigger : MonoBehaviour
       AkteCloseUp
    }
 
- public void WhenButtonClicked()
+   public void WhenButtonClicked()
  {
     if (Pinboard.gameObject.activeSelf)
     {
@@ -186,4 +187,8 @@ public class CloseUpTrigger : MonoBehaviour
       inCanvas = false;
    }
 
+   private void Start()
+   {
+      gameObject.SetActive(false);
+   }
 }
