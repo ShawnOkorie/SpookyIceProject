@@ -36,6 +36,7 @@ public class InteractableObject : MonoBehaviour,IShouldForceAwake
     [SerializeField] private bool inInventory;
     public ProgressManager.Progress addProgress;
     
+    
     [Header("Door")]
     [SerializeField] private bool isDoor;
     [SerializeField] private Room targetroom;
@@ -148,8 +149,6 @@ public class InteractableObject : MonoBehaviour,IShouldForceAwake
             {
                 inInventory = true;
                 gameObject.transform.SetParent(Inventory.Instance.myLayout.transform);
-                print(Inventory.Instance.myLayout.transform);
-                print(transform.position);
                 ProgressManager.Instance.AddProgress(addProgress);
                 OnInventoryStateChange?.Invoke(inInventory);
             }

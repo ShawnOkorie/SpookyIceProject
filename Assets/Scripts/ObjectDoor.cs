@@ -80,8 +80,12 @@ public partial class ObjectDoor : InteractableObject
         }
         else
         {
-            if (ProgressManager.Instance.ContainsProgress(requiredProgress) || requiredProgress != ProgressManager.Progress.None)
+            if (requiredProgress != ProgressManager.Progress.None)
             {
+                if (ProgressManager.Instance.ContainsProgress(requiredProgress) == false)
+                {
+                    return;
+                }
                 return;
             }
             switch (isOpen)
