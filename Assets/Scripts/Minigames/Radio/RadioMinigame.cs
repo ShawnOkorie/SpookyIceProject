@@ -183,4 +183,9 @@ public class RadioMinigame : Singleton<RadioMinigame>, IMinigames
             break;
       }
    }
+
+   private void Start()
+   {
+      gameObject.SetActive(false);
+   }
 }

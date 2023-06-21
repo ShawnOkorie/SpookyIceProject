@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 
@@ -49,6 +50,8 @@ public class Keypad : Singleton<Keypad>, IMinigames
      myCanvas.gameObject.SetActive(false);
   }
 
-  
-  
+  private void Start()
+  {
+    gameObject.SetActive(false);
+  }
 }
