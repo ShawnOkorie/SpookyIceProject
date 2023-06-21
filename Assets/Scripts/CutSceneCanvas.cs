@@ -16,40 +16,46 @@ public class CutSceneCanvas : Singleton<CutSceneCanvas>
 
    [SerializeField] public Canvas myCanvas;
    private Image myImage;
-
-   [SerializeField] private List<Sprite> cutsceneImages = new List<Sprite>();
-   [SerializeField] private List<int> cutsceneTextList = new List<int>();
-
-   [SerializeField] private int startIndex;
-   [SerializeField] private int endIndex;
-
-   private Animator myAnimator;
-   [SerializeField] private AnimationClip sucessAnimation;
-   [SerializeField] private AnimationClip deathAnimation;
+   private bool hasDied;
+      
+   [SerializeField] private Animator myAnimator;
 
    private void Start()
    {
       myImage = GetComponentInChildren<Image>();
-      myAnimator = GetComponent<Animator>();
 
       DialogManager.Instance.OnDialogEnd += StartMinigame;
       SkillCheck.Instance.OnMinigameEnd += PlayAnimation;
+      LoadingScreen.Instance.OnFadeEnd += StartDialog;
+      
+      myCanvas.gameObject.SetActive(false);
    }
 
    private void StartMinigame()
    {
-      SkillCheck.Instance.StartMinigame(6,10);
+      if (hasDied)
+      {
+         return;
+      }
+      
+      SkillCheck.Instance.StartMinigame(6,15);
    }
 
    public void StartCutscene()
    {
+      hasDied = false;
       myCanvas.gameObject.SetActive(true);
+   }
+
+   private void StartDialog()
+   {
+      if (myCanvas.gameObject.activeSelf == false)
+      {
+         return;
+      }
       
       DialogManager.Instance.StartDialog(105);
    }
-   
-   
-
    /*private void LoadNext()
    {
       ++startIndex;
@@ -69,14 +75,14 @@ public class CutSceneCanvas : Singleton<CutSceneCanvas>
       switch (solved)
       {
          case true:
-            //myAnimator.Play(); sucess
+            myAnimator.SetTrigger("survived");
+            
             
             EndCutscene();
             break;
          case false:
-            //myAnimator.Play(); death
-            
-            //game over screen
+            myAnimator.SetTrigger("failed");
+            hasDied = true;
             break;
       }
    }

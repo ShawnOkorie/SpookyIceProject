@@ -10,8 +10,8 @@ public class LoadingScreen : Singleton<LoadingScreen>
     private Canvas myCanvas;
     private CanvasGroup blackScreen;
 
-    public float waitDuration;
-    public float fadeDuration;
+    public float waitDuration = 1;
+    public float fadeDuration = 1;
 
     public delegate void FadeStart();
     public event FadeStart OnFadeStart;
