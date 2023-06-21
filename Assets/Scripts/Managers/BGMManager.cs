@@ -69,6 +69,7 @@ public class BGMManager : Singleton<BGMManager>
       myAudioSource.Stop();
       myAudioSource.clip = minigameBGM;
       myAudioSource.loop = false;
+      myAudioSource.Play();
       StartCoroutine(Loop(minigameBGM,minigameLoopBGM));
    }
 }
